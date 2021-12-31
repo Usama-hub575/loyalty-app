@@ -16,18 +16,8 @@ class HomePage extends GetView<HomePageController> {
   Widget _getBody() {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: colors.white,
-      body: ListView(
-        children: [
-          // ScreenTypeLayout(
-          //   mobile: HeaderMobile(
-          //     onNavigationMenuPress: ()=>_scaffoldKey.currentState?.openDrawer(),
-          //   ),
-          //   tablet: HeaderTablet(),
-          // ),
-          verticalSpacer(110),
-        ],
-      ),
+      backgroundColor: colors.appColor,
+      body: Container(),
     );
   }
 }

@@ -30,9 +30,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   fluttericon:
   flutter_svg:
-  video_player:
-  responsive_builder:
-  smooth_page_indicator:
   get:
 
   domain:
@@ -63,7 +60,7 @@ flutter:
     - assets/png/
     - assets/locale/
     - assets/jpg/
-    - assets/videos/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

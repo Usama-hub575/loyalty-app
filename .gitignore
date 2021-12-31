@@ -29,6 +29,8 @@
 .packages
 .pub-cache/
 .pub/
+.fvm/
+/.fvm/
 /build/
 
 # Web related
@@ -44,4 +46,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-/.fvm/

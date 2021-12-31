@@ -1,0 +1,4 @@
+mixin IView {
+  showLoader();
+  hideLoader();
+}

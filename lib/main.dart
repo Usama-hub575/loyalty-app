@@ -13,12 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Loyalty App',
-      theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
-      ),
+
       debugShowCheckedModeBanner: false,
       // unknownRoute: GetPage(name: '/notfound', page: () => UnknownRoutePage()),
-      initialRoute: RouteNames.home,
+      initialRoute: RouteNames.splash,
       getPages: AppRoutes.getPage,
       smartManagement: SmartManagement.keepFactory,
       showPerformanceOverlay: false,

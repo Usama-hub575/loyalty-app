@@ -9,7 +9,6 @@ class HomePage extends GetView<HomePageController> {
 
   @override
   Widget build(BuildContext context) {
-    initializeResources(context: context);
     return _getBody();
   }
 

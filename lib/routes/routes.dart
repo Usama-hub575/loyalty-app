@@ -16,14 +16,22 @@ class AppRoutes {
       page: () => HomePage(),
       binding: HomeBinding(),
     ),
+    GetPage(
+      name: RouteNames.onboarding,
+      page: () => OnboardingPage(),
+      binding: OnboardingBinding(),
+    ),
   ];
 
   static Route<dynamic> appRoutes(final String name) {
     switch (name) {
+      case RouteNames.splash:
+        return Get.to(Splash(), binding: SplashBinding()) as Route<dynamic>;
+      case RouteNames.onboarding:
+        return Get.to(OnboardingPage(), binding: OnboardingBinding())
+            as Route<dynamic>;
       case RouteNames.home:
         return Get.to(HomePage(), binding: HomeBinding()) as Route<dynamic>;
-     case RouteNames.splash:
-        return Get.to(Splash(), binding: SplashBinding()) as Route<dynamic>;
       default:
         return _errorRoute();
     }

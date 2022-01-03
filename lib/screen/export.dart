@@ -1,2 +1,3 @@
 export 'home_screen/export.dart';
 export 'splash/export.dart';
+export 'onboarding/export.dart';

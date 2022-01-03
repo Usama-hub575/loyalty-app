@@ -5,8 +5,6 @@ import 'package:loyalty/export.dart';
 import 'export.dart';
 
 class SplashPresenterImpl extends SplashController with StateMixin<Splash> {
-  SplashPresenterImpl();
-
   bool isInitialized = false;
 
   @override
@@ -45,6 +43,6 @@ class SplashPresenterImpl extends SplashController with StateMixin<Splash> {
   void navigateToOnBoarding() {
     // updateFirebaseDeviceToken();
 
-    AppRoutes.appRoutes(RouteNames.home);
+    AppRoutes.appRoutes(RouteNames.onboarding);
   }
 }

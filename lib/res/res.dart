@@ -4,7 +4,6 @@ import 'export.dart';
 
  AppAssets assets;
  AppColors colors;
- AppLabels labels;
  AppSizes sizes;
  TextStyles textStyles;
 
@@ -22,6 +21,5 @@ void initializeResources({ BuildContext context}) {
   sizes = AppSizes()..initializeSize(context);
   assets = AppAssets();
   colors = AppColors();
-  labels = AppLabels();
   textStyles = TextStyles();
 }

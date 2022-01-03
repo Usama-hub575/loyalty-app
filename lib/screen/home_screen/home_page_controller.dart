@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:loyality/export.dart';
+import 'package:loyalty/export.dart';
 
 class HomePageController extends GetxController with StateMixin<HomePage> {
 

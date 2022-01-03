@@ -1,4 +1,4 @@
-package com.palmgrid.loyality;
+package com.palmgrid.loyalty;
 
 import io.flutter.embedding.android.FlutterActivity;
 

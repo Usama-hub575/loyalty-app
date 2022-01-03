@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:loyality/screen/export.dart';
+import 'package:loyalty/screen/export.dart';
 
 class HomeBinding implements Bindings {
   @override

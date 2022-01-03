@@ -18,8 +18,8 @@ class AppRoutes {
     ),
   ];
 
-  static Route<dynamic> appRoutes(final RouteSettings settings) {
-    switch (settings.name) {
+  static Route<dynamic> appRoutes(final String name) {
+    switch (name) {
       case RouteNames.home:
         return Get.to(HomePage(), binding: HomeBinding()) as Route<dynamic>;
      case RouteNames.splash:

@@ -5,6 +5,5 @@ class SplashBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<SplashController>(() => SplashPresenterImpl());
-    // Get.put<Service>(()=> Api());
   }
 }

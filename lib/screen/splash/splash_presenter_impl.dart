@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loyalty/export.dart';
 
 import 'export.dart';
 
@@ -10,8 +11,8 @@ class SplashPresenterImpl extends SplashController with StateMixin<Splash> {
 
   @override
   void initialize({BuildContext context}) async {
-
-
+    initAppResources(context);
+    Future.delayed(Duration(seconds: 3), () => navigateToOnBoarding());
     // await _initializerUseCase.getInitRoute().then(
     //   (routeName) {
     //     _performance.endTrace(PerformanceKeys.splashPageLoad);
@@ -26,17 +27,14 @@ class SplashPresenterImpl extends SplashController with StateMixin<Splash> {
     // pushNotificationUseCase.initialize(context);
   }
 
-
   void initAppResources(BuildContext context) {
     if (isInitialized) {
       return;
     }
 
     isInitialized = true;
-    // initializeResources(context: context);
+    initializeResources(context: context);
   }
-
-
 
   @override
   void openNextRoute({String routeName}) {
@@ -46,6 +44,7 @@ class SplashPresenterImpl extends SplashController with StateMixin<Splash> {
   @override
   void navigateToOnBoarding() {
     // updateFirebaseDeviceToken();
-    // _presenter.getOnBoardingScenarioType();
+
+    AppRoutes.appRoutes(RouteNames.home);
   }
 }

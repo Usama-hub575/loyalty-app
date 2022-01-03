@@ -11,10 +11,17 @@ class Splash extends GetView<SplashController> {
 
   @override
   Widget build(BuildContext context) {
-    initializeResources(context: context);
+    controller.initialize(context: context);
     return Scaffold(
-      backgroundColor: colors.appColor,
-      body: Center(child: _components.getLabsterLogo()),
+      backgroundColor: colors.white,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(child: _components.getSplashLogo()),
+          SizedBox(height: 30),
+          _components.getLoyaltyLogo(),
+        ],
+      ),
     );
   }
 }

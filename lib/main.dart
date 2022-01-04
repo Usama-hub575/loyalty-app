@@ -13,7 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Loyalty App',
-
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(color: Color.fromRGBO(255, 204, 51, 0.9)),
+      ),
       debugShowCheckedModeBanner: false,
       // unknownRoute: GetPage(name: '/notfound', page: () => UnknownRoutePage()),
       initialRoute: RouteNames.splash,

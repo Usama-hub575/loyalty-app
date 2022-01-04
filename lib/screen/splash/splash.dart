@@ -16,9 +16,15 @@ class Splash extends GetView<SplashController> {
       backgroundColor: colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(child: _components.getSplashLogo()),
-          SizedBox(height: 30),
+          Center(
+            child: Container(
+              height: verticalValue(260),
+              child: _components.getSplashLogo(),
+            ),
+          ),
+          verticalSpacer(30),
           _components.getLoyaltyLogo(),
         ],
       ),

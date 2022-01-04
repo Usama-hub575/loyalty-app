@@ -11,6 +11,7 @@ class AppAssets {
   final String icLoyalty = 'assets/svg/ic_loyalty.svg';
   final String icOnboarding1 = 'assets/svg/ic_onboarding_1.svg';
   final String icOnboarding2 = 'assets/svg/ic_onboarding_2.svg';
+  final String icOnboarding3 = 'assets/svg/ic_onboarding_3.svg';
 
 
 

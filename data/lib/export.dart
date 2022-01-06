@@ -4,3 +4,4 @@ export 'network/export.dart';
 export 'repo/export.dart';
 export 'storage/export.dart';
 export 'utils/export.dart';
+export 'package:dartz/dartz.dart';

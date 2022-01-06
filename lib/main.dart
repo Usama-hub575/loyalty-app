@@ -15,9 +15,12 @@ class MyApp extends StatelessWidget {
       title: 'Loyalty App',
       theme: ThemeData(
         appBarTheme: AppBarTheme(color: Color.fromRGBO(255, 204, 51, 0.9)),
+        backgroundColor: Color.fromRGBO(255, 204, 51, 0.9),
+
+
       ),
       debugShowCheckedModeBanner: false,
-      // unknownRoute: GetPage(name: '/notfound', page: () => UnknownRoutePage()),
+      unknownRoute: GetPage(name:'/notfound',),
       initialRoute: RouteNames.splash,
       getPages: AppRoutes.getPage,
       smartManagement: SmartManagement.keepFactory,

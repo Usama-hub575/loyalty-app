@@ -19,7 +19,7 @@ class OnboardingComponents {
         );
       case 2:
         return SvgPicture.asset(
-          assets.icOnboarding1,
+          assets.icOnboarding3,
           width: sizes.width * 0.65,
           fit: BoxFit.fitWidth,
         );

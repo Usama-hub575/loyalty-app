@@ -28,23 +28,20 @@ class AppRoutes {
     ),
   ];
 
-  static Route<dynamic> appRoutes(final String name) {
-    switch (name) {
+  static Future<dynamic> appRoutes(final String routeName) {
+    switch (routeName) {
       case RouteNames.splash:
-        return Get.to(Splash(), binding: SplashBinding()) as Route<dynamic>;
-      case RouteNames.onboarding:
-        return Get.off(OnboardingPage(), binding: OnboardingBinding())
-            as Route<dynamic>;
-      case RouteNames.login:
-        return Get.offAll(LoginPage(), binding: LoginBinding()) as Route<dynamic>;
       case RouteNames.home:
-        return Get.to(HomePage(), binding: HomeBinding()) as Route<dynamic>;
+        return Get.toNamed(routeName);
+      case RouteNames.onboarding:
+      case RouteNames.login:
+        return Get.offAllNamed(routeName);
       default:
         return _errorRoute();
     }
   }
 
-  static Route<dynamic> _errorRoute() {
-    return Get.to(Container()) as Route<dynamic>;
+  static Future<dynamic> _errorRoute() {
+    return Get.to(Container());
   }
 }

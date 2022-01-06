@@ -11,6 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Firebase
+  firebase_auth: ^3.3.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

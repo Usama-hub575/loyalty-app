@@ -1,41 +1,53 @@
 import 'package:core/export.dart';
 import 'package:data/export.dart';
-import 'package:flutter/material.dart';
 
-class AuthUseCase{
-   final FirebaseAuthWrapper auth;
-   final AuthRepo repo;
+class AuthUseCase {
+  final FirebaseAuthWrapper auth;
+  final AuthRepo repo;
 
   AuthUseCase(this.auth, this.repo);
 
   Future<Either<AppError, AppSuccess>> sendResetPasswordEmail(
-      BuildContext context, String email) async {
-    return await repo.sendResetPasswordEmail(context, email);
+      String email) async {
+    return await repo.sendResetPasswordEmail(email);
   }
 
-  Future<Either<AppError, AppSuccess>> registerUser(
-      BuildContext context, String email, String password, String name) async {
-    return await repo.registerUser(context, email, password, name);
+  Future<Either<AppError, User>> registerUser(
+      String email, String password, String name) async {
+    return await repo.registerUser(email, password, name);
   }
 
-  Future<Either<AppError, AppSuccess>> signInWithFaceBook(
-      BuildContext context) async {
-    return await repo.signInWithFacebook(context);
+  Future<Either<AppError, User>> signInWithFaceBook() async {
+    return await repo.signInWithFacebook();
   }
 
-  Future<Either<AppError, AppSuccess>> signInWithGoogle(
-      BuildContext context) async {
+  Future<Either<AppError, User>> signInWithGoogle() async {
     await repo.signOutWithGoogle();
-    return await repo.signInWithGoogle(context);
+    return await repo.signInWithGoogle();
   }
 
-  Future<Either<AppError, AppSuccess>> signInWithFirebase(
-      BuildContext context, String email, String password) async {
-    return await repo.signInWithFirebase(context, email, password);
+  Future<Either<AppError, User>> signInWithFirebase(
+      String email, String password) async {
+    return await repo.signInWithFirebase(email, password);
   }
 
-  // Future<bool> isUserLoggedIn() async {
-    // User user = auth.firebaseAuth().currentUser;
-    // return user != null;
-  // }
+  Future<Either<AppError, dynamic>> signInWithPhone(String number) async {
+    return await repo.signWithPhone(number);
+  }
+
+  Future<Either<AppError, dynamic>> verifyOTP(String smsCode, String verificationId) async {
+    return await repo.verifyOTP(smsCode,verificationId);
+  }
+
+
+  Future<Either<AppError, dynamic>> resendOTP(String number) async {
+    return await repo.signWithPhone(number);
+  }
+
+
+// Future<bool> isUserLoggedIn() async {
+// User user = auth.firebaseAuth().currentUser;
+// return user != null;
+//
+
 }

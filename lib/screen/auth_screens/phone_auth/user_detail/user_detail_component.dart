@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loyalty/export.dart';
+import 'package:aactivpay/export.dart';
 
 class UserDetailComponent {
   final _formKey = GlobalKey<FormState>();

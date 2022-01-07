@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:loyalty/export.dart';
+import 'package:aactivpay/export.dart';
 
 class PhoneAuthComponent {
   Widget getMobileForm(

@@ -1,7 +1,7 @@
 import 'package:data/export.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
@@ -101,12 +101,70 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<AppError, User>> signInWithFacebook() async {
     try {
-      _facebookLogin.loginBehavior = FacebookLoginBehavior.nativeWithFallback;
-      var facebookLoginResult = await _facebookLogin.logIn(['email']);
-      switch (facebookLoginResult.status) {
+      final res = await _facebookLogin.logIn(permissions: [
+        FacebookPermission.publicProfile,
+        FacebookPermission.email,
+      ]);
+      switch (res.status) {
+        // Logged in
+        case FacebookLoginStatus.success:
+          // Send access token to server for validation and auth
+          final FacebookAccessToken? accessToken = res.accessToken;
+
+          // Get profile data
+          final profile = await _facebookLogin.getUserProfile();
+
+          // Get user profile image url
+          final imageUrl = await _facebookLogin.getProfileImageUrl(width: 100);
+
+          // Get email (since we request email permission)
+          final email = await _facebookLogin.getUserEmail();
+
+          // But user can decline permission
+          if (email != null) print('And your email is $email');
+
+          if (accessToken != null) {
+            final AuthCredential credential =
+                FacebookAuthProvider.credential(accessToken.token);
+            final User? user =
+                (await _auth.firebaseAuth().signInWithCredential(credential))
+                    .user;
+            if (user == null) {
+              return Left(getLoggedError(
+                  'error_in_signing_in_user_with_facebook',
+                  title: 'USER_NOT_FOUND'));
+            } else if (user.isAnonymous) {
+              return Left(getLoggedError(
+                  'error_in_signing_in_user_with_facebook',
+                  title: 'USER_ANONYMOUS'));
+            }
+
+            // final User? currentUser = _auth.firebaseAuth().currentUser;
+
+            // if (user.providerData[0].email == null) {
+            //   return Left(getLoggedError("error_in_signing_in_user_with_facebook",
+            //       title: "EMAIL_ID_NOT_FOUND"));
+            // }
+            if (user.displayName == null) {
+              return Left(getLoggedError(
+                  'error_in_signing_in_user_with_facebook',
+                  title: 'NAME_NOT_FOUND'));
+            }
+            return Right(user);
+          }
+          break;
+
+        // User cancel log in
+        case FacebookLoginStatus.cancel:
+          return Left(getLoggedError(
+            'error_in_signing_in_user_with_facebook',
+            title: 'CANCELLED_BY_USER',
+          ));
+
+        // Log in failed
         case FacebookLoginStatus.error:
-          if (facebookLoginResult.errorMessage ==
-              "net::ERR_INTERNET_DISCONNECTED") {
+          print('Error while log in: ${res.error?.developerMessage}');
+          if (res.error?.developerMessage == "net::ERR_INTERNET_DISCONNECTED") {
             return Left(
               getLoggedError('error_in_signing_in_user_with_facebook',
                   title: 'ERROR_NETWORK_REQUEST_FAILED'),
@@ -114,47 +172,8 @@ class AuthRepoImpl implements AuthRepo {
           } else {
             return Left(getLoggedError('error_in_signing_in_user_with_facebook',
                 title: "FACEBOOK_LOGIN_ERROR",
-                description: facebookLoginResult.errorMessage));
+                description: res.error.toString()));
           }
-        case FacebookLoginStatus.cancelledByUser:
-          return Left(getLoggedError(
-            'error_in_signing_in_user_with_facebook',
-            title: 'CANCELLED_BY_USER',
-          ));
-        case FacebookLoginStatus.loggedIn:
-          final token = facebookLoginResult.accessToken.token;
-          // final graphResponse = await _network.get(
-          //     'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name'
-          //     ',picture,email&access_token=$token');
-          // return graphResponse.fold((failure) {
-          //   return Left(failure);
-          // }, (response) async {
-          //   final profile = _jsonConverter.fromJson(response.body);
-          //
-          final AuthCredential credential =
-              FacebookAuthProvider.credential(token);
-          final User? user =
-              (await _auth.firebaseAuth().signInWithCredential(credential))
-                  .user;
-          if (user == null) {
-            return Left(getLoggedError('error_in_signing_in_user_with_facebook',
-                title: 'USER_NOT_FOUND'));
-          } else if (user.isAnonymous) {
-            return Left(getLoggedError('error_in_signing_in_user_with_facebook',
-                title: 'USER_ANONYMOUS'));
-          }
-
-          // final User? currentUser = _auth.firebaseAuth().currentUser;
-
-          // if (user.providerData[0].email == null) {
-          //   return Left(getLoggedError("error_in_signing_in_user_with_facebook",
-          //       title: "EMAIL_ID_NOT_FOUND"));
-          // }
-          if (user.displayName == null) {
-            return Left(getLoggedError('error_in_signing_in_user_with_facebook',
-                title: 'NAME_NOT_FOUND'));
-          }
-          return Right(user);
       }
     } catch (error) {
       AppError appError = _getAppErrorFromException(error);

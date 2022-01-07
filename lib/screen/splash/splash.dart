@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loyalty/export.dart';
+import 'package:aactivpay/export.dart';
 
 import 'export.dart';
 
@@ -25,7 +25,7 @@ class Splash extends GetView<SplashController> {
             ),
           ),
           verticalSpacer(30),
-          _components.getLoyaltyLogo(),
+          _components.getaactivpayLogo(),
         ],
       ),
     );

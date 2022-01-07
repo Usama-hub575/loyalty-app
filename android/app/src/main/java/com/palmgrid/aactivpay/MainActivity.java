@@ -1,4 +1,4 @@
-package com.palmgrid.loyalty;
+package com.palmgrid.aactivpay;
 
 import io.flutter.embedding.android.FlutterActivity;
 

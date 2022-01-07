@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:loyalty/export.dart';
+import 'package:aactivpay/export.dart';
 
 class OnboardingComponents {
   getOnboardingImage(int page) {

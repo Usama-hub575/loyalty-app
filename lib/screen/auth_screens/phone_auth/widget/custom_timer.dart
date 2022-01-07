@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loyalty/export.dart';
+import 'package:aactivpay/export.dart';
 
 class CustomTimer extends StatefulWidget {
   CustomTimer({Key key, this.resend}) : super(key: key);

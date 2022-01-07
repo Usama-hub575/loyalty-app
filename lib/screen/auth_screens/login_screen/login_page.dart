@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loyalty/export.dart';
+import 'package:aactivpay/export.dart';
 
 class LoginPage extends GetView<LoginController> {
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:loyalty/export.dart';
+import 'package:aactivpay/export.dart';
 
 class SplashComponents {
   Widget getSplashLogo() {
@@ -11,9 +11,9 @@ class SplashComponents {
     );
   }
 
-  Widget getLoyaltyLogo() {
+  Widget getaactivpayLogo() {
     return SvgPicture.asset(
-      assets.icLoyalty,
+      assets.icAactivpay,
       width: sizes.width * 0.65,
       fit: BoxFit.fitWidth,
     );

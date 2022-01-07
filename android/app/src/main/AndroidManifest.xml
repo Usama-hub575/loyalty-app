@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.palmgrid.loyalty">
+    package="com.palmgrid.aactivpay">
    <application
-        android:label="loyalty"
+        android:label="aactivpay"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

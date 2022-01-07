@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:loyalty/screen/export.dart';
+import 'package:aactivpay/screen/export.dart';
 
 class SplashBinding implements Bindings {
   @override

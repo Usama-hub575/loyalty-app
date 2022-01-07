@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:loyalty/export.dart';
+import 'package:aactivpay/export.dart';
 
 class OTPVerificationComponent {
   OTPVerificationComponent();

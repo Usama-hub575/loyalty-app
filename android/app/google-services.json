@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:919599861455:android:14dbc2ba1530cc8adcb1ba",
+        "mobilesdk_app_id": "1:919599861455:android:f03d05a820bed5c6dcb1ba",
         "android_client_info": {
-          "package_name": "com.palmgrid.loyalty"
+          "package_name": "com.palmgrid.aactivpay"
         }
       },
       "oauth_client": [
         {
-          "client_id": "919599861455-71jaqkkkiq4q0ucppkj43r3icte7oqca.apps.googleusercontent.com",
+          "client_id": "919599861455-4e84vfbslvehkv1uctpe1jepn62e9llo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.palmgrid.loyalty",
+            "package_name": "com.palmgrid.aactivpay",
             "certificate_hash": "c00b70f24935bf6d3fb8ee7874394007f29d8204"
           }
         },

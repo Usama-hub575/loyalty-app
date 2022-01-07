@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loyalty/export.dart';
+import 'package:aactivpay/export.dart';
 
 class PhoneAuthScreen extends GetView<PhoneAuthController>{
   final _phoneNumberController = TextEditingController();
@@ -37,14 +37,12 @@ class PhoneAuthScreen extends GetView<PhoneAuthController>{
     });
   }
 
-  @override
   navigateToOTPVerificationPage(String _verificationId) async {
     // await Navigator.pushNamed(context, AppRoutes.otpVerify,
     //     arguments: [_verificationId, number]);
     hideProgressBar();
   }
 
-  @override
   showProgressBar() {
     // setState(() {
       _loading = true;
@@ -60,7 +58,6 @@ class PhoneAuthScreen extends GetView<PhoneAuthController>{
   }
 
 
-  @override
   navigateToTabsPage() {
     // Navigator.of(context).pushReplacementNamed(AppRoutes.tabs);
   }
@@ -86,12 +83,10 @@ class PhoneAuthScreen extends GetView<PhoneAuthController>{
     //     backgroundColor: colors.colorRedCard);
   }
 
-  @override
   String getTextFromKey(String key) {
     // return translate(context, key);
   }
 
-  @override
   navigateToUserDetailPage() {
     // Navigator.of(context)
     //     .pushNamedAndRemoveUntil(AppRoutes.userDetail, (route) => false);

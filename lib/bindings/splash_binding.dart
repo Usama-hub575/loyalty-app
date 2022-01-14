@@ -4,6 +4,6 @@ import 'package:aactivpay/screen/export.dart';
 class SplashBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<SplashController>(() => SplashPresenterImpl());
+    Get.lazyPut<SplashController>(() => SplashController());
   }
 }

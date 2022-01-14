@@ -1,117 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:aactivpay/export.dart';
 
 class OnboardingComponents {
-  getOnboardingImage(int page) {
-    switch (page) {
-      case 0:
-        return SvgPicture.asset(
-          assets.icOnboarding1,
-          width: sizes.width * 0.65,
-          fit: BoxFit.fitWidth,
-        );
-      case 1:
-        return SvgPicture.asset(
-          assets.icOnboarding2,
-          width: sizes.width * 0.65,
-          fit: BoxFit.fitWidth,
-        );
-      case 2:
-        return SvgPicture.asset(
-          assets.icOnboarding3,
-          width: sizes.width * 0.65,
-          fit: BoxFit.fitWidth,
-        );
-    }
-  }
-
-  getHeadingText(int page) {
-    switch (page) {
-      case 0:
-        return Text(
-          'Discovered the undoubtable source',
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
-        );
-      case 1:
-        return Text(
-          'Discovered the undoubtable source',
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
-        );
-      case 2:
-        return Text(
-          'Discovered the undoubtable source',
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
-        );
-    }
-  }
-
-  getDetailsText(int page) {
-    switch (page) {
-      case 0:
-        return Text(
-          'Simply dummy text of the printing and typ esetting industry. Lorem Ipsum has been the industry',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.normal,
-          ),
-        );
-      case 1:
-        return Text(
-          'Simply dummy text of the printing and typ esetting industry. Lorem Ipsum has been the industry',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.normal,
-          ),
-        );
-      case 2:
-        return Text(
-          'Simply dummy text of the printing and typ esetting industry. Lorem Ipsum has been the industry',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.normal,
-          ),
-        );
-    }
-  }
-
-  getSkipButton(int page, onSkip) {
-    return TextButton(
+  getSkipButton(onSkip) {
+    return GestureDetector(
       child: Text(
-        page < 2 ? 'Skip' : '',
-        style: TextStyle(
-          fontSize: 16,
-          color: colors.black,
-          fontWeight: FontWeight.normal,
+        'Skip',
+        style: textStyles.regularManrope.copyWith(
+          fontSize: 14,
         ),
       ),
-      onPressed: page < 2 ? onSkip : null,
+      onTap: onSkip,
     );
   }
 
-  getNextButton(int page, onPressed) {
-    return ElevatedButton(
-      child: Text(
-        page < 2 ? 'Next' : 'Get Started',
-        style: TextStyle(
-          fontSize: 30,
-          color: colors.white,
-          fontWeight: FontWeight.bold,
+  getNextButton(onPressed) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        width: 58,
+        height: 58,
+        decoration: BoxDecoration(
+          color: colors.appColorShade,
+          shape: BoxShape.circle,
+        ),
+        child: Center(
+          child: Text(
+            'Next',
+            style: textStyles.mediumManrope.copyWith(
+              fontSize: 14,
+            ),
+          ),
         ),
       ),
-      style: ElevatedButton.styleFrom(
-        primary: colors.black,
-        fixedSize: Size(sizes.widthRatio * 250, sizes.heightRatio * 50),
-      ),
+    );
+  }
+
+  getStartedButton(onPressed) {
+    return GradientButton(
+      text: 'Get Started',
       onPressed: onPressed,
     );
   }
@@ -121,31 +48,23 @@ class OnboardingComponents {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         getCircle(page == 0),
-        SizedBox(width: 20),
+        horizontalSpacer(10),
         getCircle(page == 1),
-        SizedBox(width: 20),
+        horizontalSpacer(10),
         getCircle(page == 2),
       ],
     );
   }
 
-  getCircle(bool isBold) {
-    return Container(
-      width: isBold ? 14 : 10,
-      height: isBold ? 14 : 10,
+  getCircle(bool isSelected) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      width: isSelected ? 22 : 10,
+      height: 10,
       decoration: BoxDecoration(
-        color: colors.appColor,
-        shape: BoxShape.circle,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: colors.white,
-            shape: BoxShape.circle,
-          ),
-        ),
-      ),
+          color: isSelected ? colors.appColor : colors.grey,
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(5)),
     );
   }
 }

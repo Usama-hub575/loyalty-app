@@ -1,109 +1,134 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:aactivpay/export.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPVerificationComponent {
   OTPVerificationComponent();
 
-  getMobileForm(context, appLocalizations, _smsController, Function onTap, loading, formKey,
-          String phoneNumber, Function resend) =>
-      SingleChildScrollView(
-        child: Container(
-          height: sizes.height,
-          alignment: Alignment.topCenter,
-          padding: EdgeInsets.all(sizes.width * 0.08),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              const Spacer(flex: 2),
-              Align(
-                alignment: Alignment.centerLeft,
-                // child: BasicHeader(
-                //   appLocalizations.translate(VERIFY_PHONE_NUMBER_TITLE),
-                // ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: sizes.width * 0.025, top: 20),
-                child: Text(
-                  appLocalizations.translate("VERIFY_PHONE_NUMBER_SUBTITLE"),
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
-                ),
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: sizes.width * 0.055),
-                  child: Text(
-                    phoneNumber != null ? phoneNumber : "",
-                    textAlign: TextAlign.right,
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16, height: 1.5),
-                  ),
-                ),
-              ),
-              getPinCodeFeild(context, onTap, _smsController, resend),
-              const Spacer(flex: 8),
-            ],
-          ),
-        ),
-      );
-
-  getAuthBackButton(f) => Align(
-        alignment: Alignment.topLeft,
-        child: BackButton(
-          color: colors.appColor,
-          onPressed: f,
-        ),
-      );
-
-  getPinCodeFeild(BuildContext context, Function onTap, smsController, Function resend) {
-    return Container(
-      height: MediaQuery.of(context).size.height - 400,
-      width: MediaQuery.of(context).size.width,
-      child: ListView(
-        shrinkWrap: false,
-        primary: false,
-        children: <Widget>[
-          SizedBox(
-            height: 20,
-          ),
-          Form(
-            child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 2),
-                child: Container()),
-          ),
-          SizedBox(
-            height: 6,
-          ),
-          Text("Trying to auto-fetch the code...",
-              style: TextStyle(
-                  color: colors.appColor, fontWeight: FontWeight.normal, fontSize: 16)),
-          SizedBox(
-            height: 80,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: SingleChildScrollView(
-              child: Container(
-                height: 30,
-                child: Row(
-                  children: [
-                    Text(
-                      "Resend code | ",
-                      style: TextStyle(
-                          color: colors.appColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    ),
-                    CustomTimer(resend: resend),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
+  Widget getBackButton(onBack) {
+    return GestureDetector(
+      onTap: onBack,
+      child: SvgPicture.asset(
+        assets.icBack,
       ),
+    );
+  }
+
+  Widget getTitle() {
+    return Text(
+      'Enter OTP',
+      style: textStyles.extraBoldGradientMontserrat.copyWith(
+        fontSize: 28,
+      ),
+    );
+  }
+
+  Widget getDetailText() {
+    return Text(
+      'Enter 6-digit OTP code to verify the phone number',
+      style: textStyles.regularManrope,
+    );
+  }
+
+  Widget getPinCodeField(BuildContext context, verificationCodeController) {
+    return Form(
+      // key: formKey,
+      child: PinCodeTextField(
+        appContext: context,
+        controller: verificationCodeController,
+        pastedTextStyle: textStyles.semiBoldManrope.copyWith(
+          fontSize: sizes.fontRatio * 28,
+        ),
+        length: 6,
+        obscureText: false,
+        // animationType: AnimationType.fade,
+        autoFocus: true,
+        enablePinAutofill: true,
+
+        pinTheme: PinTheme(
+          shape: PinCodeFieldShape.box,
+          borderRadius: BorderRadius.circular(5),
+          borderWidth: 1,
+          fieldHeight: 50,
+          fieldWidth: 40,
+          activeFillColor: colors.white,
+          inactiveFillColor: colors.white,
+          selectedFillColor: colors.white,
+          inactiveColor: colors.grey,
+          selectedColor: colors.appColor,
+          activeColor: colors.appColor,
+        ),
+        cursorColor: colors.primaryDark,
+        animationDuration: Duration(milliseconds: 300),
+        textStyle: textStyles.semiBoldManrope.copyWith(
+          fontSize: sizes.fontRatio * 28,
+        ),
+        enableActiveFill: true,
+        backgroundColor: colors.white,
+
+        keyboardType: TextInputType.number,
+
+        onCompleted: (v) {
+          print("Completed");
+        },
+        onTap: () {
+          print("Pressed");
+        },
+        onChanged: (value) {
+          print(value);
+        },
+
+        beforeTextPaste: (text) {
+          print("Allowing to paste $text");
+          //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+          //but you can show anything you want here, like your pop up saying wrong paste format or etc
+          return true;
+        },
+      ),
+    );
+  }
+
+  Widget getPinTimer() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        CustomTimer(),
+        Text(
+          " sec",
+          style: textStyles.regularManrope.copyWith(
+            color: colors.primaryDark,
+            fontWeight: FontWeight.w300,
+            fontSize: 15,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget getResendButton() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          "Didn’t Receive the Code? ",
+          style: textStyles.regularManrope.copyWith(
+            color: colors.primaryDark,
+            fontWeight: FontWeight.w300,
+            fontSize: 15,
+          ),
+        ),
+        Text(
+          'Resend',
+          style: textStyles.boldManrope.copyWith(
+            color: colors.appColor,
+            fontSize: 15,
+          ),
+        ),
+      ],
     );
   }
 }

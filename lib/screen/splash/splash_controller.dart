@@ -4,10 +4,9 @@ import 'package:aactivpay/export.dart';
 
 import 'export.dart';
 
-class SplashPresenterImpl extends SplashController with StateMixin<Splash> {
+class SplashController extends GetxController with StateMixin<Splash> {
   bool isInitialized = false;
 
-  @override
   void initialize({BuildContext context}) async {
     initAppResources(context);
     Future.delayed(Duration(seconds: 3), () => navigateToOnBoarding());
@@ -34,12 +33,10 @@ class SplashPresenterImpl extends SplashController with StateMixin<Splash> {
     initializeResources(context: context);
   }
 
-  @override
   void openNextRoute({String routeName}) {
     // Navigator.pushReplacementNamed(context, routeName);
   }
 
-  @override
   void navigateToOnBoarding() {
     // updateFirebaseDeviceToken();
 

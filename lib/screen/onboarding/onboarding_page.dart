@@ -3,37 +3,74 @@ import 'package:get/get.dart';
 import 'package:aactivpay/export.dart';
 
 class OnboardingPage extends GetView<OnboardingController> {
-  OnboardingComponents components = OnboardingComponents();
-
   @override
   Widget build(BuildContext context) {
+    controller.initialize();
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: verticalValue(260),
-                child: Obx(() => components.getOnboardingImage(controller.page.value)),),
-            verticalSpacer(40),
-            Obx(() => components.getHeadingText(controller.page.value)),
-            verticalSpacer(15),
-            Obx(() => components.getDetailsText(controller.page.value)),
-            verticalSpacer(70),
-            Obx(() => components.getIndicators(controller.page.value)),
-            verticalSpacer(10),
-            Obx(() => components.getSkipButton(
-                  controller.page.value,
-                  controller.onSkip,
-                )),
-            verticalSpacer(10),
-            Obx(() => components.getNextButton(
-                  controller.page.value,
-                  controller.onNext,
-                )),
-          ],
-        ),
+      backgroundColor: colors.white,
+      body: Stack(
+        children: [
+          Obx(
+            () => shader(
+              top: controller.currentPage.value < 2 ? -30 : 200,
+              left: controller.currentPage.value == 0 ? -30 : 200,
+              right: controller.currentPage.value > 0 ? -30 : 200,
+            ),
+          ),
+          shader(
+            bottom: -30,
+            left: -30,
+          ),
+          Container(
+            width: double.infinity,
+            child: Column(
+              children: [
+                Expanded(
+                  child: Obx(
+                    () => PageView.builder(
+                      controller: controller.pageController,
+                      physics: BouncingScrollPhysics(),
+                      onPageChanged: (value) {
+                        controller.updatePage(value: value);
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        return controller
+                            .pageChildren[controller.currentPage.value];
+                      },
+                      itemCount: controller.pageChildren.length,
+                    ),
+                  ),
+                ),
+                verticalSpacer(30),
+                Obx(() => controller.components
+                    .getIndicators(controller.currentPage.value)),
+                verticalSpacer(20),
+                Obx(
+                  () => controller.currentPage.value < 2
+                      ? Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: horizontalValue(40)),
+                          child: Row(
+                            children: [
+                              controller.components.getSkipButton(
+                                controller.onSkip,
+                              ),
+                              Spacer(),
+                              controller.components.getNextButton(
+                                controller.updatePage,
+                              )
+                            ],
+                          ),
+                        )
+                      : controller.components.getStartedButton(
+                          controller.updatePage,
+                        ),
+                ),
+                verticalSpacer(30),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

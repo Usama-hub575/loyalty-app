@@ -26,15 +26,39 @@ class AppRoutes {
       page: () => LoginPage(),
       binding: LoginBinding(),
     ),
+    GetPage(
+      name: RouteNames.phoneLogin,
+      page: () => PhoneAuthScreen(),
+      binding: PhoneAuthBinding(),
+    ),
+    GetPage(
+      name: RouteNames.otpScreen,
+      page: () => OTPVerificationScreen(),
+      binding: OTPBinding(),
+    ),
+    GetPage(
+      name: RouteNames.userDetailsScreen,
+      page: () => UserDetailsScreen(),
+      binding: UserDetailsBinding(),
+    ),
+    GetPage(
+      name: RouteNames.locationScreen,
+      page: () => LocationPage(),
+      binding: LocationBinding(),
+    ),
   ];
 
   static Future<dynamic> appRoutes(final String routeName) {
     switch (routeName) {
       case RouteNames.splash:
       case RouteNames.home:
+      case RouteNames.otpScreen:
+      case RouteNames.locationScreen:
         return Get.toNamed(routeName);
       case RouteNames.onboarding:
       case RouteNames.login:
+      case RouteNames.phoneLogin:
+      case RouteNames.userDetailsScreen:
         return Get.offAllNamed(routeName);
       default:
         return _errorRoute();

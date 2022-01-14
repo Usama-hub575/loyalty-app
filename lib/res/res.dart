@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'export.dart';
 
-
- AppAssets assets;
- AppColors colors;
- AppSizes sizes;
- TextStyles textStyles;
-
+AppAssets assets;
+AppColors colors;
+AppSizes sizes;
+TextStyles textStyles;
+AppConstants constants;
 bool _isInitialized = false;
 
-void initializeResources({ BuildContext context}) {
+void initializeResources({BuildContext context}) {
   if (_isInitialized) {
     /**
      * this is to prevent
@@ -18,6 +17,7 @@ void initializeResources({ BuildContext context}) {
     return;
   }
 
+  constants = AppConstants();
   sizes = AppSizes()..initializeSize(context);
   assets = AppAssets();
   colors = AppColors();

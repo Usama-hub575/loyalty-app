@@ -5,6 +5,7 @@ import 'package:aactivpay/export.dart';
 class LoginPage extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
+    controller.init();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -12,19 +13,31 @@ class LoginPage extends GetView<LoginController> {
           style: TextStyle(
             fontWeight: FontWeight.w800,
             fontSize: 30,
-            color: colors.black,
+            color: colors.primaryDark,
           ),
         ),
         centerTitle: true,
       ),
       backgroundColor: colors.white,
-      body: Center(
-        child: Text(
-          'Well come to Login Page',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 20,
-            color: colors.black,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              verticalSpacer(150),
+              controller.component.getSignInText(),
+              verticalSpacer(10),
+              controller.component.getEmailField(),
+              verticalSpacer(20),
+              controller.component.getPasswordField(),
+              controller.component.getForgetPasswordButton(null),
+              verticalSpacer(20),
+              controller.component.getSignInButton(null),
+              verticalSpacer(130),
+              controller.component.getRegisterButton(null),
+            ],
           ),
         ),
       ),

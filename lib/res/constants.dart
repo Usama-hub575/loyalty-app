@@ -1,4 +1,6 @@
 class AppConstants {
+  final String fontMontserrat = 'montserrat';
+  final String fontManrope = 'manrope';
   static const String helpingYou ='Helping You';
   static const String tagLine ='to get the best price of your animal';
   static const String search ='Search';

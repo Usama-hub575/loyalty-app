@@ -11,9 +11,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-  core:
-    path: ../core
   data:
     path: ../data
   localization:

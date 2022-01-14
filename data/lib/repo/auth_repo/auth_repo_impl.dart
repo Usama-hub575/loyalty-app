@@ -1,5 +1,4 @@
 import 'package:data/export.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'auth_repo.dart';
@@ -73,12 +72,6 @@ class AuthRepoImpl implements AuthRepo {
     if (email.isEmpty) {
       return Left(AppError(
         title: 'ENTER_EMAIL',
-      ));
-    }
-
-    if (!EmailValidator.validate(email)) {
-      return Left(AppError(
-        title: 'ENTER_VALID_EMAIL',
       ));
     }
 

@@ -5,13 +5,13 @@ import 'package:aactivpay/export.dart';
 class SplashComponents {
   Widget getSplashLogo() {
     return SvgPicture.asset(
-      assets.icSplash,
+      assets.icA,
       width: sizes.width * 0.65,
       fit: BoxFit.fitWidth,
     );
   }
 
-  Widget getaactivpayLogo() {
+  Widget getAactivpayLogo() {
     return SvgPicture.asset(
       assets.icAactivpay,
       width: sizes.width * 0.65,

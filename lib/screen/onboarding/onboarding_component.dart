@@ -37,7 +37,7 @@ class OnboardingComponents {
   }
 
   getStartedButton(onPressed) {
-    return GradientButton(
+    return LongButton(
       text: 'Get Started',
       onPressed: onPressed,
     );

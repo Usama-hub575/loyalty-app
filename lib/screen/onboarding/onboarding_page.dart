@@ -7,7 +7,7 @@ class OnboardingPage extends GetView<OnboardingController> {
   Widget build(BuildContext context) {
     controller.initialize();
     return Scaffold(
-      backgroundColor: colors.white,
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Obx(

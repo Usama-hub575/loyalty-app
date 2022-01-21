@@ -13,6 +13,7 @@ class LocationPage extends GetView<LocationController> {
           SingleChildScrollView(
             child: Container(
               height: sizes.height,
+              color: colors.background,
               child: Column(
                 children: [
                   controller.components.getMapImage(),

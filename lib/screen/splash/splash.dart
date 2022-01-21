@@ -16,7 +16,7 @@ class Splash extends GetView<SplashController> {
         gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.center,
-            colors: [colors.gradient1, colors.gradient2]),
+            colors: [colors.appColor.withOpacity(0.5), colors.appColor]),
       ),
       child: Scaffold(
         backgroundColor: colors.transparent,

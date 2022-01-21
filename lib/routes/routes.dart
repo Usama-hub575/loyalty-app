@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aactivpay/export.dart';
 
-import 'export.dart';
-
 class AppRoutes {
   static List<GetPage> getPage = [
     GetPage(
@@ -46,19 +44,25 @@ class AppRoutes {
       page: () => LocationPage(),
       binding: LocationBinding(),
     ),
+    GetPage(
+      name: RouteNames.seeAll,
+      page: () => SeeAllPage(),
+      binding: SeeAllBinding(),
+    ),
   ];
 
   static Future<dynamic> appRoutes(final String routeName) {
     switch (routeName) {
       case RouteNames.splash:
-      case RouteNames.home:
       case RouteNames.otpScreen:
       case RouteNames.locationScreen:
+      case RouteNames.seeAll:
         return Get.toNamed(routeName);
       case RouteNames.onboarding:
       case RouteNames.login:
       case RouteNames.phoneLogin:
       case RouteNames.userDetailsScreen:
+      case RouteNames.home:
         return Get.offAllNamed(routeName);
       default:
         return _errorRoute();

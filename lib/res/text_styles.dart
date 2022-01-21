@@ -86,11 +86,6 @@ class TextStyles {
     fontFamily: constants.fontMontserrat,
     foreground: Paint()..shader = colors.linearGradientShader,
   );
-  final TextStyle extraBoldGradientMontserrat = TextStyle(
-    fontWeight: FontWeight.w800,
-    fontFamily: constants.fontMontserrat,
-    foreground: Paint()..shader = colors.linearGradientShader,
-  );
 
   final TextStyle boldItalicMontserrat = TextStyle(
     color: colors.primaryDark,

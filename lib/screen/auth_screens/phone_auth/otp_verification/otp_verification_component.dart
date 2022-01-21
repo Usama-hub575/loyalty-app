@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:aactivpay/export.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:get/get.dart';
 
 class OTPVerificationComponent {
   OTPVerificationComponent();
@@ -19,7 +20,7 @@ class OTPVerificationComponent {
   Widget getTitle() {
     return Text(
       'Enter OTP',
-      style: textStyles.extraBoldGradientMontserrat.copyWith(
+      style: textStyles.extraBoldMontserrat.copyWith(
         fontSize: 28,
       ),
     );
@@ -32,7 +33,12 @@ class OTPVerificationComponent {
     );
   }
 
-  Widget getPinCodeField(BuildContext context, verificationCodeController) {
+  Widget getPinCodeField(
+    BuildContext context,
+    verificationCodeController,
+    onComplete,
+    validateOTP,
+  ) {
     return Form(
       // key: formKey,
       child: PinCodeTextField(
@@ -72,12 +78,14 @@ class OTPVerificationComponent {
 
         onCompleted: (v) {
           print("Completed");
+
+          onComplete();
         },
         onTap: () {
           print("Pressed");
         },
         onChanged: (value) {
-          print(value);
+          validateOTP();
         },
 
         beforeTextPaste: (text) {
@@ -90,25 +98,16 @@ class OTPVerificationComponent {
     );
   }
 
-  Widget getPinTimer() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CustomTimer(),
-        Text(
-          " sec",
-          style: textStyles.regularManrope.copyWith(
-            color: colors.primaryDark,
-            fontWeight: FontWeight.w300,
-            fontSize: 15,
-          ),
-        ),
-      ],
+  Widget getPinTimer(seconds, onTimeComplete) {
+    return Center(
+      child: CountDownTime(
+        seconds,
+        onTimeComplete,
+      ),
     );
   }
 
-  Widget getResendButton() {
+  Widget getResendButton(isButtonActive, onResendTap) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -121,12 +120,16 @@ class OTPVerificationComponent {
             fontSize: 15,
           ),
         ),
-        Text(
-          'Resend',
-          style: textStyles.boldManrope.copyWith(
-            color: colors.appColor,
-            fontSize: 15,
-          ),
+        TextButton(
+          onPressed: onResendTap,
+          child: Text(
+            'Resend',
+            style: textStyles.boldManrope.copyWith(
+              color: isButtonActive ? colors.appColor : colors.grey,
+              fontSize: 15,
+            ),
+
+        ),
         ),
       ],
     );

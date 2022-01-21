@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aactivpay/export.dart';
@@ -31,15 +29,30 @@ class OTPVerificationScreen extends GetView<OTPVerificationController> {
                 controller.component.getPinCodeField(
                   context,
                   controller.verificationCodeController,
+                  controller.onConfirmTap,
+                  controller.isOTPValid,
                 ),
                 verticalSpacer(30),
-                controller.component.getPinTimer(),
+                Obx(
+                  () => controller.component.getPinTimer(
+                    controller.seconds.value,
+                    controller.onTimeComplete,
+                  ),
+                ),
                 verticalSpacer(18),
-                controller.component.getResendButton(),
+                Obx(
+                  () => controller.component.getResendButton(
+                    controller.isResendActive.value,
+                    controller.onResend,
+                  ),
+                ),
                 Spacer(),
-                GradientButton(
-                  onPressed: controller.onConfirmTap,
-                  text: 'Confirm'
+                Obx(
+                  () => LongButton(
+                    onPressed: controller.onConfirmTap,
+                    text: 'Confirm',
+                    enable: controller.isButtonActive.value,
+                  ),
                 ),
               ],
             ),

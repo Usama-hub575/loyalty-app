@@ -8,7 +8,7 @@ class UserDetailsComponent {
   getTitle() {
     return Text(
       'Register',
-      style: textStyles.extraBoldGradientMontserrat.copyWith(
+      style: textStyles.extraBoldMontserrat.copyWith(
         fontSize: 28,
       ),
     );
@@ -50,30 +50,39 @@ class UserDetailsComponent {
     bool readOnly = false,
     onTap,
   }) {
+    var isFocused = false.obs;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: 60,
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: colors.appColor),
-          ),
-          child: Row(
-            children: [
-              getIcon(icon),
-              inputField(hint, textController, readOnly, onTextChange, onTap),
-              GetX<UserDetailsController>(builder: (controller) {
-                return Visibility(
-                  visible: controller.isError.value,
-                  child: getIcon(assets.icError),
-                );
-              }),
-            ],
-          ),
-        ),
+        GetX<UserDetailsController>(builder: (controller) {
+          return Focus(
+            onFocusChange: (focus) {
+              isFocused.value = focus;
+              print('isFocus: $focus');
+            },
+            child: Container(
+              height: 60,
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                    color: isFocused.value ? colors.appColor : colors.grey),
+              ),
+              child: Row(
+                children: [
+                  getIcon(icon),
+                  inputField(
+                      hint, textController, readOnly, onTextChange, onTap),
+                  Visibility(
+                    visible: controller.isError.value,
+                    child: getIcon(assets.icError),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }),
         getErrorText(),
       ],
     );
@@ -86,9 +95,12 @@ class UserDetailsComponent {
             color: colors.primaryDark,
             fontSize: sizes.fontRatio * 16,
           ),
-          onTap: onTap,
           controller: textController,
-          onChanged: (value) => onChange(),
+          onTap: onTap,
+          onChanged: (value) {
+            if (value.trim().isEmpty) textController.text = value.trim();
+            onChange();
+          },
           readOnly: readOnly,
           // keyboardType: TextInputType.phone,
           // inputFormatters: <TextInputFormatter>[

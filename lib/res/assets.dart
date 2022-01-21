@@ -13,10 +13,20 @@ class AppAssets {
   final String icLocation = 'assets/svg/ic_location.svg';
   final String icSearch = 'assets/svg/ic_search.svg';
   final String icCurrentLocation = 'assets/svg/ic_current_location.svg';
+  final String icNotification = 'assets/svg/ic_notification.svg';
+  final String icStar = 'assets/svg/ic_star.svg';
+  final String icQR = 'assets/svg/ic_qr_code.svg';
+  final String icRight = 'assets/svg/ic_right.svg';
 
   //png
   final String onboarding1 = 'assets/png/onboarding1.png';
   final String onboarding2 = 'assets/png/onboarding2.png';
   final String onboarding3 = 'assets/png/onbaording3.png';
   final String map = 'assets/png/map.png';
+  final String profileImage = 'assets/png/profile_picture.png';
+  final String storeImage = 'assets/png/store_image.png';
+  final String fullStoreImage = 'assets/png/full_store_image.png';
+  final String mediumImage = 'assets/png/medium_image.png';
+  final String storeLogo = 'assets/png/store_logo.png';
+  final String exploreAroundYou = 'assets/png/explore_around_you.png';
 }

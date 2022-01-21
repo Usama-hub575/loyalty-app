@@ -19,6 +19,9 @@ class OTPVerificationController extends GetxController
   OTPVerificationComponent component;
 
   String errorMessage = "";
+  var isButtonActive = false.obs;
+  var isResendActive = false.obs;
+  var seconds = 10.obs;
   bool loading = false;
   bool disabled = false;
   String phoneNumber;
@@ -93,7 +96,21 @@ class OTPVerificationController extends GetxController
 
   onConfirmTap() {
     // verifyCode(_smsController.value.text, verificationId);
+    isOTPValid();
     navigateToUserDetailPage();
+  }
+
+  void isOTPValid() {
+    isButtonActive.value = verificationCodeController.text.length == 6;
+  }
+
+  void onTimeComplete() {
+    isResendActive.value = true;
+  }
+
+  void onResend() {
+    isResendActive.value = false;
+    seconds.value += 10;
   }
 
   navigateToUserDetailPage() {

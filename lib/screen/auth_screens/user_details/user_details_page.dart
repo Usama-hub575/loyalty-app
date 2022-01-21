@@ -52,7 +52,7 @@ class UserDetailsScreen extends GetView<UserDetailsController> {
                   ),
                   Spacer(),
                   Obx(
-                    () => GradientButton(
+                    () => LongButton(
                       enable: controller.isEnable.value,
                       text: 'Continue',
                       onPressed: controller.onContinue,

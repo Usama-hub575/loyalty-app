@@ -23,6 +23,7 @@ dependencies:
   email_validator: ^1.0.6
   twilio_flutter: ^0.0.9
   pin_code_fields: ^7.3.0
+  flutter_countdown_timer: ^4.1.0
 
   domain:
     path: ./domain

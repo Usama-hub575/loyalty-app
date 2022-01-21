@@ -8,7 +8,7 @@ class PhoneAuthComponent {
   Widget getWelcomeText() {
     return Text(
       'Welcome',
-      style: textStyles.extraBoldGradientMontserrat.copyWith(
+      style: textStyles.extraBoldMontserrat.copyWith(
         fontSize: 28,
       ),
     );
@@ -22,7 +22,7 @@ class PhoneAuthComponent {
   }
 
   Widget getContinueButton(onPressed) {
-    return GradientButton(
+    return LongButton(
       text: 'Continue',
       onPressed: onPressed,
     );

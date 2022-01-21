@@ -7,20 +7,20 @@ class LocationComponents {
   Widget getBackButton(onBack) {
     return GestureDetector(
       onTap: onBack,
-      child: SvgPicture.asset(
+      child: getIcon(
         assets.icBack,
       ),
     );
   }
 
-  getMapImage() {
+  Widget getMapImage() {
     return Image.asset(
       assets.map,
       width: sizes.width,
     );
   }
 
-  getSemiBoldText(text, size, color) {
+  Widget getSemiBoldText(text, size, color) {
     return Text(
       text,
       style: textStyles.semiBoldManrope.copyWith(
@@ -31,7 +31,7 @@ class LocationComponents {
   }
 
   Widget getContinueButton(onPressed) {
-    return GradientButton(
+    return LongButton(
       text: 'Select',
       onPressed: onPressed,
     );
@@ -39,11 +39,11 @@ class LocationComponents {
 
   Widget getSearchField() {
     return Container(
-      height: 60,
+      height: 45,
       margin: EdgeInsets.symmetric(horizontal: 18),
       padding: EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        color: colors.grey.withOpacity(0.1),
+        color: colors.white,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -59,12 +59,11 @@ class LocationComponents {
   Widget inputField() => Expanded(
         child: GetX<LocationController>(builder: (controller) {
           return TextFormField(
-            autofocus: true,
+            autofocus: false,
             style: textStyles.regularManrope.copyWith(
               color: colors.primaryDark,
               fontSize: sizes.fontRatio * 16,
             ),
-            keyboardType: TextInputType.phone,
             controller: controller.phoneNumberController.value,
             decoration: InputDecoration(
               hintText: 'Search Location',
@@ -91,7 +90,7 @@ class LocationComponents {
     return Container(
       width: sizes.width,
       height: sizes.heightRatio * 56,
-      color: colors.grey.withOpacity(0.1),
+      color: colors.white,
       child: Row(
         children: [
           horizontalSpacer(18),

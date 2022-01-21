@@ -1,7 +1,7 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
 
-Widget GradientButton({
+Widget LongButton({
   double width = 320.0,
   double height = 55.0,
   bool enable = true,
@@ -13,16 +13,11 @@ Widget GradientButton({
     width: horizontalValue(width),
     height: verticalValue(height),
     decoration: BoxDecoration(
-      gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: enable
-              ? [colors.gradient1, colors.gradient2]
-              : [colors.grey, colors.grey]),
+      color: enable ? colors.appColor : colors.grey,
       borderRadius: borderRadius ?? BorderRadius.circular(5),
     ),
     child: ElevatedButton(
-      onPressed: onPressed,
+      onPressed: enable ? onPressed : null,
       style: ElevatedButton.styleFrom(
         primary: Colors.transparent,
         shadowColor: Colors.transparent,

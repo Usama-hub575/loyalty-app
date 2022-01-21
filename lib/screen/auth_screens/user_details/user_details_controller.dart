@@ -12,14 +12,16 @@ class UserDetailsController extends GetxController
   Rx<TextEditingController> addressController = TextEditingController().obs;
 
   onTextChange() {
-    if (userNameController.value.text.isNotEmpty &&
-        emailController.value.text.isNotEmpty) {
+    if (userNameController.value.text.trim().isNotEmpty &&
+        emailController.value.text.trim().isNotEmpty) {
       isEnable.value = true;
     } else
       isEnable.value = false;
   }
 
-  onContinue() {}
+  onContinue() {
+    AppRoutes.appRoutes(RouteNames.home);
+  }
 
   openLocationPage() {
     AppRoutes.appRoutes(RouteNames.locationScreen);

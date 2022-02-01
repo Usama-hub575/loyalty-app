@@ -13,6 +13,7 @@ dependencies:
 
   #Storage
   shared_preferences:
+  dartz: ^0.10.1
 
 
   core:

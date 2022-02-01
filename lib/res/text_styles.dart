@@ -3,27 +3,47 @@ import 'package:flutter/material.dart';
 import '../export.dart';
 
 class TextStyles {
-  final regular = TextStyle(
-    fontFamily: "ArboriaBook",
+  //Montserrat font styles
+  final TextStyle headingLarge = TextStyle(
+    color: colors.black,
+    fontWeight: FontWeight.w900,
+    fontFamily: constants.fontMontserrat,
+    fontSize: sizes.fontRatio * 28,
   );
 
-  final black = TextStyle(
+  final TextStyle headingRegular = TextStyle(
     color: colors.black,
-    fontFamily: "ArboriaBlack",
+    fontWeight: FontWeight.w700,
+    fontFamily: constants.fontMontserrat,
+    fontSize: sizes.fontRatio * 18,
   );
 
-  final bold = TextStyle(
+  //Manrope font styles
+  final TextStyle bodyLarge = TextStyle(
     color: colors.black,
-    fontFamily: "ArboriaBold",
+    fontWeight: FontWeight.w500,
+    fontFamily: constants.fontManrope,
+    fontSize: sizes.fontRatio * 17,
   );
 
-  final light = TextStyle(
+  final TextStyle bodyRegular = TextStyle(
     color: colors.black,
-    fontFamily: "ArboriaLight",
+    fontWeight: FontWeight.w500,
+    fontFamily: constants.fontManrope,
+    fontSize: sizes.fontRatio * 16,
   );
 
-  final thin = TextStyle(
+  final TextStyle bodySmall = TextStyle(
     color: colors.black,
-    fontFamily: "ArboriaThin",
+    fontWeight: FontWeight.w500,
+    fontFamily: constants.fontManrope,
+    fontSize: sizes.fontRatio * 14,
+  );
+
+  final TextStyle bodyExtraSmall = TextStyle(
+    color: colors.black,
+    fontWeight: FontWeight.w500,
+    fontFamily: constants.fontManrope,
+    fontSize: sizes.fontRatio * 12,
   );
 }

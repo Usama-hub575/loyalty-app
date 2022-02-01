@@ -1,9 +1,9 @@
-name: loyalty
+name: aactivpay
 description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 1.0.0+3
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -12,23 +12,16 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # Firebase
-  firebase_auth: ^3.3.4
-  firebase_core: ^1.10.6
-  cloud_firestore: ^3.1.5
-  firebase_remote_config: ^1.0.3
-  firebase_messaging: ^11.2.4
-  firebase_analytics: ^9.0.4
-
-  # Social Login
-  google_sign_in: ^5.1.0
-  flutter_facebook_auth: ^3.5.7
-
   # Database & Caching
   shared_preferences: ^2.0.7
 
-  #State management
-  get: ^4.6.1
+  #UI
+  flutter_svg: ^0.20.0-nullsafety.3
+  email_validator: ^1.0.6
+  twilio_flutter: ^0.0.9
+  pin_code_fields: ^7.3.0
+  flutter_countdown_timer: ^4.1.0
+  image_picker: ^0.8.4
 
   domain:
     path: ./domain
@@ -44,10 +37,6 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
 
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
-
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
@@ -60,18 +49,58 @@ flutter:
 
 
   fonts:
-    - family: ArboriaBlack
+    - family: montserrat
       fonts:
-        - asset: assets/fonts/Arboria-Black.ttf
-    - family: ArboriaBold
+        - asset: assets/fonts/Montserrat/Montserrat-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Montserrat/Montserrat-BlackItalic.ttf
+          weight: 900
+        - asset: assets/fonts/Montserrat/Montserrat-BoldItalic.ttf
+          weight: 900
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraBoldItalic.ttf
+          weight: 800
+        - asset: assets/fonts/Montserrat/Montserrat-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraLightItalic.ttf
+          weight: 200
+        - asset: assets/fonts/Montserrat/Montserrat-Italic.ttf
+          weight: 500
+        - asset: assets/fonts/Montserrat/Montserrat-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Montserrat/Montserrat-LightItalic.ttf
+          weight: 300
+        - asset: assets/fonts/Montserrat/Montserrat-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Montserrat/Montserrat-MediumItalic.ttf
+          weight: 500
+        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Montserrat/Montserrat-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Montserrat/Montserrat-SemiBoldItalic.ttf
+          weight: 600
+        - asset: assets/fonts/Montserrat/Montserrat-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Montserrat/Montserrat-ThinItalic.ttf
+          weight: 100
+
+    - family: manrope
       fonts:
-        - asset: assets/fonts/Arboria-Bold.ttf
-    - family: ArboriaBook
-      fonts:
-        - asset: assets/fonts/Arboria-Book.ttf
-    - family: ArboriaLight
-      fonts:
-        - asset: assets/fonts/Arboria-Light.ttf
-    - family: ArboriaThin
-      fonts:
-        - asset: assets/fonts/Arboria-Thin.ttf
+        - asset: assets/fonts/Manrope/Manrope-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Manrope/Manrope-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Manrope/Manrope-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Manrope/Manrope-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Manrope/Manrope-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Manrope/Manrope-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Manrope/Manrope-ExtraLight.ttf
+          weight: 200

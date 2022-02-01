@@ -1,3 +1,8 @@
-import 'package:data/network/export.dart';
+import 'package:data/export.dart';
 
-class NetworkHelperImpl extends NetworkHelper {}
+class NetworkHelperImpl extends NetworkHelper {
+  final FirebaseAuth _firebaseAuth;
+
+  NetworkHelperImpl(this._firebaseAuth);
+
+}

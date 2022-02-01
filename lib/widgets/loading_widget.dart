@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:loyalty/export.dart';
+import 'package:aactivpay/export.dart';
+
+class FullScreenLoader extends StatelessWidget {
+  const FullScreenLoader({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return fullScreenLoader();
+  }
+}
 
 Widget fullScreenLoader() => Material(
-      color: colors.background.withOpacity(0.05),
+      color: colors.primaryLight.withOpacity(0.05),
       child: InkWell(
         onTap: () {},
-        splashColor: colors.white.withOpacity(0.0),
-        hoverColor: colors.white.withOpacity(0.0),
-        highlightColor: colors.white.withOpacity(0.0),
+        splashColor: colors.primaryLight.withOpacity(0.0),
+        hoverColor: colors.primaryLight.withOpacity(0.0),
+        highlightColor: colors.primaryLight.withOpacity(0.0),
         child: SizedBox(
           width: sizes.width,
           height: sizes.height,
           child: Center(
             child: CircularProgressIndicator(
-              backgroundColor: colors.white,
+              backgroundColor: colors.primaryLight,
               valueColor: AlwaysStoppedAnimation<Color>(
-                colors.appColor,
+                colors.accentPrimary,
               ),
             ),
           ),

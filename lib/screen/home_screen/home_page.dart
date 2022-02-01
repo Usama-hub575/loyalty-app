@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loyalty/export.dart';
+import 'package:aactivpay/export.dart';
 
 class HomePage extends GetView<HomePageController> {
   HomePage({Key key}) : super(key: key);
@@ -9,15 +9,48 @@ class HomePage extends GetView<HomePageController> {
 
   @override
   Widget build(BuildContext context) {
-    initializeResources(context: context);
-    return _getBody();
-  }
-
-  Widget _getBody() {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: colors.appColor,
-      body: Container(),
+      backgroundColor: colors.primaryLight,
+      appBar: HomeAppBar(),
+      body: Container(
+        height: sizes.height,
+        width: sizes.width,
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          children: [
+            MapCard(),
+            HeadingCard(
+              'popular categories',
+              icon: assets.icCategories,
+            ),
+            FilterPills(
+              dataList1: controller.pillsList1,
+              dataList2: controller.pillsList2,
+              dataList3: controller.pillsList3,
+              onTap: controller.onPillsTap,
+            ),
+            StoreCard(
+              controller.pillsList2,
+            ),
+            HeadingCard(
+              'Top ratted Stores',
+              icon: assets.icMedal,
+            ),
+            StoreCard(
+              controller.pillsList3,
+            ),
+            verticalSpacer(20),
+            InviteCard(),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingAction(
+        onPressed: () => controller.openBottomSheet(
+          context,
+          this._scaffoldKey.currentState,
+        ),
+      ),
     );
   }
 }

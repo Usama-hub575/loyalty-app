@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 
-Map<int, Color> color = {
-  50: const Color.fromRGBO(136, 14, 79, .1),
-  100: const Color.fromRGBO(136, 14, 79, .2),
-  200: const Color.fromRGBO(136, 14, 79, .3),
-  300: const Color.fromRGBO(136, 14, 79, .4),
-  400: const Color.fromRGBO(136, 14, 79, .5),
-  500: const Color.fromRGBO(136, 14, 79, .6),
-  600: const Color.fromRGBO(136, 14, 79, .7),
-  700: const Color.fromRGBO(136, 14, 79, .8),
-  800: const Color.fromRGBO(136, 14, 79, .9),
-  900: const Color.fromRGBO(136, 14, 79, 1),
-};
-
 class AppColors {
-  Color appColor = const Color.fromRGBO(27, 171, 110, 1);
-  Color appColorShade = const Color.fromRGBO(137, 241, 197, 1);
-  Color black = Colors.black;
-  Color white = const Color.fromRGBO(255, 255, 255, 1);
-  Color background = const Color.fromRGBO(249, 250, 251, 1);
+  Color accentPrimary = const Color.fromRGBO(60, 53, 255, 1);
+  Color accentSecondary = const Color.fromRGBO(108, 103, 255, 1);
+  Color primaryLight = const Color.fromRGBO(255, 255, 255, 1);
+  Color primaryDark = const Color.fromRGBO(10, 10, 14, 1);
+  Color white = Colors.white;
+  Color black = const Color.fromRGBO(0, 0, 0, 1);
+  Color error = const Color.fromRGBO(255, 69, 58, 1);
+  Color success = const Color.fromRGBO(69, 255, 110, 1);
+  Color tieYellow = const Color.fromRGBO(245, 195, 36, 1);
   Color transparent = const Color.fromRGBO(249, 250, 251, 0);
-  Color colorGrey = const Color.fromRGBO(112, 112, 112, 1);
-  Color footerColor = const Color.fromRGBO(245, 255, 248, 1);
+
+  LinearGradient linearGradient = LinearGradient(
+    colors: <Color>[
+      Color.fromRGBO(40, 129, 255, 1),
+      Color.fromRGBO(29, 169, 255, 1),
+    ],
+    begin: Alignment.topCenter,
+    end: Alignment.center,
+  );
 }

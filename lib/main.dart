@@ -1,8 +1,12 @@
+import 'package:domain/export.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'export.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await initializeUseCasesDependencies();
   runApp(const MyApp());
 }
 
@@ -12,13 +16,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Loyalty App',
+      title: 'AactivPay',
       theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
+        appBarTheme: AppBarTheme(color: Color.fromRGBO(255, 204, 51, 0.9)),
+        backgroundColor: Color.fromRGBO(255, 204, 51, 0.9),
       ),
       debugShowCheckedModeBanner: false,
-      // unknownRoute: GetPage(name: '/notfound', page: () => UnknownRoutePage()),
-      initialRoute: RouteNames.home,
+      unknownRoute: GetPage(
+        name: '/notfound',
+      ),
+      initialRoute: RouteNames.splashScreen,
       getPages: AppRoutes.getPage,
       smartManagement: SmartManagement.keepFactory,
       showPerformanceOverlay: false,

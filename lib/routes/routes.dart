@@ -5,27 +5,27 @@ import 'package:aactivpay/export.dart';
 class AppRoutes {
   static List<GetPage> getPage = [
     GetPage(
-      name: RouteNames.splash,
+      name: RouteNames.splashScreen,
       page: () => Splash(),
       binding: SplashBinding(),
     ),
     GetPage(
-      name: RouteNames.home,
+      name: RouteNames.homeScreen,
       page: () => HomePage(),
       binding: HomeBinding(),
     ),
     GetPage(
-      name: RouteNames.onboarding,
+      name: RouteNames.onboardingScreen,
       page: () => OnboardingPage(),
       binding: OnboardingBinding(),
     ),
     GetPage(
-      name: RouteNames.login,
+      name: RouteNames.loginScreen,
       page: () => LoginPage(),
       binding: LoginBinding(),
     ),
     GetPage(
-      name: RouteNames.phoneLogin,
+      name: RouteNames.phoneLoginScreen,
       page: () => PhoneAuthScreen(),
       binding: PhoneAuthBinding(),
     ),
@@ -35,8 +35,8 @@ class AppRoutes {
       binding: OTPBinding(),
     ),
     GetPage(
-      name: RouteNames.userDetailsScreen,
-      page: () => UserDetailsScreen(),
+      name: RouteNames.registerScreen,
+      page: () => RegisterScreen(),
       binding: UserDetailsBinding(),
     ),
     GetPage(
@@ -45,25 +45,47 @@ class AppRoutes {
       binding: LocationBinding(),
     ),
     GetPage(
-      name: RouteNames.seeAll,
+      name: RouteNames.seeAllScreen,
       page: () => SeeAllPage(),
       binding: SeeAllBinding(),
+    ),
+    GetPage(
+      name: RouteNames.searchScreen,
+      page: () => SearchPage(),
+      binding: SearchBinding(),
+    ),
+    GetPage(
+      name: RouteNames.editProfileScreen,
+      page: () => EditProfilePage(),
+      binding: EditProfileBinding(),
+    ),
+    GetPage(
+      name: RouteNames.settingsScreen,
+      page: () => SettingsPage(),
+      binding: SettingsBinding(),
     ),
   ];
 
   static Future<dynamic> appRoutes(final String routeName) {
     switch (routeName) {
-      case RouteNames.splash:
+      //push to next
+      case RouteNames.splashScreen:
       case RouteNames.otpScreen:
+      case RouteNames.registerScreen:
       case RouteNames.locationScreen:
-      case RouteNames.seeAll:
+      case RouteNames.seeAllScreen:
+      case RouteNames.searchScreen:
+      case RouteNames.editProfileScreen:
+      case RouteNames.settingsScreen:
         return Get.toNamed(routeName);
-      case RouteNames.onboarding:
-      case RouteNames.login:
-      case RouteNames.phoneLogin:
-      case RouteNames.userDetailsScreen:
-      case RouteNames.home:
+
+        //clear all and push
+      case RouteNames.onboardingScreen:
+      case RouteNames.loginScreen:
+      case RouteNames.phoneLoginScreen:
+      case RouteNames.homeScreen:
         return Get.offAllNamed(routeName);
+
       default:
         return _errorRoute();
     }

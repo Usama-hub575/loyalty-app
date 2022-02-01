@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aactivpay/export.dart';
 
-import 'export.dart';
 
 class SplashController extends GetxController with StateMixin<Splash> {
   bool isInitialized = false;
@@ -40,6 +39,6 @@ class SplashController extends GetxController with StateMixin<Splash> {
   void navigateToOnBoarding() {
     // updateFirebaseDeviceToken();
 
-    AppRoutes.appRoutes(RouteNames.onboarding);
+    AppRoutes.appRoutes(RouteNames.onboardingScreen);
   }
 }

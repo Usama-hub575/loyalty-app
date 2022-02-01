@@ -1,7 +1,5 @@
 import 'package:data/export.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
-import 'auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final GoogleSignIn _googleSignIn;
@@ -291,7 +289,7 @@ class AuthRepoImpl implements AuthRepo {
         /// success now check for user name
         final value = await checkForDisplayName();
         // userUseCase.setupUserOnboarding();
-        Future.delayed(Duration(seconds: 1));
+        Future.delayed(const Duration(seconds: 1));
         if (value.isRight()) {
           // view.navigateToTabsPage();
         } else {

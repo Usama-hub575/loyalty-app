@@ -1,4 +1,3 @@
-export 'onboarding_component.dart';
 export 'onboarding_page.dart';
 export 'onboarding_controller.dart';
-export 'widget/onBoardingPageItem.dart';
+export 'widgets/export.dart';

@@ -1,4 +1,3 @@
-import 'package:core/export.dart';
 import 'package:data/export.dart';
 
 class AuthUseCase {
@@ -35,15 +34,14 @@ class AuthUseCase {
     return await repo.signWithPhone(number);
   }
 
-  Future<Either<AppError, dynamic>> verifyOTP(String smsCode, String verificationId) async {
-    return await repo.verifyOTP(smsCode,verificationId);
+  Future<Either<AppError, dynamic>> verifyOTP(
+      String smsCode, String verificationId) async {
+    return await repo.verifyOTP(smsCode, verificationId);
   }
-
 
   Future<Either<AppError, dynamic>> resendOTP(String number) async {
     return await repo.signWithPhone(number);
   }
-
 
 // Future<bool> isUserLoggedIn() async {
 // User user = auth.firebaseAuth().currentUser;

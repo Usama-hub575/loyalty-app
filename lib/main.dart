@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       unknownRoute: GetPage(
         name: '/notfound',
       ),
-      initialRoute: RouteNames.splash,
+      initialRoute: RouteNames.splashScreen,
       getPages: AppRoutes.getPage,
       smartManagement: SmartManagement.keepFactory,
       showPerformanceOverlay: false,

@@ -4,6 +4,8 @@ import 'package:aactivpay/export.dart';
 import 'package:domain/export.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+
+import 'package:flutter_countdown_timer/index.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/state_manager.dart';
 
@@ -16,18 +18,22 @@ class OTPVerificationController extends GetxController
   final AuthUseCase _authUseCase;
 
   final verificationCodeController = TextEditingController();
-  OTPVerificationComponent component;
 
   String errorMessage = "";
   var isButtonActive = false.obs;
   var isResendActive = false.obs;
-  var seconds = 10.obs;
-  bool loading = false;
-  bool disabled = false;
+  var seconds = 60.obs;
+  Rx<bool> isLoading = false.obs;
   String phoneNumber;
+  CountdownTimerController timerController;
 
   void initialize() {
-    component = OTPVerificationComponent();
+    int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * seconds.value;
+
+    timerController = CountdownTimerController(
+      endTime: endTime,
+      onEnd: onTimeComplete,
+    );
   }
 
   onBack() {
@@ -97,7 +103,11 @@ class OTPVerificationController extends GetxController
   onConfirmTap() {
     // verifyCode(_smsController.value.text, verificationId);
     isOTPValid();
-    navigateToUserDetailPage();
+    isLoading.value = true;
+    Future.delayed(Duration(seconds: 2)).then((value) {
+      isLoading.value = false;
+      navigateToUserDetailPage();
+    });
   }
 
   void isOTPValid() {
@@ -110,10 +120,14 @@ class OTPVerificationController extends GetxController
 
   void onResend() {
     isResendActive.value = false;
-    seconds.value += 10;
+    seconds.value += 60;
+    int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * seconds.value;
+
+    timerController =
+        CountdownTimerController(endTime: endTime, onEnd: onTimeComplete);
   }
 
   navigateToUserDetailPage() {
-    AppRoutes.appRoutes(RouteNames.userDetailsScreen);
+    AppRoutes.appRoutes(RouteNames.registerScreen);
   }
 }

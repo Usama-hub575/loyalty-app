@@ -1,7 +1,6 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 void modalBottomSheet(context) {
   showModalBottomSheet(
@@ -16,7 +15,7 @@ void modalBottomSheet(context) {
             height: sizes.height * 0.65,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             decoration: BoxDecoration(
-              color: colors.white,
+              color: colors.primaryLight,
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20),
                 topLeft: Radius.circular(20),
@@ -26,7 +25,7 @@ void modalBottomSheet(context) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: horizontalDivider(
+                  child: HorizontalDivider(
                     width: 60.0,
                     height: 2.0,
                     color: colors.primaryDark,
@@ -51,10 +50,8 @@ void modalBottomSheet(context) {
 Widget getCode() {
   return Center(
     child: Text(
-      '5 A 3 F 8 3 C',
-      style: textStyles.semiBoldManrope.copyWith(
-        fontSize: sizes.fontRatio * 30,
-      ),
+      '5A3F83C',
+      style: textStyles.headingLarge.copyWith(letterSpacing: 2),
     ),
   );
 }
@@ -79,20 +76,20 @@ Widget getQrCode() {
 Widget getTitle() {
   return Text(
     'Radeem Discounts',
-    style: textStyles.semiBoldManrope.copyWith(fontSize: sizes.fontRatio * 18),
+    style: textStyles.bodyLarge,
   );
 }
 
 Widget getDescription() {
   return Text(
     'Share this QR code (or 6 letter code) with salesman in order to get discount. This code will auto refresh after every 45 minutes',
-    style: textStyles.regularManrope,
+    style: textStyles.bodyRegular,
   );
 }
 
 Widget getCopyButton(onPressed) {
   return LongButton(
-    text: 'Copy to clipboard',
+    'Copy to clipboard',
     onPressed: onPressed,
   );
 }

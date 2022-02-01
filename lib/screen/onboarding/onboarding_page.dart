@@ -7,67 +7,55 @@ class OnboardingPage extends GetView<OnboardingController> {
   Widget build(BuildContext context) {
     controller.initialize();
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Obx(
-            () => shader(
-              top: controller.currentPage.value < 2 ? -30 : 200,
-              left: controller.currentPage.value == 0 ? -30 : 200,
-              right: controller.currentPage.value > 0 ? -30 : 200,
+            () => PageView.builder(
+              controller: controller.pageController,
+              physics: ClampingScrollPhysics(),
+              onPageChanged: (value) {
+                controller.updatePage(value: value);
+              },
+              itemBuilder: (BuildContext context, int index) {
+                return controller.pageChildren[controller.currentPage.value];
+              },
+              itemCount: controller.pageChildren.length,
             ),
           ),
-          shader(
-            bottom: -30,
-            left: -30,
-          ),
-          Container(
-            width: double.infinity,
-            child: Column(
-              children: [
-                Expanded(
-                  child: Obx(
-                    () => PageView.builder(
-                      controller: controller.pageController,
-                      physics: BouncingScrollPhysics(),
-                      onPageChanged: (value) {
-                        controller.updatePage(value: value);
-                      },
-                      itemBuilder: (BuildContext context, int index) {
-                        return controller
-                            .pageChildren[controller.currentPage.value];
-                      },
-                      itemCount: controller.pageChildren.length,
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              width: double.infinity,
+              height: sizes.heightRatio * 225,
+              color: colors.accentPrimary,
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Obx(() => HeadingLargeText(
+                        controller.title.value,
+                        color: colors.primaryLight,
+                      )),
+                  verticalSpacer(5),
+                  Obx(() => BodyRegularText(
+                        controller.subTitle.value,
+                        color: colors.primaryLight,
+                      )),
+                  Spacer(),
+                  Obx(() => PageIndicator(controller.currentPage.value)),
+                  verticalSpacer(30),
+                  Obx(
+                    () => LongButton(
+                      controller.buttonTitle.value,
+                      onPressed: controller.updatePage,
+                      backgroundColor: colors.primaryLight,
+                      textColor: colors.accentPrimary,
                     ),
                   ),
-                ),
-                verticalSpacer(30),
-                Obx(() => controller.components
-                    .getIndicators(controller.currentPage.value)),
-                verticalSpacer(20),
-                Obx(
-                  () => controller.currentPage.value < 2
-                      ? Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: horizontalValue(40)),
-                          child: Row(
-                            children: [
-                              controller.components.getSkipButton(
-                                controller.onSkip,
-                              ),
-                              Spacer(),
-                              controller.components.getNextButton(
-                                controller.updatePage,
-                              )
-                            ],
-                          ),
-                        )
-                      : controller.components.getStartedButton(
-                          controller.updatePage,
-                        ),
-                ),
-                verticalSpacer(30),
-              ],
+                ],
+              ),
             ),
           ),
         ],

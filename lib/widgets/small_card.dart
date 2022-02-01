@@ -12,76 +12,39 @@ class SmallCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: sizes.widthRatio * 230,
+      margin: EdgeInsets.only(left: 20),
       decoration: BoxDecoration(
-        color: colors.white,
+        color: colors.primaryLight,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          getStoreImage(),
+          verticalSpacer(12),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              getStoreImage(),
-              verticalSpacer(12),
-              Row(
-                children: [
-                  horizontalSpacer(12),
-                  getStoreName(),
-                  Spacer(),
-                  getPoints(),
-                  horizontalSpacer(12),
-                ],
-              ),
-              verticalSpacer(12),
-              getRatingBox(),
+              horizontalSpacer(12),
+              getStoreName(),
+              horizontalSpacer(5),
+              getIcon(assets.icStar),
+              horizontalSpacer(2),
+              getPoints('4.1/5'),
+              horizontalSpacer(5),
+              getIcon(assets.icCoin),
+              horizontalSpacer(2),
+              getPoints('30K'),
+              Spacer(),
+              getIcon(assets.icRight),
+              horizontalSpacer(10),
             ],
           ),
-          Positioned(
-            top: 10,
-            left: 10,
-            child: getStoreLogo(assets.storeLogo),
-          ),
         ],
       ),
     );
   }
 
-  getStoreLogo(String storeLogo) {
-    return CircleAvatar(
-      radius: sizes.widthRatio * 24,
-      backgroundImage: AssetImage(
-        storeLogo,
-      ),
-    );
-  }
-
-  Widget getRatingBox() {
-    return Container(
-      width: sizes.widthRatio * 60,
-      height: sizes.heightRatio * 20,
-      margin: EdgeInsets.only(left: 12),
-      decoration: BoxDecoration(
-        color: colors.appColor,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          getIcon(assets.icStar),
-          horizontalSpacer(10),
-          getText('4.5'),
-        ],
-      ),
-    );
-  }
-
-  Widget getText(String text) {
-    return Text(
-      text,
-      style: textStyles.semiBoldManrope.copyWith(color: colors.white),
-    );
-  }
 
   Widget getIcon(String icon) {
     return SvgPicture.asset(
@@ -89,19 +52,17 @@ class SmallCard extends StatelessWidget {
     );
   }
 
-  Widget getPoints() {
+  Widget getPoints(text) {
     return Text(
-      '580 Points',
-      style: textStyles.regularManrope,
+      text,
+      style: textStyles.bodyExtraSmall,
     );
   }
 
   Widget getStoreName() {
     return Text(
       'Euru Store',
-      style: textStyles.extraBoldMontserrat.copyWith(
-        fontSize: 18,
-      ),
+      style: textStyles.bodyRegular,
     );
   }
 
@@ -109,7 +70,7 @@ class SmallCard extends StatelessWidget {
     return Container(
       height: 170,
       decoration: BoxDecoration(
-        color: colors.appColor,
+        color: colors.accentPrimary,
         borderRadius: BorderRadius.circular(10),
         image: DecorationImage(
           image: AssetImage(

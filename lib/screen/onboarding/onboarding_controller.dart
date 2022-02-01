@@ -5,12 +5,14 @@ import 'package:aactivpay/export.dart';
 class OnboardingController extends GetxController with StateMixin<Splash> {
   var currentPage = 0.obs;
   PageController pageController;
-  OnboardingComponents components;
+  Rx<String> title = constants.onBoardingTitle2.obs;
+  Rx<String> subTitle = constants.onBoardingSubTitle2.obs;
+  Rx<String> buttonTitle = constants.continueText.obs;
+
   final pageChildren = RxList<Widget>([]);
 
   void initialize() {
     pageController = PageController();
-    components = OnboardingComponents();
     addPages();
   }
 
@@ -18,23 +20,14 @@ class OnboardingController extends GetxController with StateMixin<Splash> {
     pageChildren.add(OnboardingItem(
       ValueKey('page1'),
       image: assets.onboarding1,
-      title: 'Purchase',
-      description:
-          'Pickup the groceries and wearable items from your nearby store and get the best discounts',
     ));
     pageChildren.add(OnboardingItem(
       ValueKey('page2'),
       image: assets.onboarding2,
-      title: 'QR Code',
-      description:
-          'Show your QR to the salesman and collect points for get discounts from the same store',
     ));
     pageChildren.add(OnboardingItem(
       ValueKey('page3'),
       image: assets.onboarding3,
-      title: 'Discount',
-      description:
-          'Scan your QR code the fast way to Radeem your available points',
     ));
   }
 
@@ -48,7 +41,18 @@ class OnboardingController extends GetxController with StateMixin<Splash> {
     } else {
       currentPage.value = value;
     }
-    if (currentPage.value >= 3) navigateToLoginPage();
+    if (currentPage.value == 0) {
+      title.value = constants.onBoardingTitle1;
+      subTitle.value = constants.onBoardingSubTitle1;
+    } else if (currentPage.value == 1) {
+      title.value = constants.onBoardingTitle2;
+      subTitle.value = constants.onBoardingSubTitle2;
+      buttonTitle.value = constants.continueText;
+    } else if (currentPage.value == 2) {
+      title.value = constants.onBoardingTitle3;
+      subTitle.value = constants.onBoardingSubTitle3;
+      buttonTitle.value = constants.getStarted;
+    } else if (currentPage.value >= 3) navigateToLoginPage();
   }
 
   onSkip() {
@@ -56,6 +60,6 @@ class OnboardingController extends GetxController with StateMixin<Splash> {
   }
 
   navigateToLoginPage() {
-    AppRoutes.appRoutes(RouteNames.phoneLogin);
+    AppRoutes.appRoutes(RouteNames.phoneLoginScreen);
   }
 }

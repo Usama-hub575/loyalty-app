@@ -16,8 +16,8 @@ class AppError {
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is AppError &&
-          other.title == this.title &&
-          other.description == this.description);
+          other.title == title &&
+          other.description == description);
 
 }
 
@@ -33,6 +33,5 @@ class AppSuccess {
 AppError getLoggedError(String analyticsKey,
     {String title = "", String description = ""}) {
   AppError appError = AppError(title: title, description: description);
-  print('error: $analyticsKey');
   return appError;
 }

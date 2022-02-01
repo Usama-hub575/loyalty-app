@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:aactivpay/export.dart';
 import 'package:domain/export.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'export.dart';
 import 'package:twilio_flutter/twilio_flutter.dart';
 
 class PhoneAuthController extends GetxController
@@ -14,9 +12,9 @@ class PhoneAuthController extends GetxController
   PhoneAuthController(this._authUseCase);
 
   Rx<TextEditingController> phoneNumberController = TextEditingController().obs;
-  PhoneAuthComponent component = PhoneAuthComponent();
   Rx<bool> isError = false.obs;
-  Rx<bool> disabled = true.obs;
+  Rx<bool> isButtonActive = false.obs;
+  Rx<bool> isLoading = false.obs;
   String countryCode = '+92';
   int phoneNumMaxLength = 10;
 
@@ -34,9 +32,9 @@ class PhoneAuthController extends GetxController
   _initListener() {
     phoneNumberController.value.addListener(() {
       if (phoneNumberController.value.text.length >= phoneNumMaxLength) {
-        disabled.value = false;
+        isButtonActive.value = true;
       } else {
-        disabled.value = true;
+        isButtonActive.value = false;
       }
     });
   }
@@ -46,19 +44,23 @@ class PhoneAuthController extends GetxController
   }
 
   void onContinueTap() {
-    if (!validateNumber(phoneNumberController.value.text)) {
-      isError.value = true;
-    } else {
-      isError.value = false;
-      navigateToOTPVerificationPage('_verificationId');
-      // sendSms();
-      if (phoneNumberController.value == null ||
-          phoneNumberController.value.text.length > phoneNumMaxLength) {
-        // showSnackBarWithGlobalKeyAndAppErrors(
-        //     widget.globalKey, AppError(title: ERROR_INVALID_PHONE_NUMBER),
-        //     backgroundColor: colors.colorRedCard);
+    isLoading.value = true;
+    Future.delayed(Duration(seconds: 2)).then((value) {
+      isLoading.value = false;
+      if (!validateNumber(phoneNumberController.value.text)) {
+        isError.value = true;
+      } else {
+        isError.value = false;
+        navigateToOTPVerificationPage('_verificationId');
+        // sendSms();
+        if (phoneNumberController.value == null ||
+            phoneNumberController.value.text.length > phoneNumMaxLength) {
+          // showSnackBarWithGlobalKeyAndAppErrors(
+          //     widget.globalKey, AppError(title: ERROR_INVALID_PHONE_NUMBER),
+          //     backgroundColor: colors.colorRedCard);
+        }
       }
-    }
+    });
   }
 
   Future showErrorMessage(appError) async {

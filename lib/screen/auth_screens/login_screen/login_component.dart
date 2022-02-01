@@ -22,7 +22,7 @@ class LoginComponent {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-        color: colors.grey.withOpacity(0.5),
+        color: colors.primaryDark.withOpacity(0.05),
         borderRadius: BorderRadius.circular(8),
       ),
       child: TextFormField(
@@ -38,7 +38,7 @@ class LoginComponent {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-        color: colors.grey.withOpacity(0.5),
+        color: colors.primaryDark.withOpacity(0.05),
         borderRadius: BorderRadius.circular(8),
       ),
       child: TextFormField(
@@ -75,12 +75,12 @@ class LoginComponent {
           'Signin',
           style: TextStyle(
             fontSize: 20,
-            color: colors.white,
+            color: colors.primaryLight,
             fontWeight: FontWeight.bold,
           ),
         ),
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(colors.black),
+          backgroundColor: MaterialStateProperty.all(colors.primaryDark),
           padding: MaterialStateProperty.all(
               EdgeInsets.symmetric(horizontal: 50, vertical: 10)),
         ),

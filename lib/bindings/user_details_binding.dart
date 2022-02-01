@@ -4,6 +4,6 @@ import 'package:aactivpay/screen/export.dart';
 class UserDetailsBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<UserDetailsController>(() => UserDetailsController());
+    Get.lazyPut<RegisterController>(() => RegisterController());
   }
 }

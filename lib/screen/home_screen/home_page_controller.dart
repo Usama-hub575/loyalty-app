@@ -1,44 +1,61 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:aactivpay/export.dart';
 
 class HomePageController extends GetxController
-    with SingleGetTickerProviderMixin, StateMixin<HomePage> {
-  HomePageComponents components = HomePageComponents();
+    with GetSingleTickerProviderStateMixin, StateMixin<HomePage> {
   Rx<TextEditingController> searchController = TextEditingController().obs;
-  final pageChildren = RxList<Widget>([]);
   var currentPage = 0.obs;
   var strokeWidth = 10.0.obs;
-  PageController pageController;
-  Animation animation;
-  AnimationController _animationController;
 
-  List<ScrollingPills> pillsList = [
+  List<ScrollingPills> pillsList1 = [
+    ScrollingPills('Electronics', false.obs),
+    ScrollingPills('Dairy & eggs', false.obs),
+    ScrollingPills('Health & beauty', false.obs),
+    ScrollingPills('Frozen', false.obs),
+    ScrollingPills('Cosmetics', false.obs),
     ScrollingPills('Grocery', true.obs),
     ScrollingPills('Cloths', false.obs),
-    ScrollingPills('Accessories', false.obs),
-    ScrollingPills('Grocery', false.obs),
+    ScrollingPills('Meat', false.obs),
+    ScrollingPills('Frozen', false.obs),
+    ScrollingPills('Stationery & gifts', false.obs),
+    ScrollingPills('Cosmetics', false.obs),
+    ScrollingPills('Stationery & gifts', false.obs),
+  ];
+  List<ScrollingPills> pillsList2 = [
     ScrollingPills('Cloths', false.obs),
-    ScrollingPills('Accessories', false.obs),
+    ScrollingPills('Grocery', true.obs),
+    ScrollingPills('Electronics', false.obs),
+    ScrollingPills('Meat', false.obs),
+    ScrollingPills('Stationery & gifts', false.obs),
+    ScrollingPills('Frozen', false.obs),
+    ScrollingPills('Cosmetics', false.obs),
+    ScrollingPills('Stationery & gifts', false.obs),
+    ScrollingPills('Health & beauty', false.obs),
+    ScrollingPills('Dairy & eggs', false.obs),
+    ScrollingPills('Cosmetics', false.obs),
+    ScrollingPills('Frozen', false.obs),
+  ];
+  List<ScrollingPills> pillsList3 = [
+    ScrollingPills('Frozen', false.obs),
+    ScrollingPills('Cosmetics', false.obs),
+    ScrollingPills('Stationery & gifts', false.obs),
+    ScrollingPills('Stationery & gifts', false.obs),
+    ScrollingPills('Grocery', true.obs),
+    ScrollingPills('Cloths', false.obs),
+    ScrollingPills('Electronics', false.obs),
+    ScrollingPills('Meat', false.obs),
+    ScrollingPills('Health & beauty', false.obs),
+    ScrollingPills('Dairy & eggs', false.obs),
+    ScrollingPills('Frozen', false.obs),
+    ScrollingPills('Cosmetics', false.obs),
   ];
 
   @override
   void onInit() {
     super.onInit();
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(minutes: 2));
-    _animationController.repeat(reverse: true);
-
-    animation = Tween(begin: 0.0, end: 15.0).animate(_animationController);
-    pageController = PageController(initialPage: 0, viewportFraction: 1.1);
-    pageChildren.addAll([
-      FullWidthCard(),
-      FullWidthCard(),
-      FullWidthCard(),
-      FullWidthCard(),
-      FullWidthCard(),
-      FullWidthCard(),
-    ]);
   }
 
   void updatePage({int index}) {
@@ -52,14 +69,24 @@ class HomePageController extends GetxController
   }
 
   void openSeeAllPage() {
-    AppRoutes.appRoutes(RouteNames.seeAll);
+    AppRoutes.appRoutes(RouteNames.seeAllScreen);
   }
 
-  void onPillsTap(index) {
-    pillsList.forEach((element) {
-      element.isActive.value = false;
-    });
-    pillsList[index].isActive.value = true;
+  void openSettingsPage() {
+    AppRoutes.appRoutes(RouteNames.settingsScreen);
+  }
+
+  void openSearchPage() {
+    AppRoutes.appRoutes(RouteNames.searchScreen);
+  }
+
+  void onPillsTap(index, list) {
+    if (list == 1)
+      pillsList1[index].isActive.value = !pillsList1[index].isActive.value;
+    else if (list == 2)
+      pillsList2[index].isActive.value = !pillsList2[index].isActive.value;
+    else
+      pillsList3[index].isActive.value = !pillsList3[index].isActive.value;
   }
 }
 

@@ -1,32 +1,56 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
 
-Widget LongButton({
-  double width = 320.0,
-  double height = 55.0,
-  bool enable = true,
-  borderRadius,
-  onPressed,
-  text,
-}) {
-  return Container(
-    width: horizontalValue(width),
-    height: verticalValue(height),
-    decoration: BoxDecoration(
-      color: enable ? colors.appColor : colors.grey,
-      borderRadius: borderRadius ?? BorderRadius.circular(5),
-    ),
-    child: ElevatedButton(
-      onPressed: enable ? onPressed : null,
-      style: ElevatedButton.styleFrom(
-        primary: Colors.transparent,
-        shadowColor: Colors.transparent,
+class LongButton extends StatelessWidget {
+  const LongButton(this.text,
+      {Key key,
+      this.width,
+      this.height = 50.0,
+      this.borderRadius,
+      this.enable = true,
+      this.isLoading = false,
+      this.backgroundColor,
+      this.textColor,
+      this.onPressed})
+      : super(key: key);
+
+  final double width, height, borderRadius;
+  final bool enable, isLoading;
+  final Color backgroundColor, textColor;
+  final Function onPressed;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: horizontalValue(width ?? sizes.width),
+      height: verticalValue(height),
+      decoration: BoxDecoration(
+        color: enable
+            ? backgroundColor ?? colors.accentPrimary
+            : colors.primaryDark.withOpacity(0.05),
+        borderRadius: borderRadius ?? BorderRadius.circular(8),
       ),
-      child: Text(
-        text,
-        style: textStyles.semiBoldManrope
-            .copyWith(fontSize: 14, color: colors.white),
+      child: ElevatedButton(
+        onPressed: enable ? onPressed : null,
+        style: ElevatedButton.styleFrom(
+          primary: Colors.transparent,
+          shadowColor: Colors.transparent,
+        ),
+        child: isLoading && enable
+            ? Container(
+                width: 25,
+                height: 25,
+                child: CircularProgressIndicator(
+                  color: colors.white,
+                ),
+              )
+            : Text(
+                text,
+                style: textStyles.bodyLarge
+                    .copyWith(color: textColor ?? colors.primaryLight),
+              ),
       ),
-    ),
-  );
+    );
+  }
 }

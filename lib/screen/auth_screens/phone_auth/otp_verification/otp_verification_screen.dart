@@ -7,57 +7,67 @@ class OTPVerificationScreen extends GetView<OTPVerificationController> {
   Widget build(BuildContext context) {
     controller.initialize();
     return Scaffold(
-      backgroundColor: colors.white,
-      body: Stack(
-        children: [
-          shader(top: -30, left: -30),
-          shader(bottom: -30, right: -30),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 20),
-            height: sizes.height,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                verticalSpacer(40),
-                controller.component.getBackButton(controller.onBack),
-                verticalSpacer(20),
-                controller.component.getTitle(),
-                verticalSpacer(10),
-                controller.component.getDetailText(),
-                verticalSpacer(40),
-                controller.component.getPinCodeField(
-                  context,
-                  controller.verificationCodeController,
-                  controller.onConfirmTap,
-                  controller.isOTPValid,
-                ),
-                verticalSpacer(30),
-                Obx(
-                  () => controller.component.getPinTimer(
-                    controller.seconds.value,
-                    controller.onTimeComplete,
-                  ),
-                ),
-                verticalSpacer(18),
-                Obx(
-                  () => controller.component.getResendButton(
-                    controller.isResendActive.value,
-                    controller.onResend,
-                  ),
-                ),
-                Spacer(),
-                Obx(
-                  () => LongButton(
-                    onPressed: controller.onConfirmTap,
-                    text: 'Confirm',
-                    enable: controller.isButtonActive.value,
-                  ),
-                ),
-              ],
+      backgroundColor: colors.primaryLight,
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        height: sizes.height,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            verticalSpacer(40),
+            AppBarWidget(
+              title: 'Verification',
+              onBack: controller.onBack,
             ),
-          ),
-        ],
+            verticalSpacer(30),
+            RichTextWidget(),
+            verticalSpacer(46),
+            PinCodeField(
+              context,
+              controller.verificationCodeController,
+              controller.onConfirmTap,
+              controller.isOTPValid,
+            ),
+            verticalSpacer(40),
+            Obx(() => CustomTimer(
+                  seconds: controller.seconds.value,
+                  onTimeComplete: controller.onTimeComplete,
+                  timeController: controller.timerController,
+                )),
+            Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  BodyLargeText(
+                    "Didn’t receive code?",
+                  ),
+                  TextButton(
+                    onPressed: controller.isResendActive.value
+                        ? controller.onResend
+                        : null,
+                    child: BodyLargeText(
+                      'Request again',
+                      color: controller.isResendActive.value
+                          ? colors.accentPrimary
+                          : colors.accentPrimary.withOpacity(0.5),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Spacer(),
+            Obx(
+              () => LongButton(
+                constants.verify,
+                onPressed: controller.onConfirmTap,
+                enable: controller.isButtonActive.value,
+                isLoading: controller.isLoading.value,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

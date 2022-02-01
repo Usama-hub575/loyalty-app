@@ -18,7 +18,7 @@ class LoginPage extends GetView<LoginController> {
         ),
         centerTitle: true,
       ),
-      backgroundColor: colors.white,
+      backgroundColor: colors.primaryLight,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),

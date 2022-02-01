@@ -1,12 +1,14 @@
-
-class RouteNames{
-  static const splash = '/';
-  static const onboarding = '/onboarding';
-  static const login = '/login';
-  static const phoneLogin = '/phoneLogin';
+class RouteNames {
+  static const splashScreen = '/';
+  static const onboardingScreen = '/onboardingScreen';
+  static const loginScreen = '/loginScreen';
+  static const phoneLoginScreen = '/phoneLoginScreen';
   static const otpScreen = '/otpScreen';
-  static const userDetailsScreen = '/userDetailsScreen';
+  static const registerScreen = '/registerScreen';
   static const locationScreen = '/locationScreen';
-  static const home = '/home';
-  static const seeAll = '/seeAll';
+  static const homeScreen = '/homeScreen';
+  static const seeAllScreen = '/seeAllScreen';
+  static const searchScreen = '/searchScreen';
+  static const editProfileScreen = '/editProfileScreen';
+  static const settingsScreen = '/settingsScreen';
 }

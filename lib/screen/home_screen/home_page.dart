@@ -11,61 +11,41 @@ class HomePage extends GetView<HomePageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: colors.background,
+      backgroundColor: colors.primaryLight,
+      appBar: HomeAppBar(),
       body: Container(
         height: sizes.height,
         width: sizes.width,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-        child: Column(
+        child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
-            verticalSpacer(30),
-            AppbarWidget(),
-            verticalSpacer(30),
-            SearchField(),
-            Expanded(
-              child: ListView(
-                physics: BouncingScrollPhysics(),
-                children: [
-                  verticalSpacer(10),
-                  controller.components.getScrollingPills(
-                    controller.pillsList,
-                    controller.onPillsTap,
-                  ),
-                  verticalSpacer(30),
-                  controller.components.getRecommendedList(
-                    title: 'Recommended for you',
-                    data: controller.pillsList,
-                    onSeeAll: controller.openSeeAllPage,
-                  ),
-                  verticalSpacer(30),
-                  controller.components.getRecommendedList(
-                    title: 'Recently Visited',
-                    data: controller.pillsList,
-                    onSeeAll: controller.openSeeAllPage,
-                  ),
-                  verticalSpacer(30),
-                  controller.components.getNearByList(
-                    title: 'Nearby Stores',
-                    data: controller.pillsList,
-                    onSeeAll: controller.openSeeAllPage,
-                  ),
-                  verticalSpacer(20),
-                  controller.components.getMapCard(
-                    title: 'Explore around you',
-                  ),
-                  verticalSpacer(20),
-                  controller.components.getPopularList(
-                    title: 'Popular Stores',
-                    data: controller.pillsList,
-                    onSeeAll: controller.openSeeAllPage,
-                  ),
-                ],
-              ),
+            MapCard(),
+            HeadingCard(
+              'popular categories',
+              icon: assets.icCategories,
             ),
+            FilterPills(
+              dataList1: controller.pillsList1,
+              dataList2: controller.pillsList2,
+              dataList3: controller.pillsList3,
+              onTap: controller.onPillsTap,
+            ),
+            StoreCard(
+              controller.pillsList2,
+            ),
+            HeadingCard(
+              'Top ratted Stores',
+              icon: assets.icMedal,
+            ),
+            StoreCard(
+              controller.pillsList3,
+            ),
+            verticalSpacer(20),
+            InviteCard(),
           ],
         ),
       ),
-      floatingActionButton: controller.components.getFloatingActionButton(
+      floatingActionButton: FloatingAction(
         onPressed: () => controller.openBottomSheet(
           context,
           this._scaffoldKey.currentState,

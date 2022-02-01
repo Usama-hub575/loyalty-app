@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:aactivpay/export.dart';
 
-Widget horizontalDivider({
-  width = double.infinity,
-  height = 1.0,
-  color = Colors.grey,
-  borderRadius = 0,
-}) =>
-    Container(
+class HorizontalDivider extends StatelessWidget {
+  final double width;
+  final double height;
+  final double borderRadius;
+  final Color color;
+
+  HorizontalDivider({
+    Key key,
+    this.width = double.infinity,
+    this.height = 1.0,
+    this.color = Colors.grey,
+    this.borderRadius = 0,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       width: width,
       height: height,
       alignment: Alignment.center,
@@ -16,3 +25,5 @@ Widget horizontalDivider({
         borderRadius: BorderRadius.circular(borderRadius),
       ),
     );
+  }
+}

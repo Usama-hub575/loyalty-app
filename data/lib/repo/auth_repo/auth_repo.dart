@@ -13,12 +13,24 @@ mixin AuthRepo {
   Future<Either<AppError, User>> registerUser(
       String email, String password, String name);
 
-  Future<Either<AppError, dynamic>> signWithPhone(String number);
+  Future<Either<AppError, dynamic>> signWithPhone(
+    String number,
+    navigateToOTPVerificationPage,
+    navigateToTab,
+    navigateToRegister,
+  );
 
   Future<Either<AppError, dynamic>> verifyOTP(
-      String smsCode, String verificationId);
+    String smsCode,
+    String verificationId,
+    navigateToRegister,
+    navigateToHome,
+    getRoute,
+  );
 
-  Future<Either<AppError, dynamic>> resendOTP(String number);
+  Future<Either<AppError, dynamic>> resendOTP(
+    String number,
+  );
 
   Future<Either<AppError, AppSuccess>> signOutWithGoogle();
 
@@ -44,4 +56,9 @@ mixin AuthRepo {
       String newEmail, String currentPassword);
 
   Future<Either<AppError, AppSuccess>> checkForDisplayName();
+
+  User? getCurrentUser();
+
+  Future<Either<AppError, UserModel>> isUserRegistered(
+      type, String? code, String? number);
 }

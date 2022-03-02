@@ -14,6 +14,8 @@ dependencies:
   #Storage
   shared_preferences:
   dartz: ^0.10.1
+  http: ^0.13.3
+  firebase_storage: ^10.2.7
 
 
   core:

@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 class BodyLargeText extends StatelessWidget {
   final String title;
   final Color color;
+  final FontWeight fontWeight;
 
-  const BodyLargeText(this.title, {Key key, this.color}) : super(key: key);
+  const BodyLargeText(this.title, {Key key, this.color, this.fontWeight})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +15,7 @@ class BodyLargeText extends StatelessWidget {
       title,
       style: textStyles.bodyLarge.copyWith(
         color: color,
+        fontWeight: fontWeight,
       ),
     );
   }

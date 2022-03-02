@@ -4,6 +4,6 @@ import 'package:aactivpay/export.dart';
 class InitDependencies extends Bindings {
   @override
   void dependencies() {
-    Get.put<HomePageController>(HomePageController());
+    // Get.put<HomePageController>(HomePageController());
   }
 }

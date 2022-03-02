@@ -12,4 +12,4 @@ export 'package:dartz/dartz.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:flutter_login_facebook/flutter_login_facebook.dart';
-
+import 'package:firebase_storage/firebase_storage.dart';

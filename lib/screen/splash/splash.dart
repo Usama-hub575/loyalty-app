@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:aactivpay/export.dart';
 
 class Splash extends GetView<SplashController> {
-  final di = GetInstance();
 
   @override
   Widget build(BuildContext context) {

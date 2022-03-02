@@ -20,9 +20,37 @@ class RepoDependencies {
   }
 
   initializeRepoDependencies() {
-    Get.lazyPut<FirebaseAuthWrapper>(() => FirebaseAuthWrapper(_firebaseAuth));
+    Get.lazyPut<SharedPreferences>(
+      () => _sharedPreferences,
+      tag: 'sp',
+      fenix: true,
+    );
+    Get.lazyPut<FirebaseAuthWrapper>(
+      () => FirebaseAuthWrapper(_firebaseAuth),
+      fenix: true,
+    );
 
     Get.lazyPut<AuthRepo>(
-        () => AuthRepoImpl(_googleSignIn, _auth, _facebookLogin));
+      () => AuthRepoImpl(
+        _googleSignIn,
+        _auth,
+        _facebookLogin,
+        _endPoints,
+        _networkHelper,
+      ),
+      fenix: true,
+    );
+
+    Get.lazyPut<RegisterRepo>(
+      () => RegisterRepoImpl(_networkHelper, _endPoints),
+      fenix: true,
+    );
+    Get.lazyPut<HomeRepo>(
+      () => HomeRepoImpl(_networkHelper, _endPoints),
+    );
+    Get.lazyPut<LocationRepo>(
+      () => LocationRepoImpl(_networkHelper, _endPoints),
+      fenix: true,
+    );
   }
 }

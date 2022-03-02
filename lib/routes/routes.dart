@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:aactivpay/export.dart';
 
 class AppRoutes {
+  final arg;
+
+  AppRoutes({this.arg});
+
   static List<GetPage> getPage = [
     GetPage(
       name: RouteNames.splashScreen,
@@ -45,9 +48,19 @@ class AppRoutes {
       binding: LocationBinding(),
     ),
     GetPage(
-      name: RouteNames.seeAllScreen,
-      page: () => SeeAllPage(),
+      name: RouteNames.searchAddressScreen,
+      page: () => SearchAddressPage(),
+      binding: SearchAddressBinding(),
+    ),
+    GetPage(
+      name: RouteNames.seeAllStore,
+      page: () => SeeAllStoresPage(),
       binding: SeeAllBinding(),
+    ),
+    GetPage(
+      name: RouteNames.seeAllTransaction,
+      page: () => TransactionPage(),
+      binding: AllTransactionBinding(),
     ),
     GetPage(
       name: RouteNames.searchScreen,
@@ -55,31 +68,40 @@ class AppRoutes {
       binding: SearchBinding(),
     ),
     GetPage(
-      name: RouteNames.editProfileScreen,
-      page: () => EditProfilePage(),
-      binding: EditProfileBinding(),
-    ),
-    GetPage(
       name: RouteNames.settingsScreen,
       page: () => SettingsPage(),
       binding: SettingsBinding(),
     ),
+    GetPage(
+      name: RouteNames.storeDetailsScreen,
+      page: () => StoreDetailsPage(),
+      binding: StoreDetailsBinding(),
+    ),
+    GetPage(
+      name: RouteNames.reviewScreen,
+      page: () => ReviewScreen(),
+      binding: ReviewBinding(),
+    ),
   ];
 
-  static Future<dynamic> appRoutes(final String routeName) {
+  static Future<dynamic> appRoutes(final String routeName, {arg}) {
     switch (routeName) {
       //push to next
       case RouteNames.splashScreen:
       case RouteNames.otpScreen:
       case RouteNames.registerScreen:
       case RouteNames.locationScreen:
-      case RouteNames.seeAllScreen:
+      case RouteNames.searchAddressScreen:
+      case RouteNames.seeAllStore:
       case RouteNames.searchScreen:
       case RouteNames.editProfileScreen:
       case RouteNames.settingsScreen:
-        return Get.toNamed(routeName);
+      case RouteNames.storeDetailsScreen:
+      case RouteNames.reviewScreen:
+      case RouteNames.seeAllTransaction:
+        return Get.toNamed(routeName, arguments: arg);
 
-        //clear all and push
+      //clear all and push
       case RouteNames.onboardingScreen:
       case RouteNames.loginScreen:
       case RouteNames.phoneLoginScreen:

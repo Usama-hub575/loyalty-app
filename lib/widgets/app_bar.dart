@@ -6,8 +6,7 @@ class AppBarWidget extends StatelessWidget {
   final title;
   final onBack;
 
-  const AppBarWidget({Key key, this.title = '', this.onBack})
-      : super(key: key);
+  const AppBarWidget({Key key, this.title = '', this.onBack}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +18,15 @@ class AppBarWidget extends StatelessWidget {
         HeadingRegularText(
           title,
         ),
-        SizedBox.shrink(),
+        SizedBox(width: 50),
       ],
     );
   }
 
   Widget getBackButton(onBack) {
-    return GestureDetector(
+    return AppIconButton(
+      assets.icBack,
       onTap: onBack,
-      child: SvgPicture.asset(
-        assets.icBack,
-      ),
     );
   }
 }

@@ -6,6 +6,9 @@ class OTPBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<OTPVerificationController>(
-        () => OTPVerificationController(Get.find<AuthUseCase>()));
+      () => OTPVerificationController(
+        Get.find<AuthUseCase>(),
+      ),
+    );
   }
 }

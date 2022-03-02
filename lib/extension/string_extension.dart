@@ -1,1 +1,1 @@
-extension StringExtension on String {}
+extension StringExtensions on String {}

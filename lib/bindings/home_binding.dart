@@ -1,10 +1,10 @@
-import 'package:get/get.dart';
-import 'package:aactivpay/screen/export.dart';
+import 'package:aactivpay/export.dart';
 
 class HomeBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<HomePageController>(() => HomePageController());
+    Get.lazyPut<HomePageController>(
+        () => HomePageController(Get.find<HomeUseCase>()));
     // Get.put<Service>(()=> Api());
   }
 }

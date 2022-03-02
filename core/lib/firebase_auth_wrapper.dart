@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class FirebaseAuthWrapper {
   FirebaseAuthWrapper(this._auth);
 
@@ -27,6 +26,8 @@ class FirebaseAuthWrapper {
       }
     });
   }
+
+  User? getCurrentUser() => _auth.currentUser;
 
   FirebaseAuth firebaseAuth() => _auth;
 

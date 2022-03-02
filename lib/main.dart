@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'AactivPay',
       theme: ThemeData(
-        appBarTheme: AppBarTheme(color: Color.fromRGBO(255, 204, 51, 0.9)),
-        backgroundColor: Color.fromRGBO(255, 204, 51, 0.9),
+        appBarTheme: AppBarTheme(color: Color.fromRGBO(60, 53, 255, 1)),
+        backgroundColor: Color.fromRGBO(250, 250, 250, 1),
       ),
       debugShowCheckedModeBanner: false,
       unknownRoute: GetPage(

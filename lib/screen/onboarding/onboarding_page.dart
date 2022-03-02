@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:aactivpay/export.dart';
 
 class OnboardingPage extends GetView<OnboardingController> {
@@ -10,22 +9,10 @@ class OnboardingPage extends GetView<OnboardingController> {
       body: Stack(
         children: [
           Obx(
-            () => PageView.builder(
-              controller: controller.pageController,
-              physics: ClampingScrollPhysics(),
-              onPageChanged: (value) {
-                controller.updatePage(value: value);
-              },
-              itemBuilder: (BuildContext context, int index) {
-                return controller.pageChildren[controller.currentPage.value];
-              },
-              itemCount: controller.pageChildren.length,
-            ),
+            () => controller.pageChildren[controller.currentPage.value],
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
+          Align(
+            alignment: Alignment.bottomLeft,
             child: Container(
               width: double.infinity,
               height: sizes.heightRatio * 225,

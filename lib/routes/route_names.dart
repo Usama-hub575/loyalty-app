@@ -6,9 +6,13 @@ class RouteNames {
   static const otpScreen = '/otpScreen';
   static const registerScreen = '/registerScreen';
   static const locationScreen = '/locationScreen';
+  static const searchAddressScreen = '/searchAddressScreen';
   static const homeScreen = '/homeScreen';
-  static const seeAllScreen = '/seeAllScreen';
+  static const seeAllStore = '/seeAllScreen';
+  static const seeAllTransaction = '/seeAllTransaction';
   static const searchScreen = '/searchScreen';
   static const editProfileScreen = '/editProfileScreen';
   static const settingsScreen = '/settingsScreen';
+  static const storeDetailsScreen = '/storeDetailsScreen';
+  static const reviewScreen = '/reviewScreen';
 }

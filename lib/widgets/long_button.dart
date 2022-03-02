@@ -10,13 +10,14 @@ class LongButton extends StatelessWidget {
       this.enable = true,
       this.isLoading = false,
       this.backgroundColor,
+      this.borderColor = Colors.transparent,
       this.textColor,
       this.onPressed})
       : super(key: key);
 
   final double width, height, borderRadius;
   final bool enable, isLoading;
-  final Color backgroundColor, textColor;
+  final Color backgroundColor, borderColor, textColor;
   final Function onPressed;
   final String text;
 
@@ -30,6 +31,7 @@ class LongButton extends StatelessWidget {
             ? backgroundColor ?? colors.accentPrimary
             : colors.primaryDark.withOpacity(0.05),
         borderRadius: borderRadius ?? BorderRadius.circular(8),
+        border: Border.all(color: borderColor),
       ),
       child: ElevatedButton(
         onPressed: enable ? onPressed : null,

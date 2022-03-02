@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   Color accentPrimary = const Color.fromRGBO(60, 53, 255, 1);
   Color accentSecondary = const Color.fromRGBO(108, 103, 255, 1);
-  Color primaryLight = const Color.fromRGBO(255, 255, 255, 1);
+  Color primaryLight = const Color.fromRGBO(250, 250, 250, 1);
   Color primaryDark = const Color.fromRGBO(10, 10, 14, 1);
   Color white = Colors.white;
   Color black = const Color.fromRGBO(0, 0, 0, 1);

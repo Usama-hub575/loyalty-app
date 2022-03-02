@@ -1,1 +1,1 @@
-extension IntExtension on int {}
+extension IntExtensions on int {}

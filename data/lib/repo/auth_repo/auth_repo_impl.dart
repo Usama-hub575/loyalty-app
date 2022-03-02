@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:data/export.dart';
 import 'package:flutter/services.dart';
 
@@ -5,8 +7,16 @@ class AuthRepoImpl implements AuthRepo {
   final GoogleSignIn _googleSignIn;
   final FirebaseAuthWrapper _auth;
   final FacebookLogin _facebookLogin;
+  final EndPoints _endPoints;
+  final NetworkHelper _networkHelper;
 
-  AuthRepoImpl(this._googleSignIn, this._auth, this._facebookLogin);
+  AuthRepoImpl(
+    this._googleSignIn,
+    this._auth,
+    this._facebookLogin,
+    this._endPoints,
+    this._networkHelper,
+  );
 
   @override
   Future<Either<AppError, User>> registerUser(
@@ -219,62 +229,59 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<AppError, dynamic>> signWithPhone(String number) async {
-    return Left(AppError());
-    //
-    //   // PhoneVerificationCompleted verificationCompleted =
-    //   //     (PhoneAuthCredential phoneAuthCredential) async {
-    //   //   final value = await _auth.firebaseAuth().signInWithCredential(phoneAuthCredential);
-    //   //   if (value.user != null) {
-    //   //     view.showAutoVerifyMessage(view.getTextFromKey(PHONE_NUMBER_OTP_AUTO_VERIFY_SUCCESSFUL));
-    //   //     view.hideProgressBar();
-    //   //     final res = await checkForDisplayName();
-    //   //     userUseCase.setupUserOnboarding();
-    //   //     Future.delayed(Duration(seconds: 1));
-    //   //     if (res.isRight()) {
-    //   //       /// user name is present
-    //   //       if (userModel.data.grade == null)
-    //   //         view.navigateToOnBoarding();
-    //   //       else
-    //   //         view.navigateToTabsPage();
-    //   //     } else {
-    //   //       /// username is not available
-    //   //       view.navigateToUserDetailPage();
-    //   //     }
-    //   //   }
-    //   // };
-    //
-    //   PhoneVerificationFailed verificationFailed = (FirebaseAuthException authException) {
-    //     view.hideProgressBar();
-    //     view.showErrorMessage(AppError(title: FAILED_PHONE_NUMBER_AUTHENTICATION));
-    //   };
-    //
-    //   PhoneCodeSent codeSent = (String verificationId, [int forceResendingToken]) {
-    //     view.hideProgressBar();
-    //     Future.delayed(Duration(seconds: 1));
-    //     view.navigateToOTPVerificationPage(verificationId);
-    //   };
-    //
-    //   PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout = (String verificationId) {
-    //     view.hideProgressBar();
-    //     Future.delayed(Duration(seconds: 1));
-    //   };
-    //
-    //   try {
-    //     await _auth.firebaseAuth().verifyPhoneNumber(
-    //         phoneNumber: number,
-    //         verificationCompleted: verificationCompleted,
-    //         verificationFailed: verificationFailed,
-    //         codeSent: codeSent,
-    //         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
-    //   } catch (e) {
-    //     return Left(AppError(title: e.toString()));
-    //   }
+  Future<Either<AppError, dynamic>> signWithPhone(
+    String number,
+    navigateToOTPVerificationPage,
+    navigateToHome,
+    navigateToRegister,
+  ) async {
+    _verificationCompleted(PhoneAuthCredential phoneAuthCredential) async {
+      final value =
+          await _auth.firebaseAuth().signInWithCredential(phoneAuthCredential);
+      if (value.user != null && value.user?.displayName != null) {
+        navigateToHome();
+      } else {
+        navigateToRegister();
+      }
+    }
+
+    _verificationFailed(FirebaseAuthException authException) {
+      print(authException.message);
+      // view.hideProgressBar();
+      // view.showErrorMessage(
+      //     AppError(title: FAILED_PHONE_NUMBER_AUTHENTICATION));
+    }
+
+    _codeSent(String verificationId, forceResendingToken) {
+      navigateToOTPVerificationPage(VerificationModel(verificationId, number));
+    }
+
+    _codeAutoRetrievalTimeout(String verificationId) {
+      Future.delayed(const Duration(seconds: 30));
+    }
+
+    try {
+      await _auth.firebaseAuth().verifyPhoneNumber(
+            phoneNumber: number,
+            verificationCompleted: _verificationCompleted,
+            verificationFailed: _verificationFailed,
+            codeSent: _codeSent,
+            codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout,
+          );
+      return Right(AppSuccess());
+    } catch (e) {
+      return Left(AppError(title: e.toString()));
+    }
   }
 
   @override
   Future<Either<AppError, dynamic>> verifyOTP(
-      String smsCode, String verificationId) async {
+    String smsCode,
+    String verificationId,
+    navigateToRegister,
+    navigateToHome,
+    getRoute,
+  ) async {
     try {
       final AuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationId,
@@ -287,20 +294,24 @@ class AuthRepoImpl implements AuthRepo {
         //     view.getTextFromKey(OTP_VERIFY_SUCCESS));
 
         /// success now check for user name
-        final value = await checkForDisplayName();
-        // userUseCase.setupUserOnboarding();
-        Future.delayed(const Duration(seconds: 1));
-        if (value.isRight()) {
-          // view.navigateToTabsPage();
-        } else {
-          /// username is not available
-          // view.navigateToUserDetailPage();
-        }
-      } else {
-        // view.showErrorMessage(AppError(title: ERROR_INVALID_OTP));
+        // final value = await checkForDisplayName();
+        // Future.delayed(const Duration(seconds: 1));
+        // if (value.isRight()) {
+        //   print('verified');
+        //   view.navigateToTabsPage();
+        // } else {
+        /// username is not available
+        getRoute(
+          null,
+          navigateToRegister,
+          navigateToHome,
+        );
       }
+      // } else {
+      // view.showErrorMessage(AppError(title: ERROR_INVALID_OTP));
+      // }
       //remove it
-      return Left(AppError(title: 'e.toString()'));
+      return Right(AppSuccess());
     } catch (e) {
       return Left(AppError(title: e.toString()));
     }
@@ -310,52 +321,46 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<AppError, dynamic>> resendOTP(
     String number,
   ) async {
-    // PhoneVerificationCompleted verificationCompleted =
-    //     (PhoneAuthCredential phoneAuthCredential) async {
-    //   final value =
-    //       await _auth.firebaseAuth().signInWithCredential(phoneAuthCredential);
-    //   if (value.user != null) {
-    //     view.showAutoVerifyMessage(
-    //         view.getTextFromKey(PHONE_NUMBER_OTP_AUTO_VERIFY_SUCCESSFUL));
-    //     final res = await checkForDisplayName();
-    //     userUseCase.setupUserOnboarding();
-    //     Future.delayed(Duration(seconds: 1));
-    //     if (res.isRight()) {
-    //       /// user name is present
-    //       if (userModel.data.grade == null)
-    //         view.navigateToOnBoarding();
-    //       else
-    //         view.navigateToTabsPage();
-    //     } else {
-    //       /// username is not available
-    //       view.navigateToUserDetailPage();
-    //     }
-    // };
+    _verificationCompleted(PhoneAuthCredential phoneAuthCredential) async {
+      final value =
+          await _auth.firebaseAuth().signInWithCredential(phoneAuthCredential);
+      // if (value.user != null) {
+      // final res = await checkForDisplayName();
+      // Future.delayed(const Duration(seconds: 1));
+      // if (res.isRight()) {
+      /// user name is present
+      // navigateToHome();
+      // } else {
+      /// username is not available
+      // navigateToRegister();
+      // }
+      // }
+    }
 
-    // PhoneVerificationFailed verificationFailed =
-    //     (FirebaseAuthException authException) {
-    //   view.showErrorMessage(
-    //       AppError(title: FAILED_PHONE_NUMBER_AUTHENTICATION));
-    // };
-    //
-    // PhoneCodeSent codeSent =
-    //     (String verificationId, [int forceResendingToken]) {
-    //   view.showOTPResendMessage(OTP_CODE_RESEND_SUCCESS);
-    // };
+    _verificationFailed(FirebaseAuthException authException) {
+      // view.hideProgressBar();
+      // view.showErrorMessage(
+      //     AppError(title: FAILED_PHONE_NUMBER_AUTHENTICATION));
+    }
 
-    // PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
-    //     (String verificationId) {};
+    _codeSent(String verificationId, forceResendingToken) {
+      Future.delayed(const Duration(seconds: 1));
+      // navigateToOTPVerificationPage(verificationId);
+    }
+
+    _codeAutoRetrievalTimeout(String verificationId) {
+      Future.delayed(const Duration(seconds: 1));
+    }
 
     try {
-      // await _auth.firebaseAuth().verifyPhoneNumber(
-      //     phoneNumber: number,
-      //     verificationCompleted: verificationCompleted,
-      //     verificationFailed: verificationFailed,
-      //     codeSent: codeSent,
-      //     codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
+      await _auth.firebaseAuth().verifyPhoneNumber(
+          phoneNumber: number,
+          verificationCompleted: _verificationCompleted,
+          verificationFailed: _verificationFailed,
+          codeSent: _codeSent,
+          codeAutoRetrievalTimeout: _codeAutoRetrievalTimeout);
 
-      //remove it
-      return Left(AppError());
+      return Right(AppSuccess());
     } catch (e) {
       return Left(AppError(title: e.toString()));
     }
@@ -430,5 +435,35 @@ class AuthRepoImpl implements AuthRepo {
       return AppError(title: error.code, description: message);
     }
     return AppError(title: 'EXCEPTION', description: error.toString());
+  }
+
+  @override
+  User? getCurrentUser() => _auth.getCurrentUser();
+
+  @override
+  Future<Either<AppError, UserModel>> isUserRegistered(
+      type, String? code, String? number) async {
+    try {
+      final response = await _networkHelper.get(
+        _endPoints.logInUser(type, code, number),
+      );
+      if (response.statusCode == 201) {
+        var data = json.decode(response.body.toString());
+        if (data['body'] != null) {
+          return Right(UserModel.fromJson(data['body']));
+        } else {
+          return Left(
+            AppError(title: 'user not registered'),
+          );
+        }
+      }
+      return Left(
+        AppError(title: 'user not registered'),
+      );
+    } catch (e) {
+      return Left(
+        AppError(title: e.toString()),
+      );
+    }
   }
 }

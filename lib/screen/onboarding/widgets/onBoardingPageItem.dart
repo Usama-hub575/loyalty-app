@@ -11,7 +11,6 @@ class OnboardingItem extends StatelessWidget {
       key: key,
       child: Image.asset(
         image,
-        key: key,
         fit: BoxFit.fill,
       ),
     );

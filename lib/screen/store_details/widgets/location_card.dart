@@ -2,13 +2,20 @@ import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
 
 class LocationCard extends StatelessWidget {
-  const LocationCard({Key key}) : super(key: key);
+  final String geoAddress;
+  final bool hasMultipleBranches;
+
+  const LocationCard(
+    this.geoAddress, {
+    Key key,
+    this.hasMultipleBranches,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: sizes.width,
-      height: sizes.heightRatio * 120,
+      height: sizes.heightRatio * (hasMultipleBranches ? 120 : 100),
       child: Stack(
         children: [
           Positioned(
@@ -28,16 +35,16 @@ class LocationCard extends StatelessWidget {
                 HeadingRegularText('Location'),
                 verticalSpacer(10),
                 Container(
-                  width: sizes.width * 0.6,
-                  child: BodyRegularText(
-                      '170, Saiden Shah Colony Upper Mall Scheme, Lahore'),
+                  child: BodyRegularText(geoAddress ?? ''),
                 ),
-                verticalSpacer(8),
-                BodySmallText(
-                  'See 5 more branches',
-                  color: colors.accentPrimary,
-                  fontWeight: FontWeight.w700,
-                )
+                hasMultipleBranches ? verticalSpacer(8) : SizedBox.shrink(),
+                hasMultipleBranches
+                    ? BodySmallText(
+                        'See all branches',
+                        color: colors.accentPrimary,
+                        fontWeight: FontWeight.w700,
+                      )
+                    : SizedBox.shrink()
               ],
             ),
           ),

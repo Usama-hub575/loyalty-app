@@ -3,9 +3,29 @@ import 'package:get/get.dart';
 
 class StoreDetailsController extends GetxController
     with StateMixin<StoreDetailsPage> {
+  final StoreDetailsUseCase useCase;
+
+  StoreDetailsController(this.useCase);
+
+  int storeId = -1;
+  String storeName = '';
+
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
+    storeId = Get.arguments[0];
+    storeName = Get.arguments[1];
+    change(null, status: RxStatus.loading());
+    await useCase.getStoreDetails(storeId).then((value) => {
+          if (value.isRight())
+            {
+              change(null, status: RxStatus.success()),
+            }
+          else
+            {
+              change(null, status: RxStatus.error()),
+            }
+        });
   }
 
   List<String> categories = ['Grocery', 'Clothing', 'Accosseries'];
@@ -41,6 +61,12 @@ class StoreDetailsController extends GetxController
   void openReviewPage() {
     AppRoutes.appRoutes(RouteNames.reviewScreen);
   }
+
+  void openAllReviewPage() {
+    AppRoutes.appRoutes(RouteNames.allReviewsPage, arg: [storeName]);
+  }
+
+  Store getData(index) => useCase.data[index].object;
 }
 
 class Review {

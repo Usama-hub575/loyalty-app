@@ -52,5 +52,10 @@ class RepoDependencies {
       () => LocationRepoImpl(_networkHelper, _endPoints),
       fenix: true,
     );
+
+    Get.lazyPut<StoreDetailsRepo>(
+      () => StoreDetailsRepoImpl(_networkHelper, _endPoints),
+      fenix: true,
+    );
   }
 }

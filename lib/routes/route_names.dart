@@ -15,4 +15,5 @@ class RouteNames {
   static const settingsScreen = '/settingsScreen';
   static const storeDetailsScreen = '/storeDetailsScreen';
   static const reviewScreen = '/reviewScreen';
+  static const allReviewsPage = '/allReviewsPage';
 }

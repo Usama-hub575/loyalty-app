@@ -20,7 +20,7 @@ class HomePage extends GetView<HomePageController> {
       ),
       body: controller.obx(
         (state) => getBody(context),
-        onLoading: LoadingScreen(),
+        onLoading: HomeLoadingScreen(),
       ),
       floatingActionButton: FloatingAction(
         onPressed: () => controller.openBottomSheet(
@@ -55,7 +55,7 @@ class HomePage extends GetView<HomePageController> {
               return StoreCard(
                 controller.getHomeData(index),
                 openStoreDetails: controller.openStoreDetailsPage,
-                seeAllStore: controller.openAllTransactionPage,
+                seeAllStore: controller.openAllStorePage,
               );
             case HomeDataType.NEARBYHEADER:
               return NearByHeader();

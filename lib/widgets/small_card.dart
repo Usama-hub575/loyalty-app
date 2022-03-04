@@ -11,12 +11,15 @@ class SmallCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => onTap(
+        data.storeId,
+        data.name,
+      ),
       child: Container(
         width: sizes.widthRatio * 230,
         margin: EdgeInsets.only(left: 20),
         decoration: BoxDecoration(
-          color: colors.primaryLight,
+          color: colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(

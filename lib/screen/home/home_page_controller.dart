@@ -24,7 +24,6 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
   @override
   Future<void> onInit() async {
     super.onInit();
-    print('onInit');
     change(null, status: RxStatus.loading());
     StoreCategories data;
     var pillsIndex;
@@ -92,8 +91,9 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
     ]);
   }
 
-  void openStoreDetailsPage() {
-    AppRoutes.appRoutes(RouteNames.storeDetailsScreen);
+  void openStoreDetailsPage(int storeId, String storeName) {
+    AppRoutes.appRoutes(RouteNames.storeDetailsScreen,
+        arg: [storeId, storeName]);
   }
 
   void openAllStorePage() {

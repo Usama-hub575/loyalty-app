@@ -82,6 +82,11 @@ class AppRoutes {
       page: () => ReviewScreen(),
       binding: ReviewBinding(),
     ),
+    GetPage(
+      name: RouteNames.allReviewsPage,
+      page: () => AllReviewsPage(),
+      binding: AllReviewBinding(),
+    ),
   ];
 
   static Future<dynamic> appRoutes(final String routeName, {arg}) {
@@ -99,6 +104,7 @@ class AppRoutes {
       case RouteNames.storeDetailsScreen:
       case RouteNames.reviewScreen:
       case RouteNames.seeAllTransaction:
+      case RouteNames.allReviewsPage:
         return Get.toNamed(routeName, arguments: arg);
 
       //clear all and push

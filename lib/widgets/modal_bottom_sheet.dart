@@ -101,7 +101,7 @@ Widget getTimer() {
       countdownRemainingColor: colors.transparent,
       diameter: 30,
       countdownTotalColor: colors.error,
-      gapFactor: 200,
+      gapFactor: 2,
       textStyle: textStyles.bodyExtraSmall,
     ),
   );

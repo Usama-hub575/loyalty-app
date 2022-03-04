@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shimmer/shimmer.dart';
 
-class HomeLoadingScreen extends StatelessWidget {
-  const HomeLoadingScreen({Key key}) : super(key: key);
+class StoreDetailsLoading extends StatelessWidget {
+  const StoreDetailsLoading({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -4,24 +4,31 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class StoreAppBar extends StatelessWidget {
   final Function onCross;
+  final String name;
 
-  const StoreAppBar({Key key, this.onCross}) : super(key: key);
+  const StoreAppBar(this.name, {Key key, this.onCross}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-      child: Row(
-        children: [
-          horizontalSpacer(10),
-          HeadingLargeText('Euro Store'),
-          Spacer(),
-          AppIconButton(
-            assets.icCross,
-            onTap: onCross,
+    return Row(
+      children: [
+        Container(
+          padding: EdgeInsets.only(
+            left: 10,
+            right: 10,
           ),
-        ],
-      ),
+          width: sizes.width * 0.8,
+          child: HeadingLargeText(
+            name,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        Spacer(),
+        AppIconButton(
+          assets.icCross,
+          onTap: onCross,
+        ),
+      ],
     );
   }
 }

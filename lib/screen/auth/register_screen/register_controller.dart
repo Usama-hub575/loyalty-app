@@ -19,6 +19,8 @@ class RegisterController extends GetxController
   Rx<TextEditingController> emailController = TextEditingController().obs;
   TextEditingController phoneController = TextEditingController();
   String title = '';
+  String name = '';
+  String email = '';
   String image = '';
   String buttonText = '';
 
@@ -26,8 +28,8 @@ class RegisterController extends GetxController
   void onInit() {
     super.onInit();
     title = Get.arguments[0];
-    userNameController.value.text = _useCase.user.name;
-    emailController.value.text = _useCase.user.email;
+    name = userNameController.value.text = _useCase.user.name;
+    email = emailController.value.text = _useCase.user.email;
     image = _useCase.user.imageUrl;
 
     phoneController.text =
@@ -49,7 +51,9 @@ class RegisterController extends GetxController
 
   onTextChange() {
     if (userNameController.value.text.trim().isNotEmpty &&
-        emailController.value.text.trim().isNotEmpty) {
+        emailController.value.text.trim().isNotEmpty &&
+        (userNameController.value.text != name ||
+            emailController.value.text != email)) {
       isEnable.value = true;
     } else
       isEnable.value = false;

@@ -36,6 +36,11 @@ class ProfileImage extends StatelessWidget {
                   ),
                   child: Image.network(
                     assets.icProfile,
+                    errorBuilder: (context, _, error) {
+                      return SvgPicture.asset(
+                        assets.icProfile,
+                      );
+                    },
                   ),
                 )
               : image != null && image.path.isNotEmpty

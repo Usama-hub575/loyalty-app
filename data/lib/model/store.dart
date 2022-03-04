@@ -23,15 +23,29 @@ class Store {
   final int storeId;
   final int numberOfReviews;
   final double rating;
+  final NearestBranch? nearestBranch;
+  final bool hasMultipleBranches;
+  final int oneStar;
+  final int twoStar;
+  final int threeStar;
+  final int fourStar;
+  final int fiveStar;
 
   Store({
-    required this.name,
-    required this.redeemLimit,
-    required this.conversionRate,
-    required this.imageUrl,
-    required this.storeId,
-    required this.numberOfReviews,
-    required this.rating,
+    this.name = '',
+    this.redeemLimit = 0,
+    this.conversionRate = 0.0,
+    this.imageUrl = '',
+    this.storeId = -1,
+    this.numberOfReviews = 0,
+    this.rating = 0.0,
+    this.nearestBranch,
+    this.hasMultipleBranches = false,
+    this.oneStar = 0,
+    this.twoStar = 0,
+    this.threeStar = 0,
+    this.fourStar = 0,
+    this.fiveStar = 0,
   });
 
   factory Store.fromJson(dynamic json) {
@@ -43,6 +57,15 @@ class Store {
       storeId: json['storeId'],
       numberOfReviews: json['numberOfReviews'],
       rating: json['rating'],
+      hasMultipleBranches: json['hasMultipleBranches'],
+      oneStar: json['oneStar'],
+      twoStar: json['twoStar'],
+      threeStar: json['threeStar'],
+      fourStar: json['fourStar'],
+      fiveStar: json['fiveStar'],
+      nearestBranch: json['nearestBranch'] != null
+          ? NearestBranch.fromJson(json['nearestBranch'])
+          : null,
     );
   }
 
@@ -55,6 +78,42 @@ class Store {
     map['storeId'] = storeId;
     map['numberOfReviews'] = numberOfReviews;
     map['rating'] = rating;
+    return map;
+  }
+}
+
+class NearestBranch {
+  final int branchId;
+  final double lat;
+  final double lng;
+  final String geoDecodedAddress;
+  final String nearnessCriteria;
+
+  NearestBranch({
+    this.branchId = -1,
+    this.lat = 0.0,
+    this.lng = 0.0,
+    this.geoDecodedAddress = '',
+    this.nearnessCriteria = '',
+  });
+
+  factory NearestBranch.fromJson(dynamic json) {
+    return NearestBranch(
+      branchId: json['branchId'],
+      lat: json['lat'],
+      lng: json['lng'],
+      geoDecodedAddress: json['geoDecodedAddress'],
+      nearnessCriteria: json['nearnessCriteria'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['branchId'] = branchId;
+    map['lat'] = lat;
+    map['lng'] = lng;
+    map['geoDecodedAddress'] = geoDecodedAddress;
+    map['nearnessCriteria'] = nearnessCriteria;
     return map;
   }
 }

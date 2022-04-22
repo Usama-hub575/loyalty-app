@@ -36,69 +36,78 @@ class ReviewScreen extends GetView<ReviewController> {
               ),
               verticalSpacer(20),
               Obx(
-                () => controller.badRating.value
+                    () =>
+                controller.badRating.value
                     ? BadReview(
-                        controller.badReviews,
-                        controller.feedBackController,
-                        onTap: controller.onPillTap,
-                      )
+                  controller.badReviews,
+                  controller.feedBackController,
+                  onTap: controller.onPillTap,
+                )
                     : SizedBox.shrink(),
               ),
               Obx(
-                () => controller.goodRating.value
+                    () =>
+                controller.goodRating.value
                     ? GoodReview(
-                        'Good',
-                        'Nice to know',
-                        controller.feedBackController,
-                      )
+                  'Good',
+                  'Nice to know',
+                  controller.feedBackController,
+                )
                     : SizedBox.shrink(),
               ),
               Obx(
-                () => controller.supperGoodRating.value
+                    () =>
+                controller.supperGoodRating.value
                     ? GoodReview(
-                        'Excellent!',
-                        'We are as thrilled as you are',
-                        controller.feedBackController,
-                      )
+                  'Excellent!',
+                  'We are as thrilled as you are',
+                  controller.feedBackController,
+                )
                     : SizedBox.shrink(),
               ),
               Spacer(),
               Obx(
-                () => !controller.badRating.value &&
-                        !controller.goodRating.value &&
-                        !controller.supperGoodRating.value
+                    () =>
+                !controller.badRating.value &&
+                    !controller.goodRating.value &&
+                    !controller.supperGoodRating.value
                     ? LongButton(
-                        'Skip',
-                        backgroundColor: colors.transparent,
-                        textColor: colors.primaryLight,
-                        borderColor: colors.white,
-                      )
+                  'Skip',
+                  backgroundColor: colors.transparent,
+                  textColor: colors.primaryLight,
+                  borderColor: colors.white,
+                  onPressed: controller.onBack,
+                )
                     : controller.goodRating.value ||
-                            controller.supperGoodRating.value
-                        ? LongButton(
-                            'Invite a friend',
-                            backgroundColor: colors.white,
-                            textColor: colors.accentPrimary,
-                          )
-                        : SizedBox.shrink(),
+                    controller.supperGoodRating.value
+                    ? LongButton(
+                  'Invite a friend',
+                  backgroundColor: colors.white,
+                  textColor: colors.accentPrimary,
+                )
+                    : SizedBox.shrink(),
               ),
               verticalSpacer(10),
               Obx(
-                () => !controller.goodRating.value &&
-                        !controller.supperGoodRating.value
+                    () =>
+                !controller.goodRating.value &&
+                    !controller.supperGoodRating.value
                     ? LongButton(
-                        'Submit',
-                        backgroundColor: colors.primaryLight,
-                        textColor: colors.accentPrimary,
-                        onPressed: controller.openFeedBackPage,
-                      )
+                  'Submit',
+                  backgroundColor: colors.primaryLight,
+                  textColor: colors.accentPrimary,
+                  onPressed: controller.openFeedBackPage,
+                  enable: controller.badRating.value ||
+                      controller.goodRating.value ||
+                      controller.supperGoodRating.value,
+                )
                     : LongButton(
-                        'Maybe,later',
-                        backgroundColor: colors.transparent,
-                        textColor: colors.primaryLight,
-                        borderColor: colors.white,
-                        onPressed: controller.openFeedBackPage,
-                      ),
+                  'Maybe,later',
+                  backgroundColor: colors.transparent,
+                  textColor: colors.primaryLight,
+                  borderColor: colors.white,
+                  onPressed: controller.openFeedBackPage,
+                ),
               ),
             ],
           ),

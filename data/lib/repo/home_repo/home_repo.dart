@@ -10,4 +10,6 @@ mixin HomeRepo {
   Future<Either<AppError, StoreCategories>> getAllCategories();
 
   Future<Either<AppError, TransactionList>> getTransactions();
+
+  Future<Either<AppError, String>> refreshToken();
 }

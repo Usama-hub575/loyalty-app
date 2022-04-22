@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:aactivpay/export.dart';
 
 class SplashController extends GetxController with StateMixin<Splash> {

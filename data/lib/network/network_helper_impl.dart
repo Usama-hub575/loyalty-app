@@ -1,14 +1,13 @@
 import 'dart:convert';
+import 'package:data/export.dart';
 import 'package:http/http.dart' as http;
-import '../export.dart';
 
 class NetworkHelperImpl extends NetworkHelper {
-  NetworkHelperImpl(this._auth);
+  NetworkHelperImpl(this._auth, this.sharedPreferences);
 
+  final SharedPreferences sharedPreferences;
   final FirebaseAuth _auth;
   String securityKey = "D5IDOMF1PS5S90ST0KQAFTL1O5M47J4E";
-  String jwt =
-      "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqd3QiLCJwcm9maWxlVHlwZSI6IkNVU1RPTUVSIiwiYXBwVXNlcklkIjo0MzMsImV4cCI6MTY0NjYxMTk1MywiaWF0IjoxNjQ1NTMxOTUzfQ.WFMKV7wAxYQjEgMHGA_Whotwn0F1vHlrRSyBnipwZUQFj9nLWLvG-hCrgPKZQ17YiR4niCqpxAfAm4zpJl3lgQ";
 
   @override
   Future<http.Response> get(String url, {Map? headers}) async {
@@ -98,7 +97,7 @@ class NetworkHelperImpl extends NetworkHelper {
     try {
       headers ??= <String, String>{};
       headers["SecretKey"] = securityKey;
-      headers["Authorization"] = jwt;
+      headers["Authorization"] = sharedPreferences.getString('jwt');
       headers["Content-Type"] = "application/json";
       String idToken;
 

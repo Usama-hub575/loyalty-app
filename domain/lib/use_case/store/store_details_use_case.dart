@@ -7,17 +7,22 @@ class StoreDetailsUseCase {
   StoreDetailsUseCase(this.repo);
 
   List<StoreDetailsEntity> data = [];
+  List<Review> reviews = List.empty(growable: true);
 
-  Future<Either<AppError, AppSuccess>> getStoreDetails(int id) async {
+  Future<Either<AppError, AppSuccess>> getStoreDetails(int storeId,
+      {branchId}) async {
     try {
-      final either = await repo.getStoreDetails(id);
-      return either.fold(
-        (left) => Left(AppError()),
-        (store) {
-          populateStoreDetails(store);
-          return Right(AppSuccess());
-        },
-      );
+      data.clear();
+      reviews.clear();
+      final either1 = await repo.getStoreDetails(storeId);
+      final either2 = await repo.getStoreReviews(storeId, branchId, size: 10);
+      either1.fold((l) => null, (store) => populateStoreDetails(store));
+      either2.fold((l) => null, (reviews) => populateStoreReviews(reviews));
+      if (either1.isRight() || either2.isRight()) {
+        return Right(AppSuccess());
+      } else {
+        return Left(AppError());
+      }
     } catch (error) {
       return Left(AppError(title: error.toString()));
     }
@@ -39,7 +44,7 @@ class StoreDetailsUseCase {
     data.add(
       StoreDetailsEntity(
         type: StoreDetailsDataType.CATEGORIES,
-        object: store,
+        object: store.categories ?? CategoriesList([]),
       ),
     );
     data.add(
@@ -78,17 +83,21 @@ class StoreDetailsUseCase {
         object: store,
       ),
     );
+  }
+
+  void populateStoreReviews(ReviewList reviewList) {
     data.add(
       StoreDetailsEntity(
         type: StoreDetailsDataType.REVIEWS,
-        object: store,
+        object: reviewList.reviewList,
       ),
     );
     data.add(
       StoreDetailsEntity(
         type: StoreDetailsDataType.SOCIAL_LINKS,
-        object: store,
+        object: Object(),
       ),
     );
+    reviews.addAll(reviewList.reviewList);
   }
 }

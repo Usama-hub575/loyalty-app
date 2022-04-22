@@ -4,3 +4,4 @@ export 'store_category.dart';
 export 'store.dart';
 export 'location_Model.dart';
 export 'transaction_model.dart';
+export 'review.dart';

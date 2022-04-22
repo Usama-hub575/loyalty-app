@@ -1,3 +1,5 @@
+import 'package:data/export.dart';
+
 class StoresList {
   final List<Store> list;
 
@@ -30,6 +32,7 @@ class Store {
   final int threeStar;
   final int fourStar;
   final int fiveStar;
+  final CategoriesList? categories;
 
   Store({
     this.name = '',
@@ -46,6 +49,7 @@ class Store {
     this.threeStar = 0,
     this.fourStar = 0,
     this.fiveStar = 0,
+    this.categories,
   });
 
   factory Store.fromJson(dynamic json) {
@@ -65,6 +69,9 @@ class Store {
       fiveStar: json['fiveStar'],
       nearestBranch: json['nearestBranch'] != null
           ? NearestBranch.fromJson(json['nearestBranch'])
+          : null,
+      categories: json['categories'] != null
+          ? CategoriesList.fromJson(json['categories'])
           : null,
     );
   }
@@ -115,5 +122,19 @@ class NearestBranch {
     map['geoDecodedAddress'] = geoDecodedAddress;
     map['nearnessCriteria'] = nearnessCriteria;
     return map;
+  }
+}
+
+class CategoriesList {
+  final List<Category> categories;
+
+  CategoriesList(this.categories);
+
+  factory CategoriesList.fromJson(dynamic json) {
+    List<Category> data = List.empty(growable: true);
+    json.forEach((element) {
+      data.add(Category.fromJson(element));
+    });
+    return CategoriesList(data);
   }
 }

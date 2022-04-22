@@ -13,8 +13,8 @@ class RepoDependencies {
     _firebaseAuth = FirebaseAuth.instance;
     _auth = FirebaseAuthWrapper(_firebaseAuth);
     _endPoints = EndPoints();
-    _networkHelper = NetworkHelperImpl(_firebaseAuth);
     _sharedPreferences = await SharedPreferences.getInstance();
+    _networkHelper = NetworkHelperImpl(_firebaseAuth, _sharedPreferences);
     _googleSignIn = GoogleSignIn();
     _facebookLogin = FacebookLogin();
   }
@@ -55,6 +55,11 @@ class RepoDependencies {
 
     Get.lazyPut<StoreDetailsRepo>(
       () => StoreDetailsRepoImpl(_networkHelper, _endPoints),
+      fenix: true,
+    );
+
+    Get.lazyPut<ReviewRepo>(
+      () => ReviewRepoImpl(_networkHelper, _endPoints),
       fenix: true,
     );
   }

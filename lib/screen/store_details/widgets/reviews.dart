@@ -1,11 +1,15 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Reviews extends StatelessWidget {
   final List<Review> reviews;
+  final bool showSeeAllButton;
   final seeAll;
 
-  const Reviews({Key key, this.reviews, this.seeAll}) : super(key: key);
+  const Reviews(
+      {Key key, this.reviews, this.showSeeAllButton = false, this.seeAll})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +18,18 @@ class Reviews extends StatelessWidget {
       children: [
         verticalSpacer(30),
         ...getReviewsList(reviews),
-        reviews.length <= 2 ? getSeeAllButton() : SizedBox.shrink(),
+        showSeeAllButton && reviews.length > 2
+            ? getSeeAllButton()
+            : SizedBox.shrink(),
       ],
     );
   }
 
   getReviewsList(List<Review> reviews) {
     return List.generate(
-        reviews.length, (index) => getReviewItem(reviews[index]));
+      showSeeAllButton && reviews.length >= 2 ? 2 : reviews.length,
+      (index) => getReviewItem(reviews[index]),
+    );
   }
 
   getReviewItem(Review review) {
@@ -42,22 +50,39 @@ class Reviews extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 15,
-                backgroundImage: AssetImage(review.image),
+                // backgroundImage: NetworkImage(review.reviewerImageUrl),
+                child: Image.network(
+                  review.reviewerImageUrl ?? '',
+                  errorBuilder: (context, _, error) {
+                    return SvgPicture.asset(
+                      assets.icProfile,
+                    );
+                  },
+                ),
               ),
               horizontalSpacer(10),
-              BodyRegularText(review.name),
+              BodyRegularText(review.reviewerName ?? ''),
             ],
           ),
           verticalSpacer(12),
           Row(
             children: [
-              RatingStar(review.rating),
+              RatingStar(review.rating.toDouble()),
               horizontalSpacer(10),
-              BodyRegularText(review.date),
+              // BodyRegularText(review.date),
             ],
           ),
           verticalSpacer(20),
-          BodyRegularText(review.comment),
+          Row(
+            children: [
+              Container(
+                width: sizes.width * 0.88,
+                child: BodyRegularText(
+                  review.content,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

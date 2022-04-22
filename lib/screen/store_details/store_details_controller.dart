@@ -28,25 +28,6 @@ class StoreDetailsController extends GetxController
         });
   }
 
-  List<String> categories = ['Grocery', 'Clothing', 'Accosseries'];
-  List<Review> reviews = [
-    Review(
-      name: 'Kristin Watson',
-      image: assets.profile1,
-      date: '1/2/22',
-      comment:
-          'Awesome store, and great customer services. Highly recommended ',
-      rating: 3.0,
-    ),
-    Review(
-      name: 'Bessie Cooper',
-      image: assets.profile2,
-      date: '1/2/22',
-      comment:
-          'Love their drink specials. Bartenders super nice. Spent a week at UCSF and this was a very nice break for the parental unit.',
-      rating: 4.0,
-    ),
-  ];
 
   List<Transaction> recentTransactions = [
     Transaction('21/01/2022', true, 0, 0),
@@ -58,20 +39,13 @@ class StoreDetailsController extends GetxController
     Get.back();
   }
 
-  void openReviewPage() {
-    AppRoutes.appRoutes(RouteNames.reviewScreen);
+  void openReviewPage(int branchId) {
+    AppRoutes.appRoutes(RouteNames.reviewScreen, arg: [storeId, branchId]);
   }
 
   void openAllReviewPage() {
-    AppRoutes.appRoutes(RouteNames.allReviewsPage, arg: [storeName]);
+    AppRoutes.appRoutes(RouteNames.allReviewsPage, arg: [getData(0)]);
   }
 
-  Store getData(index) => useCase.data[index].object;
-}
-
-class Review {
-  final String name, image, comment, date;
-  final double rating;
-
-  Review({this.name, this.image, this.date, this.comment, this.rating});
+  getData(index) => useCase.data[index].object;
 }

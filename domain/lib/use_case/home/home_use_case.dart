@@ -42,7 +42,7 @@ class HomeUseCase {
     return either.fold((error) {
       return Left(AppError());
     }, (address) {
-      userAddress = address[0];
+      if (address.isNotEmpty) userAddress = address[0];
       return Right(AppSuccess());
     });
   }

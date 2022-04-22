@@ -56,7 +56,7 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
               ],
             );
           case StoreDetailsDataType.CATEGORIES:
-            return Categories(categories: controller.categories);
+            return Categories(categories: controller.getData(index));
           case StoreDetailsDataType.ADDRESS:
             return LocationCard(
               controller.getData(index).nearestBranch.geoDecodedAddress,
@@ -70,13 +70,17 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
           case StoreDetailsDataType.INVITE_CARD:
             return InviteCard();
           case StoreDetailsDataType.WRITE_REVIEW:
-            return RateStore(onTap: controller.openReviewPage);
+            return RateStore(
+              store: controller.getData(index),
+              onTap: controller.openReviewPage,
+            );
           case StoreDetailsDataType.RATINGS:
             return Ratings(controller.getData(index));
           case StoreDetailsDataType.REVIEWS:
             return Reviews(
-              reviews: controller.reviews,
+              reviews: controller.getData(index),
               seeAll: controller.openAllReviewPage,
+              showSeeAllButton: true,
             );
           case StoreDetailsDataType.SOCIAL_LINKS:
             return SocialIcons();

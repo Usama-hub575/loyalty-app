@@ -44,4 +44,11 @@ Future<void> initializeUseCasesDependencies() async {
     ),
     fenix: true,
   );
+
+  Get.lazyPut<ReviewUseCase>(
+    () => ReviewUseCase(
+      Get.find<ReviewRepo>(),
+    ),
+    fenix: true,
+  );
 }

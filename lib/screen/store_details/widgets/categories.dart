@@ -2,7 +2,7 @@ import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
 
 class Categories extends StatelessWidget {
-  final List<String> categories;
+  final CategoriesList categories;
 
   const Categories({Key key, this.categories}) : super(key: key);
 
@@ -17,14 +17,14 @@ class Categories extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return BodySmallText(
-            categories[index],
+            categories.categories[index].name,
             color: colors.accentPrimary,
           );
         },
         separatorBuilder: (context, index) {
           return getDivider();
         },
-        itemCount: categories.length,
+        itemCount: categories.categories.length,
       ),
     );
   }

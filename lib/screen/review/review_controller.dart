@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ReviewController extends GetxController with StateMixin<ReviewScreen> {
+  final ReviewUseCase useCase;
+
+  ReviewController(this.useCase);
+
   Rx<bool> badRating = false.obs;
   Rx<bool> goodRating = false.obs;
   Rx<bool> supperGoodRating = false.obs;
   double rating = 0;
-  TextEditingController feedBackController;
-
+  TextEditingController feedBackController = TextEditingController();
+  int storeId = -1;
+  int branchId = -1;
   List<BadReviewsModel> badReviews = [
     BadReviewsModel('Prices are very high as compared to others', false.obs),
     BadReviewsModel('Didn’t give me the discount', false.obs),
@@ -16,11 +21,26 @@ class ReviewController extends GetxController with StateMixin<ReviewScreen> {
     BadReviewsModel('The app is hard to use', false.obs),
   ];
 
+  @override
+  void onInit() {
+    storeId = Get.arguments[0];
+    branchId = Get.arguments[1];
+    super.onInit();
+  }
+
   void onBack() {
     Get.back();
   }
 
   void openFeedBackPage() {
+    Review review = Review(
+        storeId: storeId,
+        branchId: branchId,
+        rating: rating.toInt(),
+        content: feedBackController.text,
+        transactionId: -1,
+        reviewed: 'TRANSACTION');
+    useCase.submitStoreReview(review);
     Get.off(FeedBackPage());
   }
 

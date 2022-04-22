@@ -10,15 +10,15 @@ class AllReviewsPage extends GetView<AllReviewsController> {
         children: [
           verticalSpacer(30),
           AppBarWidget(
-            title: controller.storeName,
+            title: controller.store.name,
             onBack: controller.onBack,
           ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Ratings(controller.getData(0)),
-                  Reviews(reviews: controller.reviews),
+                  Ratings(controller.store),
+                  Reviews(reviews: controller.getReviews()),
                 ],
               ),
             ),

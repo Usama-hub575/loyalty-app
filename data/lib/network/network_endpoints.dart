@@ -9,6 +9,7 @@ class EndPoints {
   final String _customerTransaction =
       '/api/transaction-service/customer/transactions';
   final String _loginUser = '/login';
+  final String _reviews = '/api/review-service/reviews';
 
   String isUserRegister() {
     return _baseURL + _isUserRegistered;
@@ -46,11 +47,19 @@ class EndPoints {
     return _baseURL + _userLocation;
   }
 
+  String submitReview() {
+    return _baseURL + _reviews;
+  }
+
   String getStoreDetails(id) {
     return _baseURL + _stores + '/$id';
   }
 
   String logInUser(type, code, number) {
     return _baseURL + _loginUser + '/$type/$code/$number';
+  }
+
+  String getStoreReviews(storeId, branchId, page, size) {
+    return _baseURL + _reviews + '?storeId=$storeId&page=$page&size=$size';
   }
 }

@@ -19,14 +19,16 @@ class StoreCategories {
 class Category {
   final int categoryId;
   final String name;
+  final int popularity;
   Rx<bool> isActive;
 
-  Category(this.categoryId, this.name, this.isActive);
+  Category(this.categoryId, this.name, this.popularity, this.isActive);
 
   factory Category.fromJson(dynamic json) {
     return Category(
       json["categoryId"],
       json["name"],
+      json["popularity"],
       false.obs,
     );
   }

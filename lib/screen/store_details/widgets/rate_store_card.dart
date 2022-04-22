@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 
 class RateStore extends StatelessWidget {
   final Function onTap;
+  final Store store;
 
-  const RateStore({Key key, this.onTap}) : super(key: key);
+  const RateStore({Key key, this.store, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => onTap(store.nearestBranch.branchId),
       child: Container(
         width: sizes.width,
         padding: EdgeInsets.all(20),

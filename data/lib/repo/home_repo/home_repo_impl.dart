@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:data/export.dart';
@@ -11,6 +12,7 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<AppError, List<LocationModel>>> getUserAddress() async {
     try {
+      refreshToken();
       final response = await _networkHelper.get(
         _endPoints.getUserLocation(),
       );
@@ -105,6 +107,32 @@ class HomeRepoImpl implements HomeRepo {
       return Left(
         AppError(title: e.toString()),
       );
+    }
+  }
+
+  @override
+  Future<Either<AppError, String>> refreshToken() {
+    try {
+      Timer.periodic(const Duration(seconds: 10), (Timer timer) {
+        _networkHelper
+            .get(
+          _endPoints.refreshToken(),
+        )
+            .then((value){
+          if (value.statusCode == 201) {
+            var data = json.decode(value.body.toString());
+            if (data['body']['jwt'] != null) {
+              return Right(data['body']['jwt']);
+            }
+
+            print(data);
+          } else {
+            return Left(AppError());
+          }
+        });
+      });
+    } catch (error) {
+      print(error);
     }
   }
 }

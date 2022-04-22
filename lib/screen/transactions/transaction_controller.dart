@@ -8,13 +8,13 @@ class TransactionController extends GetxController
   }
 
   List<Category> pillsList = [
-    Category(1, 'all', true.obs),
-    Category(2, 'Euro store', false.obs),
-    Category(3, 'Emporium', false.obs),
-    Category(4, 'Carrefour', false.obs),
-    Category(5, 'Euro store', false.obs),
-    Category(6, 'Emporium', false.obs),
-    Category(7, 'Carrefour', false.obs),
+    Category(1, 'all', 0, true.obs),
+    Category(2, 'Euro store', 0, false.obs),
+    Category(3, 'Emporium', 0, false.obs),
+    Category(4, 'Carrefour', 0, false.obs),
+    Category(5, 'Euro store', 0, false.obs),
+    Category(6, 'Emporium', 0, false.obs),
+    Category(7, 'Carrefour', 0, false.obs),
   ];
 
   List<Transaction> allTransactions = [

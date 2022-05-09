@@ -31,6 +31,7 @@ class AppAssets {
   final String icDropPin = 'assets/svg/ic_drop_pin.svg';
   final String icCurrentLocation = 'assets/svg/ic_current_location.svg';
   final String icFilledLocation = 'assets/svg/ic_filled_location.svg';
+  final String icTermConditionLink = 'assets/svg/ic_term_conditions_link.svg';
 
   final String icQR = 'assets/svg/ic_qr_code.svg';
   final String icError = 'assets/svg/ic_error.svg';

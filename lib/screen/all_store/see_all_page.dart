@@ -22,7 +22,7 @@ class SeeAllStoresPage extends GetView<SeeAllController> {
             Expanded(
               child: ListView.separated(
                 itemBuilder: (context, index) => Container(
-                  height: 170,
+                  height: sizes.height / 4.8,
                   child: LargeCard(),
                 ),
                 separatorBuilder: (context, index) => verticalSpacer(20),

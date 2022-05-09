@@ -14,3 +14,4 @@ export 'review_binding.dart';
 export 'search_address_binding.dart';
 export 'all_transaction_binding.dart';
 export 'all_reviews_binding.dart';
+export 'terms_conditions_binding.dart';

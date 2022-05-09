@@ -11,5 +11,5 @@ mixin HomeRepo {
 
   Future<Either<AppError, TransactionList>> getTransactions();
 
-  Future<Either<AppError, String>> refreshToken();
+  void refreshToken();
 }

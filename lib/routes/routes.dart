@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:aactivpay/export.dart';
 
+
+
 class AppRoutes {
   final arg;
 
@@ -87,6 +89,11 @@ class AppRoutes {
       page: () => AllReviewsPage(),
       binding: AllReviewBinding(),
     ),
+    GetPage(
+      name: RouteNames.termsAndConditionsPage,
+      page: () => TermsAndConditions(),
+      binding: TermsAndConditionBinding(),
+    ),
   ];
 
   static Future<dynamic> appRoutes(final String routeName, {arg}) {
@@ -105,6 +112,7 @@ class AppRoutes {
       case RouteNames.reviewScreen:
       case RouteNames.seeAllTransaction:
       case RouteNames.allReviewsPage:
+      case RouteNames.termsAndConditionsPage:
         return Get.toNamed(routeName, arguments: arg);
 
       //clear all and push

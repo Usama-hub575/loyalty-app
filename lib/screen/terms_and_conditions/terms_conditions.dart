@@ -21,6 +21,7 @@ class TermsAndConditions extends GetView<TermsAndConditionsController> {
             verticalSpacer(10),
             Expanded(
               child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,

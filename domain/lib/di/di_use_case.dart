@@ -51,4 +51,12 @@ Future<void> initializeUseCasesDependencies() async {
     ),
     fenix: true,
   );
+
+  Get.lazyPut<AllStoresUseCase>(
+    () => AllStoresUseCase(
+      Get.find<AllStoresRepo>(),
+    ),
+    fenix: true,
+  );
+
 }

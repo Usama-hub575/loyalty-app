@@ -55,6 +55,10 @@ class EndPoints {
     return _baseURL + _stores + '/$id';
   }
 
+ String getAllStores({int page = 0, int size=20}) {
+    return _baseURL + _stores + '?page=$page&size=$size';
+  }
+
   String logInUser(type, code, number) {
     return _baseURL + _loginUser + '/$type/$code/$number';
   }

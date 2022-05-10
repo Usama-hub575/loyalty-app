@@ -37,6 +37,7 @@ class RepoDependencies {
         _facebookLogin,
         _endPoints,
         _networkHelper,
+        _sharedPreferences,
       ),
       fenix: true,
     );
@@ -46,7 +47,11 @@ class RepoDependencies {
       fenix: true,
     );
     Get.lazyPut<HomeRepo>(
-      () => HomeRepoImpl(_networkHelper, _endPoints),
+      () => HomeRepoImpl(
+        _networkHelper,
+        _endPoints,
+        _sharedPreferences,
+      ),
     );
     Get.lazyPut<LocationRepo>(
       () => LocationRepoImpl(_networkHelper, _endPoints),
@@ -60,6 +65,11 @@ class RepoDependencies {
 
     Get.lazyPut<ReviewRepo>(
       () => ReviewRepoImpl(_networkHelper, _endPoints),
+      fenix: true,
+    );
+
+    Get.lazyPut<AllStoresRepo>(
+      () => AllStoresRepoImpl(_networkHelper, _endPoints),
       fenix: true,
     );
   }

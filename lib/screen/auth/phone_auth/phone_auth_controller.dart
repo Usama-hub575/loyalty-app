@@ -23,7 +23,8 @@ class PhoneAuthController extends GetxController
 
   _initListener() {
     phoneNumberController.value.addListener(() {
-      if (phoneNumberController.value.text.length >= phoneNumMaxLength) {
+      if (phoneNumberController.value.text.length >= phoneNumMaxLength &&
+          isCheck.value) {
         isButtonActive.value = true;
       } else {
         isButtonActive.value = false;
@@ -76,12 +77,19 @@ class PhoneAuthController extends GetxController
     return (text.length >= 10 && text[0] == '3');
   }
 
-   onTapCheckBox(bool value){
+  onTapCheckBox(bool value) {
     isCheck.value = value;
+    if (phoneNumberController.value.text.length >= phoneNumMaxLength &&
+        isCheck.value) {
+      isButtonActive.value = true;
+    } else {
+      isButtonActive.value = false;
+    }
   }
 
   navigateToTermsAndConditionsPage() {
-    AppRoutes.appRoutes(RouteNames.termsAndConditionsPage,);
+    AppRoutes.appRoutes(
+      RouteNames.termsAndConditionsPage,
+    );
   }
-
 }

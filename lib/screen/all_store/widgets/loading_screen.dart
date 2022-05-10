@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shimmer/shimmer.dart';
 
-class HomeLoadingScreen extends StatelessWidget {
-  const HomeLoadingScreen({Key key}) : super(key: key);
+class AllStoresLoadingScreen extends StatelessWidget {
+  const AllStoresLoadingScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,28 +18,8 @@ class HomeLoadingScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          getMapCard(
-            assets.icLocationFilled,
-          ),
-          verticalSpacer(20),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
-            child: Row(
-              children: [
-                getStoreCard(),
-                getStoreCard(),
-                getStoreCard(),
-                getStoreCard(),
-                getStoreCard(),
-              ],
-            ),
-          ),
-          getMapCard(
-            assets.icCategories,
-          ),
           Padding(
-            padding: const EdgeInsets.only(top: 10.0, left: 10),
+            padding: const EdgeInsets.only(top: 50.0, left: 20),
             child: Wrap(
               children: [
                 getPills(80),
@@ -54,10 +34,11 @@ class HomeLoadingScreen extends StatelessWidget {
               ],
             ),
           ),
+          verticalSpacer(20),
           SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
+            scrollDirection: Axis.vertical,
             physics: BouncingScrollPhysics(),
-            child: Row(
+            child: Column(
               children: [
                 getStoreCard(),
                 getStoreCard(),
@@ -67,39 +48,6 @@ class HomeLoadingScreen extends StatelessWidget {
               ],
             ),
           ),
-          getMapCard(
-            assets.icMedal,
-          ),
-        ],
-      ),
-    );
-  }
-
-  getMapCard(String icon) {
-    return Container(
-      width: sizes.width,
-      padding: EdgeInsets.all(20),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              verticalSpacer(40),
-              Container(
-                width: sizes.width * 0.60,
-                height: 10,
-                color: colors.primaryDark.withOpacity(0.2),
-              ),
-              verticalSpacer(6),
-              Container(
-                width: sizes.width * 0.30,
-                height: 10,
-                color: colors.primaryDark.withOpacity(0.2),
-              ),
-            ],
-          ),
-          Spacer(),
-          SvgPicture.asset(icon),
         ],
       ),
     );
@@ -107,13 +55,12 @@ class HomeLoadingScreen extends StatelessWidget {
 
   getStoreCard() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: sizes.heightRatio * 120,
-            width: sizes.widthRatio * 180,
             color: colors.primaryDark.withOpacity(0.1),
           ),
           verticalSpacer(20),

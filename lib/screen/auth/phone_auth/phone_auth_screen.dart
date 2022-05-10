@@ -111,7 +111,7 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
             Obx(
               () => LongButton(
                 constants.continueText,
-                enable: controller.isButtonActive.value,
+                enable: controller.isButtonActive.value ,
                 onPressed: controller.onContinueTap,
                 isLoading: controller.isLoading.value,
               ),

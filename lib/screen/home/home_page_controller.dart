@@ -82,6 +82,9 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
       address = location;
     }
   }
+  void openNotificationsPage()  {
+    AppRoutes.appRoutes(RouteNames.notificationsPage);
+  }
 
   void openProfilePage() {
     AppRoutes.appRoutes(RouteNames.registerScreen, arg: [

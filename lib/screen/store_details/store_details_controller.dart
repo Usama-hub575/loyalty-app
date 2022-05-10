@@ -48,4 +48,8 @@ class StoreDetailsController extends GetxController
   }
 
   getData(index) => useCase.data[index].object;
+
+  void openAllBranches() {
+    AppRoutes.appRoutes(RouteNames.seeAllBranches);
+  }
 }

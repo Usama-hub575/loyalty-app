@@ -94,6 +94,18 @@ class AppRoutes {
       page: () => TermsAndConditions(),
       binding: TermsAndConditionBinding(),
     ),
+
+    GetPage(
+      name: RouteNames.seeAllBranches,
+      page: () => SeeAllBranchesPage(),
+      binding: SeeAllBranchesBinding(),
+    ),
+
+    GetPage(
+      name: RouteNames.notificationsPage,
+      page: () => Notifications(),
+      binding: NotificationBinding(),
+    ),
   ];
 
   static Future<dynamic> appRoutes(final String routeName, {arg}) {
@@ -113,6 +125,8 @@ class AppRoutes {
       case RouteNames.seeAllTransaction:
       case RouteNames.allReviewsPage:
       case RouteNames.termsAndConditionsPage:
+      case RouteNames.seeAllBranches:
+      case RouteNames.notificationsPage:
         return Get.toNamed(routeName, arguments: arg);
 
       //clear all and push

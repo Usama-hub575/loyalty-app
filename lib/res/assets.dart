@@ -32,6 +32,9 @@ class AppAssets {
   final String icCurrentLocation = 'assets/svg/ic_current_location.svg';
   final String icFilledLocation = 'assets/svg/ic_filled_location.svg';
   final String icTermConditionLink = 'assets/svg/ic_term_conditions_link.svg';
+  final String icLocationBlue = 'assets/svg/ic_location_blue.svg';
+  final String icDocumentNotification = 'assets/svg/ic_document_notification.svg';
+  final String icNotificationWithoutDot = 'assets/svg/ic_notification_without_dot.svg';
 
   final String icQR = 'assets/svg/ic_qr_code.svg';
   final String icError = 'assets/svg/ic_error.svg';

@@ -14,7 +14,7 @@ class HomePage extends GetView<HomePageController> {
       key: _scaffoldKey,
       backgroundColor: colors.primaryLight,
       appBar: HomeAppBar(
-        controller.openLocationPage,
+        controller.openNotificationsPage,
         controller.openProfilePage,
         controller.openSearchPage,
       ),

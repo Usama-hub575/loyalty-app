@@ -23,22 +23,31 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: colors.primaryLight,
       elevation: 0,
-      leading: AppIconButton(
-        assets.icMenu,
-        onTap: onMenuTap,
+      leading: Padding(
+        padding: const EdgeInsets.all(16),
+        child: AppIconButton(
+          assets.icMenu,
+          onTap: onMenuTap,
+        ),
       ),
       title: SvgPicture.asset(assets.icAactivpay),
       centerTitle: true,
       actions: [
-        AppIconButton(
-          assets.icSearch,
-          onTap: onSearchTap,
+        Padding(
+          padding: EdgeInsets.only(right: 15),
+          child: AppIconButton(
+            assets.icSearch,
+            onTap: onSearchTap,
+          ),
         ),
-        AppIconButton(
-          assets.icNotification,
-          onTap: onNotificationTap,
+        Padding(
+          padding: EdgeInsets.only(right: 10),
+          child: AppIconButton(
+            assets.icNotification,
+            onTap: onNotificationTap,
+          ),
         ),
-        horizontalSpacer(12),
+        horizontalSpacer(10),
       ],
     );
   }

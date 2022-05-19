@@ -6,20 +6,20 @@ class SearchController extends GetxController with StateMixin<SearchPage> {
 
   Rx<bool> isCross = false.obs;
 
-  List<String> recentSearch = [
-    'Abdullah store',
-    'Euro Store',
-    'Al Fateh',
-    'Asad Store',
-  ];
+  var recentSearch = List.empty(growable: true).obs;
 
   @override
   void onInit() {
+    populateRecentSearch();
     super.onInit();
   }
 
   onBack() {
     Get.back();
+  }
+
+  removeStoreFromRecentSearch(int index) {
+    recentSearch.removeAt(index);
   }
 
   onTextChange(String text) {
@@ -29,5 +29,14 @@ class SearchController extends GetxController with StateMixin<SearchPage> {
   onTextClear() {
     searchController.text = '';
     isCross.value = false;
+  }
+
+  void populateRecentSearch() {
+    recentSearch.addAll([
+      'Abdullah store',
+      'Euro Store',
+      'Al Fateh',
+      'Asad Store',
+    ]);
   }
 }

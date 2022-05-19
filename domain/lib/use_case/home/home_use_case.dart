@@ -25,8 +25,7 @@ class HomeUseCase {
       );
     }
     final Either<AppError, AppSuccess> either4 = await getTransactionsData();
-    // populateInviteCode();
-
+    populateInviteCode();
     if (either1.isRight() ||
         either2.isRight() ||
         either3.isRight() ||
@@ -57,6 +56,7 @@ class HomeUseCase {
     });
   }
 
+
   Future<Either<AppError, AppSuccess>> getTopRatedStores() async {
     final either = await repo.getTopRatedStore();
     return either.fold((error) {
@@ -76,6 +76,15 @@ class HomeUseCase {
       return Right(AppSuccess());
     });
   }
+  Future<Either<AppError, AppSuccess>> getFilteredStore(List<int> categories) async {
+    final either = await repo.getFilteredStore(categories);
+    return either.fold((error) {
+      return Left(AppError());
+    }, (stores) {
+      populateTopRattedData(stores);
+      return Right(AppSuccess());
+    });
+  }
 
   Future<Either<AppError, AppSuccess>> getTransactionsData() async {
     final either = await repo.getTransactions();
@@ -88,10 +97,20 @@ class HomeUseCase {
   }
 
   populateCategoriesData(StoreCategories categories) {
+    final List<Category> categoryList = List.empty(growable: true);
+    categoryList.add(Category(0, 'All', 0, true.obs));
+    categoryList.addAll(categories.categoryList);
+    StoreCategories extendedCategories = StoreCategories(categoryList);
     data.add(
       HomeEntity(
         type: HomeDataType.CATEGORIES,
-        data: categories,
+        data: extendedCategories,
+      ),
+    );
+    data.add(
+      HomeEntity(
+        type: HomeDataType.SPACE,
+        data: Object(),
       ),
     );
   }

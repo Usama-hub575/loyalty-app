@@ -3,6 +3,7 @@ import 'package:aactivpay/export.dart';
 
 class NotificationsController extends GetxController with StateMixin<Notifications>{
 
+
   List<String> notificationsList = [
     'You did worth of Rs 5000 shopping at Euro Store',
     'Its approved! enjoy your discount at Euro Store',

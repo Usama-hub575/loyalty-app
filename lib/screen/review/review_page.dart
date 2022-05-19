@@ -27,11 +27,11 @@ class ReviewScreen extends GetView<ReviewController> {
               verticalSpacer(50),
               RatingStar(
                 controller.rating,
-                itemSize: 40,
+                itemSize: 24,
                 fillColor: colors.tieYellow,
                 halfFillColor: colors.tieYellow,
                 emptyColor: colors.white,
-                itemPadding: 10,
+                itemPadding: 1,
                 onUpdate: (rating) => controller.setRating(rating),
               ),
               verticalSpacer(20),

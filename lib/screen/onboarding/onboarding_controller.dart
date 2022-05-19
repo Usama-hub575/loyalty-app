@@ -10,8 +10,8 @@ class OnboardingController extends GetxController
 
   var currentPage = 0.obs;
   PageController pageController;
-  Rx<String> title = constants.onBoardingTitle2.obs;
-  Rx<String> subTitle = constants.onBoardingSubTitle2.obs;
+  Rx<String> title = constants.onBoardingTitle1.obs;
+  Rx<String> subTitle = constants.onBoardingSubTitle1.obs;
   Rx<String> buttonTitle = constants.continueText.obs;
 
   final pageChildren = RxList<Widget>([]);

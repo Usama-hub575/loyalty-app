@@ -13,43 +13,58 @@ class AllStoresLoadingScreen extends StatelessWidget {
   }
 
   Widget getShimmerLoader() {
-    return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50.0, left: 20),
-            child: Wrap(
-              children: [
-                getPills(80),
-                getPills(90),
-                getPills(80),
-                getPills(100),
-                getPills(110),
-                getPills(100),
-                getPills(70),
-                getPills(90),
-                getPills(100),
-              ],
-            ),
+    return Column(
+      children: [
+        verticalSpacer(30),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          child: AppBarWidget(
+            title: 'Stores',
+            onBack: (){},
           ),
-          verticalSpacer(20),
-          SingleChildScrollView(
+        ),
+        Expanded(
+          child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             physics: BouncingScrollPhysics(),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                getStoreCard(),
-                getStoreCard(),
-                getStoreCard(),
-                getStoreCard(),
-                getStoreCard(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 30),
+                  child: Wrap(
+                    children: [
+                      getPills(80),
+                      getPills(90),
+                      getPills(80),
+                      getPills(100),
+                      getPills(110),
+                      getPills(100),
+                      getPills(70),
+                      getPills(90),
+                      getPills(100),
+                    ],
+                  ),
+                ),
+                verticalSpacer(20),
+                SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      getStoreCard(),
+                      getStoreCard(),
+                      getStoreCard(),
+                      getStoreCard(),
+                      getStoreCard(),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

@@ -94,6 +94,26 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
+  Future<Either<AppError, StoresList>> getFilteredStore(List<int> categories) async {
+    try {
+      final response = await _networkHelper.get(
+        _endPoints.getFilteredStore(categories: categories),
+      );
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body.toString());
+        return Right(StoresList.fromJson(data));
+      }
+      return Left(
+        AppError(),
+      );
+    } catch (e) {
+      return Left(
+        AppError(title: e.toString()),
+      );
+    }
+  }
+
+  @override
   Future<Either<AppError, TransactionList>> getTransactions() async {
     try {
       final response = await _networkHelper.get(

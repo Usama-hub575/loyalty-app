@@ -1,6 +1,5 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Notifications extends GetView<NotificationsController> {

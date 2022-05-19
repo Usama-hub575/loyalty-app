@@ -16,14 +16,12 @@ class AppIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: SvgPicture.asset(
+    return GestureDetector(
+      child: SvgPicture.asset(
         icon,
         color: iconColor,
       ),
-      onPressed: onTap,
-      padding: EdgeInsets.zero,
-      hoverColor: colors.primaryDark.withOpacity(0.3),
+      onTap: onTap,
     );
   }
 }

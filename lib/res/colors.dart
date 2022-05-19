@@ -11,6 +11,7 @@ class AppColors {
   Color success = const Color.fromRGBO(69, 255, 110, 1);
   Color tieYellow = const Color.fromRGBO(245, 195, 36, 1);
   Color transparent = const Color.fromRGBO(249, 250, 251, 0);
+  Color otherYellow = const Color.fromRGBO(255, 204, 51, 1);
 
   LinearGradient linearGradient = LinearGradient(
     colors: <Color>[

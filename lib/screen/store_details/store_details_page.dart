@@ -11,9 +11,12 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           verticalSpacer(30),
-          StoreAppBar(
-            controller.storeName,
-            onCross: controller.onBack,
+          Container(
+            height: sizes.heightRatio * 50,
+            child: StoreAppBar(
+              controller.storeName,
+              onCross: controller.onBack,
+            ),
           ),
           Expanded(
             child: controller.obx(

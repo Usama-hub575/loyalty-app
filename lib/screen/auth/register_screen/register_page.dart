@@ -11,9 +11,12 @@ class RegisterScreen extends GetView<RegisterController> {
       key: _scaffoldKey,
       body: Column(children: [
         verticalSpacer(30),
-        AppBarWidget(
-          title: controller.title,
-          onBack: controller.onBack,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          child: AppBarWidget(
+            title: controller.title,
+            onBack: controller.onBack,
+          ),
         ),
         Expanded(
           child: SingleChildScrollView(

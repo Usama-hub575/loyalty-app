@@ -18,7 +18,7 @@ class AppBarWidget extends StatelessWidget {
         HeadingRegularText(
           title,
         ),
-        SizedBox(width: 50),
+        SizedBox(width: 20),
       ],
     );
   }

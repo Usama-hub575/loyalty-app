@@ -54,4 +54,10 @@ class SeeAllController extends GetxController
       pillsList[index].isActive.value = !pillsList[index].isActive.value;
     }
   }
+
+  void onStoreTap(int storeId, String storeName) {
+    AppRoutes.appRoutes(RouteNames.storeDetailsScreen,
+        arg: [storeId, storeName]);
+  }
+
 }

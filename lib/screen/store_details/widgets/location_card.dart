@@ -39,7 +39,7 @@ class LocationCard extends StatelessWidget {
                 Container(
                   child: BodyRegularText(geoAddress ?? ''),
                 ),
-                hasMultipleBranches ? verticalSpacer(8) : SizedBox.shrink(),
+                /*hasMultipleBranches ? verticalSpacer(8) : SizedBox.shrink(),
                 hasMultipleBranches
                     ? GestureDetector(
                   onTap: onSeeAllBranch,
@@ -49,7 +49,8 @@ class LocationCard extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                     )
-                    : SizedBox.shrink()
+                    : SizedBox.shrink()*/
+
               ],
             ),
           ),

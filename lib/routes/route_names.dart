@@ -19,4 +19,6 @@ class RouteNames {
   static const allReviewsPage = '/allReviewsPage';
   static const termsAndConditionsPage = '/termsAndConditionsPage';
   static const notificationsPage = '/notificationsPage';
+  static const proceedTransactionDetailsPage = '/proceedTransactionDetailsPage';
+  static const seeAllCategoriesPage = '/seeAllCategoriesPage';
 }

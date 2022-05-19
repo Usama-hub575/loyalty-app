@@ -31,6 +31,10 @@ class EndPoints {
     return _baseURL + _stores + '?page=$page&size=$size&nearBy=true';
   }
 
+  String getFilteredStore({int page = 0, int size = 10, required List<int> categories}) {
+    return _baseURL + _stores + '?page=$page&size=$size&categories=$categories';
+  }
+
   String getCustomerTransaction({int page = 0, int size = 3}) {
     return _baseURL + _customerTransaction + '?page=$page&size=$size';
   }

@@ -14,29 +14,31 @@ class LargeCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: sizes.width,
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        margin: EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
-          color: colors.primaryLight,
-          borderRadius: BorderRadius.circular(10),
+          color: colors.white,
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             getStoreImage(),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                horizontalSpacer(15),
-                getStoreName(data.name),
-                horizontalSpacer(5),
-                getIcon(assets.icStar),
-                horizontalSpacer(2),
-                getPoints('${data.rating}/5'),
-                horizontalSpacer(5),
-                getIcon(assets.icCoin),
-                horizontalSpacer(2),
-                getPoints(data.redeemLimit.toString()),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  horizontalSpacer(8),
+                  getStoreName(data.name),
+                  horizontalSpacer(5),
+                  getIcon(assets.icCoin),
+                  horizontalSpacer(2),
+                  getPoints(data.redeemLimit.toString()),
+                  horizontalSpacer(5),
+                  getIcon(assets.icStar),
+                  horizontalSpacer(2),
+                  getPoints('${data.rating}/5'),],
+              ),
             ),
           ],
         ),
@@ -68,15 +70,16 @@ class LargeCard extends StatelessWidget {
 
   Widget getStoreImage() {
     return Container(
-      height: sizes.heightRatio * 130,
+      height: sizes.heightRatio * 172,
       width: sizes.width,
       decoration: BoxDecoration(
         color: colors.primaryLight,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
         image: DecorationImage(
           image: data.imageUrl==null || data.imageUrl.isEmpty? AssetImage(assets.storeLongImage) :NetworkImage(
             data.imageUrl,
           ),
+          fit: BoxFit.fill
         ),
       ),
     );

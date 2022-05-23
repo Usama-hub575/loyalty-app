@@ -31,7 +31,12 @@ class EndPoints {
     return _baseURL + _stores + '?page=$page&size=$size&nearBy=true';
   }
 
-  String getFilteredStore({int page = 0, int size = 10, required List<int> categories}) {
+  String getFilteredNearByTrueStore({int page = 0, int size = 10, required String categories}) {
+    return _baseURL + _stores + '?page=$page&size=$size&categories=$categories&nearBy=true';
+  }
+
+
+  String getFilteredStore({int page = 0, int size = 10, required String categories}) {
     return _baseURL + _stores + '?page=$page&size=$size&categories=$categories';
   }
 

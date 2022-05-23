@@ -79,8 +79,12 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
     AppRoutes.appRoutes(RouteNames.searchScreen);
   }
 
-  void openSeeAllCategoriesPage() {
-    AppRoutes.appRoutes(RouteNames.seeAllCategoriesPage, arg: pillsList);
+  void openSeeAllCategoriesPage() async{
+    final result =await AppRoutes.appRoutes(RouteNames.seeAllCategoriesPage, arg: [pillsList, categoriesIds]);
+    if(result != null){
+      categoriesIds=result as List<int>;
+      getFilteredStores();
+    }
   }
 
   Future<void> openLocationPage() async {
@@ -128,6 +132,7 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
     index,
   ) {
     if (index == 0 && !pillsList[index].isActive.value) {
+      categoriesIds.clear();
       pillsList.forEach((element) {
         element.isActive.value = false;
       });

@@ -8,10 +8,13 @@ class AllReviewsPage extends GetView<AllReviewsController> {
       backgroundColor: colors.primaryLight,
       body: Column(
         children: [
-          verticalSpacer(30),
-          AppBarWidget(
-            title: controller.store.name,
-            onBack: controller.onBack,
+          verticalSpacer(40),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: AppBarWidget(
+              title: controller.store.name,
+              onBack: controller.onBack,
+            ),
           ),
           Expanded(
             child: SingleChildScrollView(

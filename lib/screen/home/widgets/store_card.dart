@@ -27,7 +27,7 @@ class StoreCard extends StatelessWidget {
             : getSeeAllButton(seeAllStore),
         separatorBuilder: (BuildContext context, int index) =>
             horizontalSpacer(0),
-        itemCount: 11,
+        itemCount: data.list.length < 10? data.list.length:11,
       ),
     );
   }

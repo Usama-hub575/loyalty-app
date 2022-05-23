@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 class AllCategoriesList extends StatelessWidget {
   final List<Category> dataList;
+  final Function onApply;
   final Function onTap;
   final int pillsCount;
   final double size;
@@ -16,6 +17,7 @@ class AllCategoriesList extends StatelessWidget {
     this.size = 4,
     this.backGroundColor,
     this.onTap,
+    this.onApply
   }) : super(key: key);
 
   @override
@@ -43,7 +45,7 @@ class AllCategoriesList extends StatelessWidget {
             ),
           ),
           Spacer(),
-          LongButton('Apply'),
+          LongButton('Apply', onPressed: onApply,),
           verticalSpacer(10)
         ],
       ),

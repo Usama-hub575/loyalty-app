@@ -7,7 +7,9 @@ mixin HomeRepo {
 
   Future<Either<AppError, StoresList>> getNearByStore();
 
-  Future<Either<AppError, StoresList>> getFilteredStore(List<int> categories);
+  Future<Either<AppError, StoresList>> getTopRatedFilteredStore(String categories);
+
+  Future<Either<AppError, StoresList>> getFilteredNearByStore(String categories);
 
   Future<Either<AppError, StoreCategories>> getAllCategories();
 

@@ -31,6 +31,7 @@ class SeeAllCategories extends GetView<SeeAllCategoriesController> {
               onTap: controller.onPillsTap,
               dataList: controller.pillsList,
               pillsCount: controller.pillsList.length,
+              onApply: controller.onApply,
             )
           ],
         ),

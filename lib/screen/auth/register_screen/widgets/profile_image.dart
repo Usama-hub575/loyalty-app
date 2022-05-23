@@ -13,7 +13,7 @@ class ProfileImage extends StatelessWidget {
   const ProfileImage({
     Key key,
     this.onTap,
-    this.networkImage,
+    this.networkImage='',
     this.image,
   }) : super(key: key);
 

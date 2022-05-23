@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:aactivpay/export.dart';
 
+
+
 class AppRoutes {
   final arg;
 
@@ -87,6 +89,35 @@ class AppRoutes {
       page: () => AllReviewsPage(),
       binding: AllReviewBinding(),
     ),
+    GetPage(
+      name: RouteNames.termsAndConditionsPage,
+      page: () => TermsAndConditions(),
+      binding: TermsAndConditionBinding(),
+    ),
+
+    GetPage(
+      name: RouteNames.seeAllBranches,
+      page: () => SeeAllBranchesPage(),
+      binding: SeeAllBranchesBinding(),
+    ),
+
+    GetPage(
+      name: RouteNames.notificationsPage,
+      page: () => Notifications(),
+      binding: NotificationBinding(),
+    ),
+
+    GetPage(
+      name: RouteNames.proceedTransactionDetailsPage,
+      page: () => ProceedTransactionPage(),
+      binding: ProceedTransactionBinding(),
+    ),
+
+    GetPage(
+      name: RouteNames.seeAllCategoriesPage,
+      page: () => SeeAllCategories(),
+      binding: SeeAllCategoriesBinding(),
+    ),
   ];
 
   static Future<dynamic> appRoutes(final String routeName, {arg}) {
@@ -105,6 +136,11 @@ class AppRoutes {
       case RouteNames.reviewScreen:
       case RouteNames.seeAllTransaction:
       case RouteNames.allReviewsPage:
+      case RouteNames.termsAndConditionsPage:
+      case RouteNames.seeAllBranches:
+      case RouteNames.notificationsPage:
+      case RouteNames.proceedTransactionDetailsPage:
+      case RouteNames.seeAllCategoriesPage:
         return Get.toNamed(routeName, arguments: arg);
 
       //clear all and push

@@ -1,7 +1,5 @@
-import 'package:circular_countdown/circular_countdown.dart';
 import 'package:flutter/material.dart';
 import 'package:aactivpay/export.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends GetView<HomePageController> {
   HomePage({Key key}) : super(key: key);
@@ -12,10 +10,15 @@ class HomePage extends GetView<HomePageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
+      drawer: CustomDrawer(
+        imageUrl: controller.user.imageUrl,
+        name: controller.user.name.toString(),
+        email: controller.user.email,
+      ),
       backgroundColor: colors.primaryLight,
       appBar: HomeAppBar(
-        controller.openLocationPage,
-        controller.openProfilePage,
+        controller.openNotificationsPage,
+        () => _scaffoldKey.currentState.openDrawer(),
         controller.openSearchPage,
       ),
       body: controller.obx(
@@ -42,9 +45,11 @@ class HomePage extends GetView<HomePageController> {
             case HomeDataType.LOCATION:
               return MapCard(onTap: controller.openLocationPage);
             case HomeDataType.CATEGORIES:
-              return FilterPills(
+              return CategoriesFilter(
                 dataList: controller.pillsList,
                 onTap: controller.onPillsTap,
+                onSeeAllTap: controller.openSeeAllCategoriesPage,
+                onApplyTap: controller.getFilteredStores,
               );
             case HomeDataType.TOPRATED_HEADER:
               return HeadingCard(

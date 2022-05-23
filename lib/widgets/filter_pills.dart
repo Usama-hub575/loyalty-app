@@ -20,19 +20,30 @@ class FilterPills extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Container(
-        padding: EdgeInsets.all(20),
-        width: sizes.width * size,
-        color: backGroundColor ?? colors.white,
-        child: Wrap(
-          children: List.generate(
-            pillsCount,
-            (index) => getChip(dataList[index], index, onTap),
-            growable: true,
+    return Container(
+      width: sizes.width,
+      color: colors.white,
+      margin: EdgeInsets.only(bottom: 10),
+      child: Column(
+        children: [
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Container(
+              padding: EdgeInsets.all(20),
+              width: sizes.width * size,
+              color: backGroundColor ?? colors.white,
+              child: Wrap(
+                spacing: 4,
+                runSpacing: -4,
+                children: List.generate(
+                  pillsCount,
+                  (index) => getChip(dataList[index], index, onTap),
+                  growable: true,
+                ),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -40,7 +51,7 @@ class FilterPills extends StatelessWidget {
   Widget getChip(Category pills, index, onTap) {
     return Padding(
       padding: const EdgeInsets.only(
-        left: 10,
+        left: 5,
       ),
       child: Obx(
         () => ActionChip(

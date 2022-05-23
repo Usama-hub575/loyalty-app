@@ -32,7 +32,8 @@ class RateStore extends StatelessWidget {
             RatingStar(
               0,
               itemPadding: 15,
-              itemSize: 20,
+              itemSize: 24,
+
             ),
             verticalSpacer(20),
             BodyLargeText(

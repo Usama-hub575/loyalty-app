@@ -14,6 +14,11 @@ class RouteNames {
   static const editProfileScreen = '/editProfileScreen';
   static const settingsScreen = '/settingsScreen';
   static const storeDetailsScreen = '/storeDetailsScreen';
+  static const seeAllBranches = '/seeAllBranches';
   static const reviewScreen = '/reviewScreen';
   static const allReviewsPage = '/allReviewsPage';
+  static const termsAndConditionsPage = '/termsAndConditionsPage';
+  static const notificationsPage = '/notificationsPage';
+  static const proceedTransactionDetailsPage = '/proceedTransactionDetailsPage';
+  static const seeAllCategoriesPage = '/seeAllCategoriesPage';
 }

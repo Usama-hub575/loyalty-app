@@ -31,6 +31,20 @@ class AppAssets {
   final String icDropPin = 'assets/svg/ic_drop_pin.svg';
   final String icCurrentLocation = 'assets/svg/ic_current_location.svg';
   final String icFilledLocation = 'assets/svg/ic_filled_location.svg';
+  final String icTermConditionLink = 'assets/svg/ic_term_conditions_link.svg';
+  final String icLocationBlue = 'assets/svg/ic_location_blue.svg';
+  final String icDocumentNotification = 'assets/svg/ic_document_notification.svg';
+  final String icNotificationWithoutDot = 'assets/svg/ic_notification_without_dot.svg';
+  final String icMoneyBag = 'assets/svg/ic_money_bag.svg';
+  final String icAttachment = 'assets/svg/ic_attachment.svg';
+  final String icRemoveButton = 'assets/svg/ic_removeButton.svg';
+  final String icAccountBalanceArrow = 'assets/svg/ic_account_balance_arrow.svg';
+  final String icWallet = 'assets/svg/ic_wallet.svg';
+  final String icHome = 'assets/svg/ic_home.svg';
+  final String icTransaction = 'assets/svg/ic_transactions.svg';
+  final String icHowItWorks = 'assets/svg/ic_how_it_works.svg';
+  final String icTermOfUse = 'assets/svg/ic_term_of_use.svg';
+  final String icContactSupport = 'assets/svg/ic_contact_support.svg';
 
   final String icQR = 'assets/svg/ic_qr_code.svg';
   final String icError = 'assets/svg/ic_error.svg';

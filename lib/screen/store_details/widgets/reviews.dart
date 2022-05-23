@@ -92,7 +92,7 @@ class Reviews extends StatelessWidget {
     return Container(
       width: sizes.width,
       color: colors.primaryLight,
-      padding: EdgeInsets.only(left: 20, right: 10),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Row(
         children: [
           BodySmallText(

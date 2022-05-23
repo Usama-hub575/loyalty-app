@@ -15,6 +15,7 @@ class PhoneAuthController extends GetxController
   Rx<bool> isLoading = false.obs;
   String countryCode = '+92';
   int phoneNumMaxLength = 10;
+  Rx<bool> isCheck = false.obs;
 
   void initialize() {
     _initListener();
@@ -22,7 +23,8 @@ class PhoneAuthController extends GetxController
 
   _initListener() {
     phoneNumberController.value.addListener(() {
-      if (phoneNumberController.value.text.length >= phoneNumMaxLength) {
+      if (phoneNumberController.value.text.length >= phoneNumMaxLength &&
+          isCheck.value) {
         isButtonActive.value = true;
       } else {
         isButtonActive.value = false;
@@ -73,5 +75,21 @@ class PhoneAuthController extends GetxController
 
   bool validateNumber(String text) {
     return (text.length >= 10 && text[0] == '3');
+  }
+
+  onTapCheckBox(bool value) {
+    isCheck.value = value;
+    if (phoneNumberController.value.text.length >= phoneNumMaxLength &&
+        isCheck.value) {
+      isButtonActive.value = true;
+    } else {
+      isButtonActive.value = false;
+    }
+  }
+
+  navigateToTermsAndConditionsPage() {
+    AppRoutes.appRoutes(
+      RouteNames.termsAndConditionsPage,
+    );
   }
 }

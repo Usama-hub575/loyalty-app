@@ -14,7 +14,7 @@ class StoreAppBar extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.only(
-            left: 10,
+            left: 20,
             right: 10,
           ),
           width: sizes.width * 0.8,
@@ -24,9 +24,12 @@ class StoreAppBar extends StatelessWidget {
           ),
         ),
         Spacer(),
-        AppIconButton(
-          assets.icCross,
-          onTap: onCross,
+        Padding(
+          padding: const EdgeInsets.only(right: 20),
+          child: AppIconButton(
+            assets.icCross,
+            onTap: onCross,
+          ),
         ),
       ],
     );

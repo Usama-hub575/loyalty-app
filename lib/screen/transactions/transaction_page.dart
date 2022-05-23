@@ -10,9 +10,12 @@ class TransactionPage extends GetView<TransactionController> {
         backgroundColor: colors.primaryLight,
         appBar: AppBar(
           backgroundColor: colors.primaryLight,
-          leading: AppIconButton(
-            assets.icBack,
-            onTap: controller.onBack,
+          leading: Padding(
+            padding: const EdgeInsets.all(20),
+            child: AppIconButton(
+              assets.icBack,
+              onTap: controller.onBack,
+            ),
           ),
           bottom: TabBar(
             indicatorColor: colors.accentPrimary,
@@ -34,7 +37,7 @@ class TransactionPage extends GetView<TransactionController> {
               dataList: controller.pillsList,
               backGroundColor: colors.primaryLight,
               pillsCount: 6,
-              size: 2,
+              size: 1.7,
               onTap: controller.onPillsTap,
             ),
             Expanded(

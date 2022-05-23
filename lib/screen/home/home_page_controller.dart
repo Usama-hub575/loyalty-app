@@ -5,8 +5,9 @@ import 'package:aactivpay/export.dart';
 
 class HomePageController extends GetxController with StateMixin<HomePage> {
   final HomeUseCase useCase;
+  final RegisterUseCase registerUseCase;
 
-  HomePageController(this.useCase);
+  HomePageController(this.useCase, this.registerUseCase);
 
   Rx<TextEditingController> searchController = TextEditingController().obs;
   var currentPage = 0.obs;
@@ -14,6 +15,7 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
 
   Rx<LocationModel> userAddress = LocationModel().obs;
   List<Category> pillsList = [];
+  List<int> categoriesIds = [];
 
   List<Transaction> recentTransactions = [
     Transaction('21/01/2022', true, 0, 0),
@@ -56,6 +58,8 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
 
   getHomeData(index) => useCase.data[index].data;
 
+  UserModel get user => registerUseCase.user;
+
   void updatePage({int index}) {
     currentPage.value = index;
   }
@@ -75,12 +79,25 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
     AppRoutes.appRoutes(RouteNames.searchScreen);
   }
 
+  void openSeeAllCategoriesPage() async{
+    final result =await AppRoutes.appRoutes(RouteNames.seeAllCategoriesPage, arg: [pillsList, categoriesIds]);
+    if(result != null){
+      categoriesIds=result as List<int>;
+      getFilteredStores();
+    }
+  }
+
   Future<void> openLocationPage() async {
     LocationModel location =
         await AppRoutes.appRoutes(RouteNames.locationScreen);
     if (location.geoAddress.isNotEmpty) {
       address = location;
     }
+  }
+
+  void openNotificationsPage() {
+    // AppRoutes.appRoutes(RouteNames.notificationsPage);
+    AppRoutes.appRoutes(RouteNames.seeAllTransaction);
   }
 
   void openProfilePage() {
@@ -96,6 +113,13 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
         arg: [storeId, storeName]);
   }
 
+  void getFilteredStores()async{
+    change(null, status: RxStatus.loading());
+   await useCase.getFilteredStore(categoriesIds);
+    change(null, status: RxStatus.success());
+
+  }
+
   void openAllStorePage() {
     AppRoutes.appRoutes(RouteNames.seeAllStore, arg: pillsList);
   }
@@ -108,6 +132,7 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
     index,
   ) {
     if (index == 0 && !pillsList[index].isActive.value) {
+      categoriesIds.clear();
       pillsList.forEach((element) {
         element.isActive.value = false;
       });
@@ -115,6 +140,14 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
     } else if (index != 0) {
       pillsList[0].isActive.value = false;
       pillsList[index].isActive.value = !pillsList[index].isActive.value;
+
+      if (categoriesIds.contains(pillsList[index].categoryId)) {
+        categoriesIds.remove(pillsList[index].categoryId);
+        print(categoriesIds);
+      } else {
+        categoriesIds.add(pillsList[index].categoryId);
+      }
+      print(categoriesIds);
     }
   }
 

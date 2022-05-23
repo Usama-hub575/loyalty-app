@@ -11,9 +11,12 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           verticalSpacer(30),
-          StoreAppBar(
-            controller.storeName,
-            onCross: controller.onBack,
+          Container(
+            height: sizes.heightRatio * 50,
+            child: StoreAppBar(
+              controller.storeName,
+              onCross: controller.onBack,
+            ),
           ),
           Expanded(
             child: controller.obx(
@@ -44,7 +47,7 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
                   height: 14,
                 ),
                 horizontalSpacer(6),
-                BodyExtraSmallText('3/5'),
+                BodyExtraSmallText('${controller.getData(index).rating}/5'),
                 horizontalSpacer(10),
                 SvgPicture.asset(
                   assets.icCoin,
@@ -52,7 +55,7 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
                   height: 14,
                 ),
                 horizontalSpacer(6),
-                BodyExtraSmallText('30K'),
+                BodyExtraSmallText(controller.getData(index).redeemLimit.toString()),
               ],
             );
           case StoreDetailsDataType.CATEGORIES:
@@ -62,6 +65,7 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
               controller.getData(index).nearestBranch.geoDecodedAddress,
               hasMultipleBranches:
                   controller.getData(index).hasMultipleBranches,
+              onSeeAllBranch: controller.openAllBranches,
             );
           case StoreDetailsDataType.POINT_CARD:
             return EarnPointsCard();

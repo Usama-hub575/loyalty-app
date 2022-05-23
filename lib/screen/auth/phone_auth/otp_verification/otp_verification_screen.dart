@@ -10,11 +10,12 @@ class OTPVerificationScreen extends GetView<OTPVerificationController> {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         height: sizes.height,
+        width: sizes.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            verticalSpacer(40),
+            verticalSpacer(30),
             AppBarWidget(
               title: 'Verification',
               onBack: controller.onBack,

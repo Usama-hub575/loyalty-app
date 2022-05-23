@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class LocationCard extends StatelessWidget {
   final String geoAddress;
   final bool hasMultipleBranches;
+  final Function onSeeAllBranch;
 
   const LocationCard(
     this.geoAddress, {
     Key key,
     this.hasMultipleBranches,
+        this.onSeeAllBranch
   }) : super(key: key);
 
   @override
@@ -37,14 +39,18 @@ class LocationCard extends StatelessWidget {
                 Container(
                   child: BodyRegularText(geoAddress ?? ''),
                 ),
-                hasMultipleBranches ? verticalSpacer(8) : SizedBox.shrink(),
+                /*hasMultipleBranches ? verticalSpacer(8) : SizedBox.shrink(),
                 hasMultipleBranches
-                    ? BodySmallText(
-                        'See all branches',
-                        color: colors.accentPrimary,
-                        fontWeight: FontWeight.w700,
-                      )
-                    : SizedBox.shrink()
+                    ? GestureDetector(
+                  onTap: onSeeAllBranch,
+                      child: BodySmallText(
+                          'See all branches',
+                          color: colors.accentPrimary,
+                          fontWeight: FontWeight.w700,
+                        ),
+                    )
+                    : SizedBox.shrink()*/
+
               ],
             ),
           ),

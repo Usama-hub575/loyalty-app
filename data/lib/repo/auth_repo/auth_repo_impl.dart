@@ -9,13 +9,14 @@ class AuthRepoImpl implements AuthRepo {
   final FacebookLogin _facebookLogin;
   final EndPoints _endPoints;
   final NetworkHelper _networkHelper;
-
+final SharedPreferences _preferences;
   AuthRepoImpl(
     this._googleSignIn,
     this._auth,
     this._facebookLogin,
     this._endPoints,
     this._networkHelper,
+    this._preferences,
   );
 
   @override
@@ -450,6 +451,7 @@ class AuthRepoImpl implements AuthRepo {
       if (response.statusCode == 201) {
         var data = json.decode(response.body.toString());
         if (data['body'] != null) {
+          _preferences.setString('jwt', data['body']['jwt']);
           return Right(UserModel.fromJson(data['body']));
         } else {
           return Left(

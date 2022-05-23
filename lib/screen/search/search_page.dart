@@ -31,24 +31,27 @@ class SearchPage extends GetView<SearchController> {
               alignment: Alignment.bottomLeft,
               child: HeadingRegularText('Recent search'),
             ),
-            Expanded(
-              child: ListView.separated(
-                itemCount: controller.recentSearch.length,
-                itemBuilder: (context, index) {
-                  return getRecentStores(controller.recentSearch[index]);
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return verticalSpacer(2);
-                },
-              ),
-            ),
+            Obx(() {
+              return Expanded(
+                child: ListView.separated(
+                  itemCount: controller.recentSearch.length,
+                  itemBuilder: (context, index) {
+                    return getRecentStores(
+                        controller.recentSearch[index], index);
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return verticalSpacer(2);
+                  },
+                ),
+              );
+            }),
           ],
         ),
       ),
     );
   }
 
-  Widget getRecentStores(String storeName) {
+  Widget getRecentStores(String storeName, int index) {
     return Slidable(
       enabled: true,
       endActionPane: ActionPane(
@@ -60,7 +63,8 @@ class SearchPage extends GetView<SearchController> {
             backgroundColor: colors.error,
             foregroundColor: colors.white,
             icon: Icons.clear,
-            onPressed: (BuildContext context) {},
+            onPressed: (BuildContext context) =>
+                controller.removeStoreFromRecentSearch(index),
           ),
         ],
       ),

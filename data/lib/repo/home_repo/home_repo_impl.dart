@@ -6,8 +6,9 @@ import 'package:data/export.dart';
 class HomeRepoImpl implements HomeRepo {
   final NetworkHelper _networkHelper;
   final EndPoints _endPoints;
+  final SharedPreferences _preferences;
 
-  HomeRepoImpl(this._networkHelper, this._endPoints);
+  HomeRepoImpl(this._networkHelper, this._endPoints, this._preferences);
 
   @override
   Future<Either<AppError, List<LocationModel>>> getUserAddress() async {
@@ -18,7 +19,9 @@ class HomeRepoImpl implements HomeRepo {
       );
       if (response.statusCode == 200) {
         var data = json.decode(response.body.toString());
-        return Right(AddressList.fromJson(data).list);
+        return Right(AddressList
+            .fromJson(data)
+            .list);
       }
       return Left(
         AppError(),
@@ -91,6 +94,46 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
+  Future<Either<AppError, StoresList>> getTopRatedFilteredStore(String categories) async {
+    try {
+      final response = await _networkHelper.get(
+        _endPoints.getFilteredStore(categories: categories),
+      );
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body.toString());
+        return Right(StoresList.fromJson(data));
+      }
+      return Left(
+        AppError(),
+      );
+    } catch (e) {
+      return Left(
+        AppError(title: e.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<AppError, StoresList>> getFilteredNearByStore(String categories) async {
+    try {
+      final response = await _networkHelper.get(
+        _endPoints.getFilteredNearByTrueStore(categories: categories),
+      );
+      if (response.statusCode == 200) {
+        var data = json.decode(response.body.toString());
+        return Right(StoresList.fromJson(data));
+      }
+      return Left(
+        AppError(),
+      );
+    } catch (e) {
+      return Left(
+        AppError(title: e.toString()),
+      );
+    }
+  }
+
+  @override
   Future<Either<AppError, TransactionList>> getTransactions() async {
     try {
       final response = await _networkHelper.get(
@@ -111,23 +154,19 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<AppError, String>> refreshToken() {
+  void refreshToken() async {
     try {
-      Timer.periodic(const Duration(seconds: 10), (Timer timer) {
+      await Timer.periodic(const Duration(hours: 9), (Timer timer) {
         _networkHelper
             .get(
           _endPoints.refreshToken(),
         )
-            .then((value){
+            .then((value) {
           if (value.statusCode == 201) {
             var data = json.decode(value.body.toString());
             if (data['body']['jwt'] != null) {
-              return Right(data['body']['jwt']);
+              _preferences.setString('jwt', data['body']['jwt']);
             }
-
-            print(data);
-          } else {
-            return Left(AppError());
           }
         });
       });

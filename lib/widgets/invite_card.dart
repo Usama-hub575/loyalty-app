@@ -9,12 +9,12 @@ class InviteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: sizes.width,
-      color: colors.tieYellow,
+      color: colors.otherYellow,
       padding: EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          getInviteHeadingText('Invite your friends to earn Free points 💰'),
+          getInviteHeadingText('Invite your friends to earn Free Cash '),
           horizontalSpacer(30),
           gatInviteCodeBox(),
           getInviteButton(),
@@ -33,14 +33,14 @@ class InviteCard extends StatelessWidget {
               color: colors.black,
             ),
           ),
-          // WidgetSpan(
-          //   child: Container(
-          //     padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-          //     child: SvgPicture.asset(
-          //       assets.icWhiteCoin,
-          //     ),
-          //   ),
-          // )
+
+          WidgetSpan(
+            child: SvgPicture.asset(
+              assets.icMoneyBag,
+              height: 24,
+              width: 24,
+            ),
+          )
         ],
       ),
     );

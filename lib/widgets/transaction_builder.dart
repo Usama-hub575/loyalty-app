@@ -12,10 +12,12 @@ class TransactionBuilder extends StatelessWidget {
     return ListView.separated(
       itemBuilder: (context, index) {
         return getTransactionItem(transaction[index]);
+
       },
       itemCount: transaction.length,
+     padding: EdgeInsets.symmetric(horizontal: 20),
       separatorBuilder: (BuildContext context, int index) {
-        return verticalSpacer(20);
+        return verticalSpacer(10);
       },
     );
   }
@@ -54,11 +56,14 @@ class TransactionBuilder extends StatelessWidget {
                         'You have earned ${transaction.earnedPoints.toInt()} points on the transaction of Rs ${transaction.amount.toInt()}.'),
               ),
               Spacer(),
-              Column(
-                children: [
-                  verticalSpacer(5),
-                  SvgPicture.asset(assets.icForward),
-                ],
+              GestureDetector(
+                onTap: (){
+                AppRoutes.appRoutes(RouteNames.proceedTransactionDetailsPage);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  child: SvgPicture.asset(assets.icForward),
+                ),
               ),
             ],
           ),

@@ -67,7 +67,6 @@ class RegisterController extends GetxController
       String imageLink = '';
       if (imageFile.value.path.isNotEmpty)
         imageLink = await _useCase.uploadImage(imageFile.value.path);
-
       final either = await _useCase.registerUser(
         UserModel(
           name: userNameController.value.text,

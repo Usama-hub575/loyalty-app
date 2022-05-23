@@ -19,12 +19,12 @@ class UserModel {
 
   factory UserModel.fromJson(dynamic json) {
     return UserModel(
-      name: json['name'],
-      imageUrl: json['imageUrl'],
-      number: json['number'],
-      email: json['email'],
-      countryCode: json['countryCode'],
-      profileType: json['profileType'],
+      name: json['name'] ?? '',
+      imageUrl: json['imageUrl'] ?? '',
+      number: json['number'] ?? '',
+      email: json['email'] ?? '',
+      countryCode: json['countryCode'] ?? '',
+      profileType: json['profileType'] ?? '',
       jwt: json['jwt'] ?? '',
     );
   }

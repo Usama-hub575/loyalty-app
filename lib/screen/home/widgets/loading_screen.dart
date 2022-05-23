@@ -8,73 +8,69 @@ class HomeLoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getLoader();
-    // return getShimmerLoader();
+    /*return getLoader();*/
+    return getShimmerLoader();
   }
 
   Widget getShimmerLoader() {
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
-      child: Shimmer.fromColors(
-        baseColor: colors.primaryDark.withOpacity(0.2),
-        highlightColor: colors.primaryDark.withOpacity(0.5),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            getMapCard(
-              assets.icLocationFilled,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          getMapCard(
+            assets.icLocationFilled,
+          ),
+          verticalSpacer(20),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
+            child: Row(
+              children: [
+                getStoreCard(),
+                getStoreCard(),
+                getStoreCard(),
+                getStoreCard(),
+                getStoreCard(),
+              ],
             ),
-            verticalSpacer(20),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              child: Row(
-                children: [
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                ],
-              ),
+          ),
+          getMapCard(
+            assets.icCategories,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0, left: 10),
+            child: Wrap(
+              children: [
+                getPills(80),
+                getPills(90),
+                getPills(80),
+                getPills(100),
+                getPills(110),
+                getPills(100),
+                getPills(70),
+                getPills(90),
+                getPills(100),
+              ],
             ),
-            getMapCard(
-              assets.icCategories,
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
+            child: Row(
+              children: [
+                getStoreCard(),
+                getStoreCard(),
+                getStoreCard(),
+                getStoreCard(),
+                getStoreCard(),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0, left: 10),
-              child: Wrap(
-                children: [
-                  getPills(80),
-                  getPills(90),
-                  getPills(80),
-                  getPills(100),
-                  getPills(110),
-                  getPills(100),
-                  getPills(70),
-                  getPills(90),
-                  getPills(100),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              child: Row(
-                children: [
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                ],
-              ),
-            ),
-            getMapCard(
-              assets.icMedal,
-            ),
-          ],
-        ),
+          ),
+          getMapCard(
+            assets.icMedal,
+          ),
+        ],
       ),
     );
   }
@@ -92,13 +88,13 @@ class HomeLoadingScreen extends StatelessWidget {
               Container(
                 width: sizes.width * 0.60,
                 height: 10,
-                color: colors.primaryDark,
+                color: colors.primaryDark.withOpacity(0.2),
               ),
               verticalSpacer(6),
               Container(
                 width: sizes.width * 0.30,
                 height: 10,
-                color: colors.primaryDark,
+                color: colors.primaryDark.withOpacity(0.2),
               ),
             ],
           ),
@@ -118,13 +114,13 @@ class HomeLoadingScreen extends StatelessWidget {
           Container(
             height: sizes.heightRatio * 120,
             width: sizes.widthRatio * 180,
-            color: colors.primaryDark,
+            color: colors.primaryDark.withOpacity(0.1),
           ),
           verticalSpacer(20),
           Container(
             height: sizes.heightRatio * 10,
             width: sizes.widthRatio * 120,
-            color: colors.primaryDark,
+            color: colors.primaryDark.withOpacity(0.1),
           )
         ],
       ),
@@ -138,7 +134,7 @@ class HomeLoadingScreen extends StatelessWidget {
         width: sizes.widthRatio * width,
         height: sizes.heightRatio * 30,
         decoration: BoxDecoration(
-          color: colors.primaryDark,
+          color: colors.primaryDark.withOpacity(0.1),
           borderRadius: BorderRadius.circular(50),
         ),
       ),
@@ -148,7 +144,7 @@ class HomeLoadingScreen extends StatelessWidget {
   Widget getLoader() {
     return Center(
       child: CircularProgressIndicator(
-        color: colors.accentPrimary,
+        color: colors.primaryDark.withOpacity(0.1),
         strokeWidth: 3,
       ),
     );

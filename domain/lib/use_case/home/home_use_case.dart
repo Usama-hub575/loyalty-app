@@ -25,8 +25,7 @@ class HomeUseCase {
       );
     }
     final Either<AppError, AppSuccess> either4 = await getTransactionsData();
-    // populateInviteCode();
-
+    populateInviteCode();
     if (either1.isRight() ||
         either2.isRight() ||
         either3.isRight() ||
@@ -77,6 +76,71 @@ class HomeUseCase {
     });
   }
 
+  Future<Either<AppError, AppSuccess>> getFilteredStore(
+      List<int> categories) async {
+    String categoriesId = '';
+    categories.forEach((element) {
+      categoriesId += '$element,';
+    });
+    final Either<AppError, AppSuccess> either1 =
+        await getTopRatedFilteredStore(categoriesId);
+    final Either<AppError, AppSuccess> either2 =
+        await getNearByFilteredStore(categoriesId);
+    if (either1.isRight() || either2.isRight()) {
+      return Right(AppSuccess());
+    } else {
+      return Left(AppError());
+    }
+  }
+
+  void populateTopRatedFilteredData(StoresList storesList) {
+    if (storesList.list.isNotEmpty) {
+      for (int i = 0; i < data.length; i++) {
+        if (data[i].type == HomeDataType.TOPRATED) {
+          data.removeAt(i);
+          data.insert(
+            i,
+            HomeEntity(
+              type: HomeDataType.TOPRATED,
+              data: storesList,
+            ),
+          );
+        }
+      }
+    }
+  }
+
+  void populateFilteredNearByStoresData(StoresList storesList) {
+    if (storesList.list.isNotEmpty) {
+      for (int i = 0; i < data.length; i++) {
+        if (data[i].type == HomeDataType.NEARBY_DATA_CARD ||
+            data[i].type == HomeDataType.NEARBY_EMPTY_CARD) {
+          data.removeAt(i);
+          data.insert(
+            i,
+            HomeEntity(
+              type: HomeDataType.NEARBY_DATA_CARD,
+              data: storesList,
+            ),
+          );
+        }
+      }
+    } else {
+      for (int i = 0; i < data.length; i++) {
+        if (data[i].type == HomeDataType.NEARBY_DATA_CARD) {
+          data.removeAt(i);
+          data.insert(
+            i,
+            HomeEntity(
+              type: HomeDataType.NEARBY_EMPTY_CARD,
+              data: storesList,
+            ),
+          );
+        }
+      }
+    }
+  }
+
   Future<Either<AppError, AppSuccess>> getTransactionsData() async {
     final either = await repo.getTransactions();
     return either.fold((error) {
@@ -88,10 +152,20 @@ class HomeUseCase {
   }
 
   populateCategoriesData(StoreCategories categories) {
+    final List<Category> categoryList = List.empty(growable: true);
+    categoryList.add(Category(0, 'All', 0, true.obs));
+    categoryList.addAll(categories.categoryList);
+    StoreCategories extendedCategories = StoreCategories(categoryList);
     data.add(
       HomeEntity(
         type: HomeDataType.CATEGORIES,
-        data: categories,
+        data: extendedCategories,
+      ),
+    );
+    data.add(
+      HomeEntity(
+        type: HomeDataType.SPACE,
+        data: Object(),
       ),
     );
   }
@@ -170,4 +244,26 @@ class HomeUseCase {
   }
 
   List<HomeEntity> getData() => data;
+
+  Future<Either<AppError, AppSuccess>> getTopRatedFilteredStore(
+      String categoriesId) async {
+    final either = await repo.getTopRatedFilteredStore(categoriesId);
+    return either.fold((error) {
+      return Left(AppError());
+    }, (stores) {
+      populateTopRatedFilteredData(stores);
+      return Right(AppSuccess());
+    });
+  }
+
+  Future<Either<AppError, AppSuccess>> getNearByFilteredStore(
+      String categoriesId) async {
+    final either = await repo.getFilteredNearByStore(categoriesId);
+    return either.fold((error) {
+      return Left(AppError());
+    }, (stores) {
+      populateFilteredNearByStoresData(stores);
+      return Right(AppSuccess());
+    });
+  }
 }

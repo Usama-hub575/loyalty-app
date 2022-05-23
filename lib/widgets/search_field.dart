@@ -48,15 +48,21 @@ class SearchField extends StatelessWidget {
                 )),
             child: Row(
               children: [
-                AppIconButton(
-                  assets.icBack,
-                  onTap: onBack,
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: AppIconButton(
+                    assets.icBack,
+                    onTap: onBack,
+                  ),
                 ),
                 horizontalSpacer(16),
                 inputField(controller),
-                AppIconButton(
-                  isCross ? assets.icCross : assets.icSearch,
-                  onTap: onClear,
+                Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: AppIconButton(
+                    isCross ? assets.icCross : assets.icSearch,
+                    onTap: onClear,
+                  ),
                 ),
               ],
             ),

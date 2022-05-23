@@ -11,3 +11,8 @@ export 'store_details/export.dart';
 export 'review/export.dart';
 export 'transactions/export.dart';
 export 'see_all_branches/export.dart';
+export 'terms_and_conditions/export.dart';
+export 'notifications/export.dart';
+export 'proceed_transaction/export.dart';
+export 'drawer/export.dart';
+export 'see_all_categories/export.dart';

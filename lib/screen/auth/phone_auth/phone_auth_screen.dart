@@ -37,28 +37,31 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
                 Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: Obx(
-                        () => Checkbox(
-                          value: controller.isCheck.value,
-                          onChanged: (value) => controller.onTapCheckBox(value),
-                          checkColor: colors.accentPrimary,
-                          fillColor:
-                              MaterialStateProperty.all(Colors.transparent),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(3))),
-                          side: MaterialStateBorderSide.resolveWith(
-                            (_) => BorderSide(
-                              width: 2.5,
-                              color: controller.isCheck.value
-                                  ? colors.accentPrimary
-                                  : colors.primaryDark.withOpacity(0.2),
-                            ),
+                    width: 16,
+                    height: 16,
+                    child: Obx(
+                      () => Checkbox(
+                        value: controller.isCheck.value,
+                        onChanged: (value) => controller.onTapCheckBox(value),
+                        checkColor: colors.accentPrimary,
+                        fillColor:
+                            MaterialStateProperty.all(Colors.transparent),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(3),
                           ),
                         ),
-                      )),
+                        side: MaterialStateBorderSide.resolveWith(
+                          (_) => BorderSide(
+                            width: 2.5,
+                            color: controller.isCheck.value
+                                ? colors.accentPrimary
+                                : colors.primaryDark.withOpacity(0.2),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 horizontalSpacer(10),
                 Expanded(

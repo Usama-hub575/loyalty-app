@@ -12,7 +12,6 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
     return GestureDetector(
       onTap: ()=> FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-
         backgroundColor: colors.primaryLight,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),

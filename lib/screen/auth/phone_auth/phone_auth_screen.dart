@@ -17,7 +17,7 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            verticalSpacer(100),
+            verticalSpacer(83),
             SvgPicture.asset(
               assets.icAactivpay,
               width: sizes.widthRatio * 136,
@@ -29,9 +29,9 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
               constants.continueWithYourPhoneNumber,
               color: colors.primaryDark,
             ),
-            verticalSpacer(40),
+            verticalSpacer(70),
             NumberField(),
-            verticalSpacer(40),
+            verticalSpacer(50),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

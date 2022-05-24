@@ -10,9 +10,9 @@ class RegisterScreen extends GetView<RegisterController> {
     return Scaffold(
       key: _scaffoldKey,
       body: Column(children: [
-        verticalSpacer(30),
+        verticalSpacer(25),
         Padding(
-          padding:  EdgeInsets.symmetric(horizontal: horizontalValue(20),vertical: 10),
+          padding:  EdgeInsets.symmetric(horizontal: 20,vertical: verticalValue(10)),
           child: AppBarWidget(
             title: controller.title,
             onBack: controller.onBack,
@@ -23,12 +23,12 @@ class RegisterScreen extends GetView<RegisterController> {
             child: Container(
               height: sizes.height * 0.89,
               padding:
-              EdgeInsets.symmetric(horizontal: horizontalValue(20.0), vertical: 20),
+                   EdgeInsets.symmetric(horizontal: 20.0, vertical: verticalValue(10)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  verticalSpacer(50),
+                  verticalSpacer(40),
                   Obx(
                     () => ProfileImage(
                       networkImage: controller.image,
@@ -39,14 +39,14 @@ class RegisterScreen extends GetView<RegisterController> {
                       ),
                     ),
                   ),
-                  verticalSpacer(10),
+                  verticalSpacer(20),
                   Center(
                     child: BodySmallText(
                       'Upload profile picture',
                       color: colors.primaryDark,
                     ),
                   ),
-                  verticalSpacer(30),
+                  verticalSpacer(54),
                   Obx(
                     () => AppTextField(
                       controller.userNameController.value,

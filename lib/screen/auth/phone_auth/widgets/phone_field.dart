@@ -19,6 +19,7 @@ class NumberField extends StatelessWidget {
             decoration: BoxDecoration(
               color: colors.white,
               borderRadius: BorderRadius.circular(8),
+
               border: Border.all(
                   color: controller.isFocus.value
                       ? colors.accentPrimary

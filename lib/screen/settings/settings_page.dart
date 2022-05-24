@@ -12,7 +12,7 @@ class SettingsPage extends GetView<SettingsController> {
           controller.component.getTopBackGround(),
           Container(
             height: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            padding: EdgeInsets.symmetric(horizontal: horizontalValue(20.0), vertical: 20),
             child: Column(
               children: [
                 verticalSpacer(30),

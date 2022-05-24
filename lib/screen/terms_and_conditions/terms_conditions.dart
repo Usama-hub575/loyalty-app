@@ -10,7 +10,7 @@ class TermsAndConditions extends GetView<TermsAndConditionsController> {
       body: Container(
         height: sizes.height,
         width: sizes.width,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        padding: EdgeInsets.symmetric(horizontal: horizontalValue(20.0), vertical: 20),
         child: Column(
           children: [
             verticalSpacer(20),

@@ -12,28 +12,33 @@ class NumberField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: 50,
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          decoration: BoxDecoration(
-            color: colors.white,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: colors.accentPrimary),
-          ),
-          child: Row(
-            children: [
-              getCountryCode(),
-              horizontalSpacer(20),
-              inputField(),
-              GetX<PhoneAuthController>(builder: (controller) {
-                return Visibility(
-                  visible: controller.isError.value,
-                  child: SvgPicture.asset(assets.icError),
-                );
-              }),
-            ],
-          ),
-        ),
+        GetX<PhoneAuthController>(builder: (controller) {
+          return Container(
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: horizontalValue(18)),
+            decoration: BoxDecoration(
+              color: colors.white,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                  color: controller.isFocus.value
+                      ? colors.accentPrimary
+                      : colors.white),
+            ),
+            child: Row(
+              children: [
+                getCountryCode(),
+                horizontalSpacer(13),
+                inputField(),
+                GetX<PhoneAuthController>(builder: (controller) {
+                  return Visibility(
+                    visible: controller.isError.value,
+                    child: SvgPicture.asset(assets.icError),
+                  );
+                }),
+              ],
+            ),
+          );
+        }),
         getErrorText(),
       ],
     );
@@ -41,32 +46,35 @@ class NumberField extends StatelessWidget {
 
   Widget inputField() => Expanded(
         child: GetX<PhoneAuthController>(builder: (controller) {
-          return TextFormField(
-            autofocus: true,
-            style: textStyles.bodyRegular,
-            keyboardType: TextInputType.phone,
-            controller: controller.phoneNumberController.value,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
-              LengthLimitingTextInputFormatter(controller.phoneNumMaxLength)
-            ],
-            decoration: InputDecoration(
-              hintText: 'Enter your phone number',
-              hintStyle: textStyles.bodyRegular.copyWith(
-                color: colors.primaryDark.withOpacity(0.5),
-                fontSize: sizes.fontRatio * 14,
+          return Focus(
+            child: TextFormField(
+              autofocus: false,
+              style: textStyles.bodyRegular,
+              keyboardType: TextInputType.phone,
+              controller: controller.phoneNumberController.value,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(controller.phoneNumMaxLength)
+              ],
+              decoration: InputDecoration(
+                hintText: 'Enter your phone number',
+                hintStyle: textStyles.bodyRegular.copyWith(
+                  color: colors.primaryDark.withOpacity(0.5),
+                  fontSize: sizes.fontRatio * 16,
+                ),
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
               ),
-              border: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              errorBorder: InputBorder.none,
-              disabledBorder: InputBorder.none,
             ),
+            onFocusChange: (hasFocus) {
+              controller.isFocus.value = hasFocus;
+            },
           );
         }),
       );
-
-
 
   Widget getCountryCode() {
     return Text(

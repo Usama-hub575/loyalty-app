@@ -12,7 +12,7 @@ class RegisterScreen extends GetView<RegisterController> {
       body: Column(children: [
         verticalSpacer(30),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          padding:  EdgeInsets.symmetric(horizontal: horizontalValue(20),vertical: 10),
           child: AppBarWidget(
             title: controller.title,
             onBack: controller.onBack,
@@ -23,7 +23,7 @@ class RegisterScreen extends GetView<RegisterController> {
             child: Container(
               height: sizes.height * 0.89,
               padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+                   EdgeInsets.symmetric(horizontal: horizontalValue(20.0), vertical: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,

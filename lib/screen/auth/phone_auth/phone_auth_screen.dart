@@ -12,7 +12,7 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
     return Scaffold(
       backgroundColor: colors.primaryLight,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+        padding: EdgeInsets.symmetric(horizontal: horizontalValue(20), vertical: 20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

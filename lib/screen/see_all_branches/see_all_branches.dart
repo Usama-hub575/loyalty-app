@@ -20,9 +20,12 @@ class SeeAllBranchesPage extends GetView<SeeAllBranchesController> {
     return Column(
       children: [
         verticalSpacer(30),
-        AppBarWidget(
-          title: 'All Branches',
-          onBack: controller.onBack,
+        Padding(
+          padding:  EdgeInsets.symmetric(horizontal: horizontalValue(20.0)),
+          child: AppBarWidget(
+            title: 'All Branches',
+            onBack: controller.onBack,
+          ),
         ),
         Expanded(
           child: ListView.separated(
@@ -41,7 +44,7 @@ class SeeAllBranchesPage extends GetView<SeeAllBranchesController> {
 
   Widget getAllBranches(String branchAddress) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding:  EdgeInsets.symmetric(horizontal: horizontalValue(20.0)),
       child: Container(
         height: sizes.heightRatio * 70,
         width: sizes.width,

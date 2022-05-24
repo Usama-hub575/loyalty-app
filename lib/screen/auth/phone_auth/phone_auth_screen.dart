@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:aactivpay/export.dart';
 
 class PhoneAuthScreen extends GetView<PhoneAuthController> {
-
   @override
   Widget build(BuildContext context) {
     controller.initialize();
@@ -41,13 +40,18 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
                       width: 16,
                       height: 16,
                       child: Obx(
-                        ()=> Checkbox(
+                        () => Checkbox(
                           value: controller.isCheck.value,
-                          onChanged: (value)=>controller.onTapCheckBox(value),
+                          onChanged: (value) => controller.onTapCheckBox(value),
                           checkColor: colors.accentPrimary,
-                          fillColor: MaterialStateProperty.all(Colors.transparent),
-                          side: MaterialStateBorderSide.resolveWith(
-                                  (_) =>  BorderSide(width: 1, color: controller.isCheck.value? colors.accentPrimary : colors.primaryDark)),
+                          fillColor:
+                              MaterialStateProperty.all(Colors.transparent),
+                          side: MaterialStateBorderSide.resolveWith((_) =>
+                              BorderSide(
+                                  width: 1,
+                                  color: controller.isCheck.value
+                                      ? colors.accentPrimary
+                                      : colors.primaryDark)),
                         ),
                       )),
                 ),
@@ -56,24 +60,24 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
                     child: RichText(
                   text: TextSpan(
                       text: constants.termAndConditionsText,
-                      style: textStyles.bodyLarge.copyWith(
+                      style: textStyles.bodyExtraSmall.copyWith(
                         color: colors.primaryDark,
                       ),
                       children: [
                         TextSpan(
-                         text: constants.termsAndCondition,
-                          style: textStyles.bodyLarge.copyWith(
+                          text: constants.termsAndCondition,
+                          style: textStyles.bodyExtraSmall.copyWith(
                             color: colors.accentPrimary,
                           ),
                         ),
                         WidgetSpan(
                           child: GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               controller.navigateToTermsAndConditionsPage();
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                left: 3, right: 3,bottom: 3),
+                                  left: 3, right: 3, bottom: 1),
                               child: SvgPicture.asset(
                                 assets.icTermConditionLink,
                                 height: 15,
@@ -81,21 +85,26 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
                             ),
                           ),
                         ),
-                        TextSpan(text: " and "),
+                        TextSpan(
+                          text: " and ",
+                          style: textStyles.bodyExtraSmall.copyWith(
+                            color: colors.primaryDark,
+                          ),
+                        ),
                         TextSpan(
                           text: constants.privacyPolicy,
-                          style: textStyles.bodyLarge.copyWith(
+                          style: textStyles.bodyExtraSmall.copyWith(
                             color: colors.accentPrimary,
                           ),
                         ),
                         WidgetSpan(
                           child: GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               controller.navigateToTermsAndConditionsPage();
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(
-                                  left: 3, right: 3,bottom: 3),
+                                  left: 3, right: 3, bottom: 1),
                               child: SvgPicture.asset(
                                 assets.icTermConditionLink,
                                 height: 15,
@@ -111,7 +120,7 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
             Obx(
               () => LongButton(
                 constants.continueText,
-                enable: controller.isButtonActive.value ,
+                enable: controller.isButtonActive.value,
                 onPressed: controller.onContinueTap,
                 isLoading: controller.isLoading.value,
               ),

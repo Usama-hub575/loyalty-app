@@ -1,5 +1,6 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class PinCodeField extends StatelessWidget {
@@ -23,6 +24,9 @@ class PinCodeField extends StatelessWidget {
         controller: verificationCodeController,
         pastedTextStyle: textStyles.bodyLarge,
         length: 6,
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.digitsOnly,
+        ],
         obscureText: false,
         // animationType: AnimationType.fade,
         autoFocus: true,

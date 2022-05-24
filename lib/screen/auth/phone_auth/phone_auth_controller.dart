@@ -16,6 +16,7 @@ class PhoneAuthController extends GetxController
   String countryCode = '+92';
   int phoneNumMaxLength = 10;
   Rx<bool> isCheck = false.obs;
+  Rx<bool> isFocus = false.obs;
 
   void initialize() {
     _initListener();

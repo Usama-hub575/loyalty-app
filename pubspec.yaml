@@ -26,6 +26,7 @@ dependencies:
   shimmer: ^2.0.0
   circular_countdown: ^2.1.0
   flutter_slidable: ^1.2.0
+  fluttertoast: ^8.0.9
 
   #google_map
   google_maps_flutter: ^2.0.9

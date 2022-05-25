@@ -32,7 +32,7 @@ class FloatingAction extends StatelessWidget {
             countdownRemainingColor: colors.transparent,
             diameter: 65,
             countdownTotalColor: colors.accentPrimary,
-            gapFactor: 2,
+            gapFactor: 0.1,
           ),
         ),
       ]),

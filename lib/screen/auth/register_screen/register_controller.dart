@@ -23,6 +23,8 @@ class RegisterController extends GetxController
   String email = '';
   String image = '';
   String buttonText = '';
+  int nameMaxLength = 30;
+  Rx<bool> isTextFieldEnable = true.obs;
 
   @override
   void onInit() {
@@ -51,9 +53,16 @@ class RegisterController extends GetxController
 
   onTextChange() {
     if (userNameController.value.text.trim().isNotEmpty &&
-        emailController.value.text.trim().isNotEmpty &&
-        (userNameController.value.text != name ||
-            emailController.value.text != email)) {
+        userNameController.value.text != name) {
+      isEnable.value = true;
+    } else
+      isEnable.value = false;
+  }
+
+  onEmailTextChange() {
+    if (emailController.value.text.trim().isNotEmpty &&
+        validateEmail(emailController.value.text) &&
+        emailController.value.text != email) {
       isEnable.value = true;
     } else
       isEnable.value = false;
@@ -63,6 +72,7 @@ class RegisterController extends GetxController
     if (validateName(userNameController.value.text) &&
         validateEmail(emailController.value.text)) {
       isLoading.value = true;
+      isTextFieldEnable.value = false;
 
       String imageLink = '';
       if (imageFile.value.path.isNotEmpty)
@@ -80,6 +90,7 @@ class RegisterController extends GetxController
         (l) => {
           print(l),
           isLoading.value = false,
+        isTextFieldEnable.value = true
         },
         (r) => {
           isLoading.value = false,

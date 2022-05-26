@@ -25,6 +25,8 @@ class OTPVerificationController extends GetxController
   VerificationModel params;
   CountdownTimerController timerController;
 
+  Rx<bool> isFocus = false.obs;
+
   void initialize() {
     params = Get.arguments;
     int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * seconds.value;

@@ -1,5 +1,6 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,8 @@ class AppTextField extends StatelessWidget {
   final String hint, suffixIcon, error;
   final Function onTextChange, onTap;
   final bool readOnly, isError;
+  final int maxLength;
+  final bool isEnable;
 
   const AppTextField(
     this.textController, {
@@ -19,6 +22,8 @@ class AppTextField extends StatelessWidget {
     this.onTap,
     this.readOnly = false,
     this.isError = false,
+        this.maxLength,
+        this.isEnable
   }) : super(key: key);
 
   @override
@@ -54,7 +59,7 @@ class AppTextField extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       inputField(
-                          hint, textController, readOnly, onTextChange, onTap),
+                          hint, textController, readOnly, onTextChange, onTap, maxLength, isEnable),
                       suffixIcon != null
                           ? getIcon(suffixIcon)
                           : Visibility(
@@ -74,22 +79,21 @@ class AppTextField extends StatelessWidget {
     );
   }
 
-  Widget inputField(hint, textController, readOnly, onChange, onTap) =>
+  Widget inputField(hint, textController, readOnly, onChange, onTap,maxLength, isEnable) =>
       Expanded(
         child: TextFormField(
           style: textStyles.bodyRegular,
           controller: textController,
           onTap: onTap,
+          enabled: isEnable,
           onChanged: (value) {
             if (value.trim().isEmpty) textController.text = value.trim();
             onChange();
           },
           readOnly: readOnly,
-          // keyboardType: TextInputType.phone,
-          // inputFormatters: <TextInputFormatter>[
-          //   FilteringTextInputFormatter.digitsOnly,
-          //   LengthLimitingTextInputFormatter(controller.phoneNumMaxLength)
-          // ],
+          inputFormatters: <TextInputFormatter>[
+            LengthLimitingTextInputFormatter(maxLength)
+          ],
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: textStyles.bodyRegular.copyWith(

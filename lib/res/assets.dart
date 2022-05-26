@@ -45,6 +45,9 @@ class AppAssets {
   final String icHowItWorks = 'assets/svg/ic_how_it_works.svg';
   final String icTermOfUse = 'assets/svg/ic_term_of_use.svg';
   final String icContactSupport = 'assets/svg/ic_contact_support.svg';
+  final String icTriangle = 'assets/svg/ic_triangle.svg';
+  final String icBox = 'assets/svg/ic_box.svg';
+  final String icShimmerCircle = 'assets/svg/ic_shimmer_circle.svg';
 
   final String icQR = 'assets/svg/ic_qr_code.svg';
   final String icError = 'assets/svg/ic_error.svg';
@@ -63,4 +66,5 @@ class AppAssets {
   final String mapCardBG = 'assets/png/map_card.png';
   final String profile1 = 'assets/png/profile1.png';
   final String profile2 = 'assets/png/profile2.png';
+  final String bgMapShimmer = 'assets/png/bgMapShimmer.png';
 }

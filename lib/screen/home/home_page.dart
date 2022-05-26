@@ -39,6 +39,7 @@ class HomePage extends GetView<HomePageController> {
       height: sizes.height,
       width: sizes.width,
       child: ListView.builder(
+        physics: BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           final HomeDataType type = controller.useCase.data[index].type;
           switch (type) {

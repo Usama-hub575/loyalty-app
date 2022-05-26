@@ -28,6 +28,7 @@ class FilterPills extends StatelessWidget {
         children: [
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
             child: Container(
               padding: EdgeInsets.all(20),
               width: sizes.width * size,

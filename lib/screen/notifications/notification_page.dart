@@ -23,6 +23,7 @@ class Notifications extends GetView<NotificationsController> {
         ),
         Expanded(
           child: ListView.separated(
+            physics: BouncingScrollPhysics(),
             itemCount: controller.notificationsList.length,
             itemBuilder: (context, index) {
               return getAllNotifications(controller.notificationsList[index]);

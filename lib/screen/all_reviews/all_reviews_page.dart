@@ -18,6 +18,7 @@ class AllReviewsPage extends GetView<AllReviewsController> {
           ),
           Expanded(
             child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               child: Column(
                 children: [
                   Ratings(controller.store),

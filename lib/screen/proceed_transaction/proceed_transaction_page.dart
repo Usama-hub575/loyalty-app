@@ -33,6 +33,7 @@ class ProceedTransactionPage extends GetView<ProceedTransactionController> {
           Expanded(
             flex: 15,
             child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               child: Column(
                 children: [
                   ActivateCard(),

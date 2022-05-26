@@ -29,6 +29,7 @@ class AllCategoriesList extends StatelessWidget {
             height: sizes.height / 1.27,
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
+              physics: BouncingScrollPhysics(),
               child: Container(
                 width: sizes.width * size,
                 color: backGroundColor ?? colors.white,

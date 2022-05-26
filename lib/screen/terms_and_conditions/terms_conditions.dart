@@ -10,15 +10,17 @@ class TermsAndConditions extends GetView<TermsAndConditionsController> {
       body: Container(
         height: sizes.height,
         width: sizes.width,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        padding: EdgeInsets.symmetric(horizontal: horizontalValue(20),),
         child: Column(
           children: [
-            verticalSpacer(20),
-            AppBarWidget(
-              title: 'Terms & Condition',
-              onBack: controller.onBack,
+            verticalSpacer(40),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: AppBarWidget(
+                title: 'Terms & Condition',
+                onBack: controller.onBack,
+              ),
             ),
-            verticalSpacer(10),
             Expanded(
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
@@ -27,11 +29,12 @@ class TermsAndConditions extends GetView<TermsAndConditionsController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    verticalSpacer(30),
                     HeadingRegularText(constants.termOfUse,
                         color: colors.accentPrimary),
                     verticalSpacer(10),
                     BodySmallText(constants.termOfUseDescription),
-                    verticalSpacer(20),
+                    verticalSpacer(12),
                     HeadingRegularText(constants.privacyPolicy,
                         color: colors.accentPrimary),
                     verticalSpacer(10),

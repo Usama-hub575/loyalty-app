@@ -24,7 +24,7 @@ class SeeAllStoresPage extends GetView<SeeAllController> {
         children: [
           verticalSpacer(30),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: horizontalValue(20.0),vertical: 10),
             child: AppBarWidget(
               title: 'Stores',
               onBack: controller.onBack,

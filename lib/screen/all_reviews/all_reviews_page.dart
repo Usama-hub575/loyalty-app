@@ -10,7 +10,7 @@ class AllReviewsPage extends GetView<AllReviewsController> {
         children: [
           verticalSpacer(40),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding:  EdgeInsets.symmetric(horizontal: horizontalValue(20.0)),
             child: AppBarWidget(
               title: controller.store.name,
               onBack: controller.onBack,

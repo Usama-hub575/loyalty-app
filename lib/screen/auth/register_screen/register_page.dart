@@ -10,7 +10,6 @@ class RegisterScreen extends GetView<RegisterController> {
     return GestureDetector(
         onTap: ()=> FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
-          
           key: _scaffoldKey,
           body: Column(
             children: [

@@ -17,7 +17,7 @@ class LocationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: sizes.width,
-      height: sizes.heightRatio * (hasMultipleBranches ? 120 : 100),
+      height: sizes.heightRatio * (hasMultipleBranches ? 120 : 110),
       child: Stack(
         children: [
           Positioned(

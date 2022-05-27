@@ -67,63 +67,69 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
                     ),
                   ),
                   horizontalSpacer(10),
+                 /* CustomCheckbox(
+                    onChange: (value) => controller.onTapCheckBox(value),
+                  ),*/
                   Expanded(
-                      child: RichText(
-                    text: TextSpan(
-                        text: constants.termAndConditionsText,
-                        style: textStyles.bodyExtraSmall.copyWith(
-                          color: colors.primaryDark,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: constants.termsAndCondition,
-                            style: textStyles.bodyExtraSmall.copyWith(
-                              color: colors.accentPrimary,
-                            ),
+                      child: Padding(
+                    padding: EdgeInsets.only(top: verticalValue(3)),
+                    child: RichText(
+                      text: TextSpan(
+                          text: constants.termAndConditionsText,
+                          style: textStyles.bodyExtraSmall.copyWith(
+                            color: colors.primaryDark,
                           ),
-                          WidgetSpan(
-                            child: GestureDetector(
-                              onTap: () {
-                                controller.navigateToTermsAndConditionsPage();
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 3, right: 3, bottom: 1),
-                                child: SvgPicture.asset(
-                                  assets.icTermConditionLink,
-                                  height: 10,
+                          children: [
+                            TextSpan(
+                              text: constants.termsAndCondition,
+                              style: textStyles.bodyExtraSmall.copyWith(
+                                color: colors.accentPrimary,
+                              ),
+                            ),
+                            WidgetSpan(
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.navigateToTermsAndConditionsPage();
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 3, right: 3, bottom: 1),
+                                  child: SvgPicture.asset(
+                                    assets.icTermConditionLink,
+                                    height: 10,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          TextSpan(
-                            text: " and ",
-                            style: textStyles.bodyExtraSmall.copyWith(
-                              color: colors.primaryDark,
+                            TextSpan(
+                              text: " and ",
+                              style: textStyles.bodyExtraSmall.copyWith(
+                                color: colors.primaryDark,
+                              ),
                             ),
-                          ),
-                          TextSpan(
-                            text: constants.privacyPolicy,
-                            style: textStyles.bodyExtraSmall.copyWith(
-                              color: colors.accentPrimary,
+                            TextSpan(
+                              text: constants.privacyPolicy,
+                              style: textStyles.bodyExtraSmall.copyWith(
+                                color: colors.accentPrimary,
+                              ),
                             ),
-                          ),
-                          WidgetSpan(
-                            child: GestureDetector(
-                              onTap: () {
-                                controller.navigateToTermsAndConditionsPage();
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 3, right: 3, bottom: 1),
-                                child: SvgPicture.asset(
-                                  assets.icTermConditionLink,
-                                  height: 10,
+                            WidgetSpan(
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.navigateToTermsAndConditionsPage();
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 3, right: 3, bottom: 1),
+                                  child: SvgPicture.asset(
+                                    assets.icTermConditionLink,
+                                    height: 10,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ]),
+                          ]),
+                    ),
                   )),
                 ],
               ),

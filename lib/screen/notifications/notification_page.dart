@@ -17,12 +17,16 @@ class Notifications extends GetView<NotificationsController> {
     return Column(
       children: [
         verticalSpacer(30),
-        AppBarWidget(
-          title: 'Notifications',
-          onBack: controller.onBack,
+        Padding(
+          padding:  EdgeInsets.symmetric(horizontal: horizontalValue(20.0)),
+          child: AppBarWidget(
+            title: 'Notifications',
+            onBack: controller.onBack,
+          ),
         ),
         Expanded(
           child: ListView.separated(
+            physics: BouncingScrollPhysics(),
             itemCount: controller.notificationsList.length,
             itemBuilder: (context, index) {
               return getAllNotifications(controller.notificationsList[index]);

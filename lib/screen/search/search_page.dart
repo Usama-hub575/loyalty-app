@@ -36,6 +36,7 @@ class SearchPage extends GetView<SearchController> {
               Obx(() {
                 return Expanded(
                   child: ListView.separated(
+                    physics: BouncingScrollPhysics(),
                     itemCount: controller.recentSearch.length,
                     itemBuilder: (context, index) {
                       return getRecentStores(

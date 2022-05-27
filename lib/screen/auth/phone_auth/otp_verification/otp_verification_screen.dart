@@ -46,6 +46,9 @@ class OTPVerificationScreen extends GetView<OTPVerificationController> {
                   children: [
                     BodyLargeText(
                       "Didn’t receive code?",
+                      color: controller.isResendActive.value
+                          ? colors.primaryDark
+                          : colors.primaryDark.withOpacity(0.5),
                     ),
                     TextButton(
                       onPressed: controller.isResendActive.value

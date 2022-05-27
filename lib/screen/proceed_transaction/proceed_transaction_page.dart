@@ -33,11 +33,12 @@ class ProceedTransactionPage extends GetView<ProceedTransactionController> {
           Expanded(
             flex: 15,
             child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               child: Column(
                 children: [
                   ActivateCard(),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                    padding: EdgeInsets.symmetric(horizontal: horizontalValue(20.0), vertical: 24),
                     color: colors.white,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

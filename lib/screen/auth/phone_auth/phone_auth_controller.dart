@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:aactivpay/export.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class PhoneAuthController extends GetxController
     with StateMixin<PhoneAuthScreen> {
@@ -52,6 +53,18 @@ class PhoneAuthController extends GetxController
     );
   }
 
+  void showToast(String errorMessage){
+    Fluttertoast.showToast(
+        msg: errorMessage,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: colors.error,
+        textColor: colors.white,
+        fontSize: 16.0
+    );
+  }
+
   Future<void> onContinueTap() async {
     isLoading.value = true;
     if (!validateNumber(phoneNumberController.value.text)) {
@@ -60,12 +73,13 @@ class PhoneAuthController extends GetxController
     } else {
       isError.value = false;
       String phoneNumber = countryCode + phoneNumberController.value.text;
-      await _authUseCase.signInWithPhone(
+      final response = await _authUseCase.signInWithPhone(
         phoneNumber,
         navigateToOTPVerificationPage,
         navigateToHomePage,
         navigateToRegisterPage,
       );
+      response.fold((l) => showToast(l.title), (r) => response);
     }
   }
 

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:aactivpay/export.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class HomePageController extends GetxController with StateMixin<HomePage> {
   final HomeUseCase useCase;
@@ -46,9 +47,9 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
                     change(null, status: RxStatus.empty()),
                 },
             }, onError: (error) {
+      showToast(error.toString());
       change(null, status: RxStatus.error(error.toString()));
     });
-
     downloadData();
   }
 
@@ -62,6 +63,17 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
 
   void updatePage({int index}) {
     currentPage.value = index;
+  }
+
+  void showToast(String errorMessage) {
+    Fluttertoast.showToast(
+        msg: errorMessage,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: colors.error,
+        textColor: colors.white,
+        fontSize: 16.0);
   }
 
   void openBottomSheet(BuildContext context, scaffoldState) {
@@ -79,10 +91,11 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
     AppRoutes.appRoutes(RouteNames.searchScreen);
   }
 
-  void openSeeAllCategoriesPage() async{
-    final result =await AppRoutes.appRoutes(RouteNames.seeAllCategoriesPage, arg: [pillsList, categoriesIds]);
-    if(result != null){
-      categoriesIds=result as List<int>;
+  void openSeeAllCategoriesPage() async {
+    final result = await AppRoutes.appRoutes(RouteNames.seeAllCategoriesPage,
+        arg: [pillsList, categoriesIds]);
+    if (result != null) {
+      categoriesIds = result as List<int>;
       getFilteredStores();
     }
   }
@@ -113,11 +126,11 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
         arg: [storeId, storeName]);
   }
 
-  void getFilteredStores()async{
+  void getFilteredStores() async {
     change(null, status: RxStatus.loading());
-   await useCase.getFilteredStore(categoriesIds);
+    final response  = await useCase.getFilteredStore(categoriesIds);
+    response.fold((l) => showToast(l.toString()), (r) => response);
     change(null, status: RxStatus.success());
-
   }
 
   void openAllStorePage() {

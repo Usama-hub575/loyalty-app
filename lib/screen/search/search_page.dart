@@ -5,48 +5,51 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SearchPage extends GetView<SearchController> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          children: [
-            Container(
-              width: sizes.width,
-              height: 30,
-              color: colors.primaryLight,
-            ),
-            Obx(
-              () => SearchField(
-                controller.searchController,
-                hint: 'Search store',
-                onBack: controller.onBack,
-                onTextChange: controller.onTextChange,
-                onClear: controller.onTextClear,
-                isCross: controller.isCross.value,
+    return GestureDetector(
+      onTap: ()=> FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: Column(
+            children: [
+              Container(
+                width: sizes.width,
+                height: 30,
+                color: colors.primaryLight,
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(20),
-              alignment: Alignment.bottomLeft,
-              child: HeadingRegularText('Recent search'),
-            ),
-            Obx(() {
-              return Expanded(
-                child: ListView.separated(
-                  physics: BouncingScrollPhysics(),
-                  itemCount: controller.recentSearch.length,
-                  itemBuilder: (context, index) {
-                    return getRecentStores(
-                        controller.recentSearch[index], index);
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return verticalSpacer(2);
-                  },
+              Obx(
+                () => SearchField(
+                  controller.searchController,
+                  hint: 'Search store',
+                  onBack: controller.onBack,
+                  onTextChange: controller.onTextChange,
+                  onClear: controller.onTextClear,
+                  isCross: controller.isCross.value,
                 ),
-              );
-            }),
-          ],
+              ),
+              Container(
+                padding: EdgeInsets.all(20),
+                alignment: Alignment.bottomLeft,
+                child: HeadingRegularText('Recent search'),
+              ),
+              Obx(() {
+                return Expanded(
+                  child: ListView.separated(
+                    physics: BouncingScrollPhysics(),
+                    itemCount: controller.recentSearch.length,
+                    itemBuilder: (context, index) {
+                      return getRecentStores(
+                          controller.recentSearch[index], index);
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return verticalSpacer(2);
+                    },
+                  ),
+                );
+              }),
+            ],
+          ),
         ),
       ),
     );

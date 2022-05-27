@@ -21,7 +21,6 @@ class HomeLoadingScreen extends StatelessWidget {
           getMapCard(
             assets.icLocationFilled,
           ),
-          verticalSpacer(20),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             physics: BouncingScrollPhysics(),
@@ -35,22 +34,33 @@ class HomeLoadingScreen extends StatelessWidget {
               ],
             ),
           ),
-          getMapCard(
-            assets.icCategories,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0, left: 10),
-            child: Wrap(
+          Container(
+            color: colors.white,
+            child: Column(
               children: [
-                getPills(80),
-                getPills(90),
-                getPills(80),
-                getPills(100),
-                getPills(110),
-                getPills(100),
-                getPills(70),
-                getPills(90),
-                getPills(100),
+                getMapCard3(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Align(
+                      alignment: Alignment.centerRight,
+                      child: BodyExtraSmallText('Apply Now',color: colors.accentPrimary,)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0, left: 10),
+                  child: Wrap(
+                    children: [
+                      getPills(80),
+                      getPills(90),
+                      getPills(80),
+                      getPills(100),
+                      getPills(110),
+                      getPills(100),
+                      getPills(70),
+                      getPills(90),
+                      getPills(100),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
@@ -67,7 +77,7 @@ class HomeLoadingScreen extends StatelessWidget {
               ],
             ),
           ),
-          getMapCard(
+          getMapCard2(
             assets.icMedal,
           ),
         ],
@@ -76,6 +86,55 @@ class HomeLoadingScreen extends StatelessWidget {
   }
 
   getMapCard(String icon) {
+    return Container(
+      width: sizes.width,
+      padding: EdgeInsets.all(20),
+      child: Stack(
+        children: [
+          Image.asset(
+            assets.bgMapShimmer,
+          ),
+          Container(
+            width: sizes.width / 2.2,
+            height: sizes.heightRatio * 90,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: colors.primaryLight,
+                spreadRadius: 10,
+                blurRadius: 5,
+                offset: Offset(3, 0), // changes position of shadow
+              ),
+            ]),
+          ),
+          Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  verticalSpacer(40),
+                  Container(
+                    width: sizes.width * 0.60,
+                    height: 10,
+                    color: colors.primaryDark.withOpacity(0.2),
+                  ),
+                  verticalSpacer(6),
+                  Container(
+                    width: sizes.width * 0.30,
+                    height: 10,
+                    color: colors.primaryDark.withOpacity(0.2),
+                  ),
+                ],
+              ),
+              Spacer(),
+              SvgPicture.asset(icon),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  getMapCard2(String icon) {
     return Container(
       width: sizes.width,
       padding: EdgeInsets.all(20),
@@ -88,13 +147,13 @@ class HomeLoadingScreen extends StatelessWidget {
               Container(
                 width: sizes.width * 0.60,
                 height: 10,
-                color: colors.primaryDark.withOpacity(0.2),
+                color: colors.primaryDark.withOpacity(0.1),
               ),
               verticalSpacer(6),
               Container(
                 width: sizes.width * 0.30,
                 height: 10,
-                color: colors.primaryDark.withOpacity(0.2),
+                color: colors.primaryDark.withOpacity(0.1),
               ),
             ],
           ),
@@ -105,24 +164,95 @@ class HomeLoadingScreen extends StatelessWidget {
     );
   }
 
+  getMapCard3() {
+    return Container(
+      width: sizes.width,
+      padding: EdgeInsets.all(20),
+      child: Row(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              verticalSpacer(40),
+              Container(
+                width: sizes.width * 0.60,
+                height: 10,
+                color: colors.primaryDark.withOpacity(0.1),
+              ),
+              verticalSpacer(6),
+              Container(
+                width: sizes.width * 0.30,
+                height: 10,
+                color: colors.primaryDark.withOpacity(0.1),
+              ),
+            ],
+          ),
+          Spacer(),
+          Container(
+            width: sizes.widthRatio * 70,
+            height: sizes.heightRatio * 70,
+            padding: EdgeInsets.only(top: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  assets.icTriangle,
+                  color: colors.primaryDark.withOpacity(0.1),
+                ),
+                verticalSpacer(5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      assets.icBox,
+                      color: colors.primaryDark.withOpacity(0.1),
+                    ),
+                    horizontalSpacer(5),
+                    SvgPicture.asset(
+                      assets.icShimmerCircle,
+                      color: colors.primaryDark.withOpacity(0.1),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   getStoreCard() {
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: sizes.heightRatio * 120,
-            width: sizes.widthRatio * 180,
-            color: colors.primaryDark.withOpacity(0.1),
-          ),
-          verticalSpacer(20),
-          Container(
-            height: sizes.heightRatio * 10,
-            width: sizes.widthRatio * 120,
-            color: colors.primaryDark.withOpacity(0.1),
-          )
-        ],
+      child: Container(
+        height: sizes.heightRatio * 160,
+        decoration: BoxDecoration(
+            color: colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(8), bottom: Radius.circular(8))
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: sizes.heightRatio * 120,
+              width: sizes.widthRatio * 180,
+              decoration: BoxDecoration(
+                color: colors.primaryDark.withOpacity(0.1),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
+              ),
+            ),
+            verticalSpacer(20),
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Container(
+                height: sizes.heightRatio * 10,
+                width: sizes.widthRatio * 120,
+                color: colors.primaryDark.withOpacity(0.1),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -134,7 +264,7 @@ class HomeLoadingScreen extends StatelessWidget {
         width: sizes.widthRatio * width,
         height: sizes.heightRatio * 30,
         decoration: BoxDecoration(
-          color: colors.primaryDark.withOpacity(0.1),
+          color: colors.primaryDark.withOpacity(0.05),
           borderRadius: BorderRadius.circular(50),
         ),
       ),

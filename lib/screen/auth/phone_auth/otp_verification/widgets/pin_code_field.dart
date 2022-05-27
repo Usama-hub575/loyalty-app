@@ -1,5 +1,6 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class PinCodeField extends StatelessWidget {
@@ -27,6 +28,9 @@ class PinCodeField extends StatelessWidget {
               appContext: context,
               controller: verificationCodeController,
               pastedTextStyle: textStyles.bodyLarge,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly,
+              ],
               length: 6,
               obscureText: false,
               // animationType: AnimationType.fade,
@@ -56,9 +60,7 @@ class PinCodeField extends StatelessWidget {
               textStyle: textStyles.bodyLarge,
               enableActiveFill: true,
               backgroundColor: colors.primaryLight,
-
               keyboardType: TextInputType.number,
-
               onCompleted: (v) {
                 print("Completed");
 

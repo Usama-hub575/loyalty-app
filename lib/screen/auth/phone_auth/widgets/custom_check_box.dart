@@ -11,12 +11,10 @@ class CustomCheckbox extends StatelessWidget {
     this.onChange,
   });
 
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: onChange,
-        child: isChecked ? getChecked() : getUnChecked()
+        onTap: onChange, child: isChecked ? getChecked() : getUnChecked()
         /*AnimatedContainer(
           margin: EdgeInsets.all(4),
           duration: Duration(milliseconds: 500),
@@ -54,7 +52,8 @@ class CustomCheckbox extends StatelessWidget {
             Radius.circular(3),
           ),
           shape: BoxShape.rectangle,
-          border: Border.all(color: Colors.grey, width: 2.5)),
+          border: Border.all(
+              color: colors.primaryDark.withOpacity(0.20), width: 2.5)),
     );
   }
 

@@ -92,8 +92,11 @@ class PhoneAuthController extends GetxController
     return (text.length >= 10 && text[0] == '3');
   }
 
-  onTapCheckBox(bool value) {
-    isCheck.value = value;
+
+
+
+  onTapCheckBox() {
+    isCheck.value = !isCheck.value;
     if (phoneNumberController.value.text.length >= phoneNumMaxLength &&
         isCheck.value) {
       isButtonActive.value = true;

@@ -11,10 +11,11 @@ class FloatingAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      backgroundColor: colors.white,
       onPressed: onPressed,
       child: Stack(children: [
         Container(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: colors.white,
             shape: BoxShape.circle,
@@ -25,14 +26,14 @@ class FloatingAction extends StatelessWidget {
         ),
         Obx(
           () => CircularCountdown(
-            strokeWidth: 5,
+            strokeWidth: 4,
             countdownCurrentColor: colors.accentPrimary,
             countdownTotal: 60,
             countdownRemaining: 60 - timeValue.value.toInt(),
             countdownRemainingColor: colors.transparent,
             diameter: 65,
             countdownTotalColor: colors.accentPrimary,
-            gapFactor: 0.1,
+            gapFactor: 0.45,
           ),
         ),
       ]),

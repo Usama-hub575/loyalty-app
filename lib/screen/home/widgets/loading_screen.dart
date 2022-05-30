@@ -34,13 +34,14 @@ class HomeLoadingScreen extends StatelessWidget {
               ],
             ),
           ),
+          verticalSpacer(70),
           Container(
             color: colors.white,
             child: Column(
               children: [
                 getMapCard3(),
                 Padding(
-                  padding: const EdgeInsets.only(right: 20),
+                  padding:  EdgeInsets.only(right: horizontalValue(10)),
                   child: Align(
                       alignment: Alignment.centerRight,
                       child: BodyExtraSmallText('Apply Now',color: colors.accentPrimary,)),
@@ -77,9 +78,6 @@ class HomeLoadingScreen extends StatelessWidget {
               ],
             ),
           ),
-          getMapCard2(
-            assets.icMedal,
-          ),
         ],
       ),
     );
@@ -88,7 +86,7 @@ class HomeLoadingScreen extends StatelessWidget {
   getMapCard(String icon) {
     return Container(
       width: sizes.width,
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.only(left: 20, ),
       child: Stack(
         children: [
           Image.asset(
@@ -96,7 +94,7 @@ class HomeLoadingScreen extends StatelessWidget {
           ),
           Container(
             width: sizes.width / 2.2,
-            height: sizes.heightRatio * 90,
+            height: sizes.heightRatio * 70,
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(
                 color: colors.primaryLight,
@@ -126,7 +124,10 @@ class HomeLoadingScreen extends StatelessWidget {
                 ],
               ),
               Spacer(),
-              SvgPicture.asset(icon),
+              Padding(
+                padding:  EdgeInsets.only(right: horizontalValue(10)),
+                child: SvgPicture.asset(icon),
+              ),
             ],
           )
         ],
@@ -167,7 +168,7 @@ class HomeLoadingScreen extends StatelessWidget {
   getMapCard3() {
     return Container(
       width: sizes.width,
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.only(left: horizontalValue(20)),
       child: Row(
         children: [
           Column(
@@ -224,9 +225,9 @@ class HomeLoadingScreen extends StatelessWidget {
 
   getStoreCard() {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding:  EdgeInsets.only(left: horizontalValue(20),top: verticalValue(20)),
       child: Container(
-        height: sizes.heightRatio * 160,
+        height: sizes.heightRatio * 212,
         decoration: BoxDecoration(
             color: colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(8), bottom: Radius.circular(8))
@@ -235,8 +236,8 @@ class HomeLoadingScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: sizes.heightRatio * 120,
-              width: sizes.widthRatio * 180,
+              height: sizes.heightRatio * 172,
+              width: sizes.widthRatio * 234,
               decoration: BoxDecoration(
                 color: colors.primaryDark.withOpacity(0.1),
                 borderRadius: BorderRadius.vertical(top: Radius.circular(8)),

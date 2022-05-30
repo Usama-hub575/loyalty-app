@@ -27,13 +27,16 @@ class RateStore extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HeadingRegularText('Rate this store'),
-            BodyLargeText('Tell others what you think'),
+            BodyRegularText(
+              'Tell others what you think',
+              color: colors.primaryDark.withOpacity(0.6),
+            ),
             verticalSpacer(20),
             RatingStar(
               0,
               itemPadding: 15,
               itemSize: 24,
-
+              emptyColor: colors.primaryDark,
             ),
             verticalSpacer(20),
             BodyLargeText(

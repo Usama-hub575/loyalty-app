@@ -66,7 +66,7 @@ class RegisterController extends GetxController
 
   onTextChange() {
     if (userNameController.value.text.trim().isNotEmpty &&
-        userNameController.value.text != name) {
+        userNameController.value.text != name && emailController.value.text != email) {
       isEnable.value = true;
     } else
       isEnable.value = false;

@@ -36,7 +36,7 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  /*Padding(
                     padding: const EdgeInsets.only(top: 4),
                     child: SizedBox(
                       width: 16,
@@ -65,11 +65,18 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
                         ),
                       ),
                     ),
+                  ),*/
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
+                    child: Obx(
+                      () => CustomCheckbox(
+                        onChange: () =>
+                            controller.onTapCheckBox(),
+                        isChecked: controller.isCheck.value,
+                      ),
+                    ),
                   ),
                   horizontalSpacer(10),
-                 /* CustomCheckbox(
-                    onChange: (value) => controller.onTapCheckBox(value),
-                  ),*/
                   Expanded(
                       child: Padding(
                     padding: EdgeInsets.only(top: verticalValue(3)),

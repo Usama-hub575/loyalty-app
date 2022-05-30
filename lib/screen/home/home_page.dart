@@ -22,7 +22,8 @@ class HomePage extends GetView<HomePageController> {
         controller.openSearchPage,
       ),
       body: controller.obx(
-        (state) => getBody(context),
+        // (state) => getBody(context),
+        (state) => HomeLoadingScreen(),
         onLoading: HomeLoadingScreen(),
       ),
       floatingActionButton: FloatingAction(

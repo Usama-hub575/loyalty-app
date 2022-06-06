@@ -84,7 +84,8 @@ class RegisterScreen extends GetView<RegisterController> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(
-                  horizontal: horizontalValue(20), vertical: verticalValue(10)),
+                  horizontal: horizontalValue(20), vertical: verticalValue(20)),
+
               child: Obx(
                 () => LongButton(
                   controller.buttonText,

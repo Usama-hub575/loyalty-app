@@ -62,10 +62,14 @@ class ReviewController extends GetxController with StateMixin<ReviewScreen> {
       supperGoodRating.value = false;
       goodRating.value = true;
       badRating.value = false;
-    } else {
+    } else if (rating <= 2 && rating > 0) {
       supperGoodRating.value = false;
       goodRating.value = false;
       badRating.value = true;
+    } else {
+      supperGoodRating.value = false;
+      goodRating.value = false;
+      badRating.value = false;
     }
   }
 }

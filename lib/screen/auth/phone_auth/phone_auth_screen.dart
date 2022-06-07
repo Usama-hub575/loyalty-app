@@ -23,7 +23,7 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
                 assets.icAactivpay,
                 width: sizes.widthRatio * 136,
               ),
-              verticalSpacer(12),
+              verticalSpacer(28),
               HeadingLargeText(constants.getStarted),
               verticalSpacer(10),
               BodyLargeText(

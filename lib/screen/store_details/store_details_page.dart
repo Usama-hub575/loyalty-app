@@ -48,7 +48,7 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
                   height: 14,
                 ),
                 horizontalSpacer(6),
-                BodyExtraSmallText('${controller.getData(index).rating}/5'),
+                BodySmallText('${controller.getData(index).rating}/5'),
                 horizontalSpacer(10),
                 SvgPicture.asset(
                   assets.icCoin,
@@ -56,7 +56,7 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
                   height: 14,
                 ),
                 horizontalSpacer(6),
-                BodyExtraSmallText(controller.getData(index).redeemLimit.toString()),
+                BodySmallText(controller.getData(index).redeemLimit.toString()),
               ],
             );
           case StoreDetailsDataType.CATEGORIES:

@@ -16,7 +16,7 @@ class Categories extends StatelessWidget {
         physics: ClampingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return BodySmallText(
+          return BodyExtraSmallText(
             categories.categories[index].name,
             color: colors.accentPrimary,
           );

@@ -39,7 +39,10 @@ class Ratings extends StatelessWidget {
           style: textStyles.headingRegular
               .copyWith(fontSize: 45, fontWeight: FontWeight.w500),
         ),
-        RatingStar(data.rating),
+        RatingStar(
+          data.rating,
+          emptyColor: colors.primaryDark,
+        ),
         BodySmallText(data.numberOfReviews.toString()),
       ],
     );

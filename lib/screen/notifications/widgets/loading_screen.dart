@@ -34,8 +34,8 @@ class NotificationsLoadingScreen extends StatelessWidget {
   getStoreCard() {
     return Container(
       width: sizes.width,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding:  EdgeInsets.symmetric(horizontal: horizontalValue(10), vertical: verticalValue(5)),
+      margin:  EdgeInsets.symmetric(horizontal: horizontalValue(20)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: colors.white,

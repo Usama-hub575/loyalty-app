@@ -11,7 +11,7 @@ class ReviewAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 30),
+      padding: EdgeInsets.symmetric(vertical: horizontalValue(30)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,7 +26,7 @@ class ReviewAppBar extends StatelessWidget {
           GestureDetector(
             onTap: onCross,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              padding:  EdgeInsets.symmetric(vertical: verticalValue(8)),
               child: SvgPicture.asset(
                 assets.icCross,
                 color: colors.primaryLight,

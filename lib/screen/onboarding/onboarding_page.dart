@@ -17,7 +17,9 @@ class OnboardingPage extends GetView<OnboardingController> {
               width: double.infinity,
               height: sizes.heightRatio * 225,
               color: colors.accentPrimary,
-              padding: EdgeInsets.symmetric(horizontal: horizontalValue(20.0), vertical: 20),
+              padding: EdgeInsets.symmetric(
+                  horizontal: horizontalValue(20.0),
+                  vertical: verticalValue(20)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

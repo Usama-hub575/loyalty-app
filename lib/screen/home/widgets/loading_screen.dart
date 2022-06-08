@@ -90,7 +90,7 @@ class HomeLoadingScreen extends StatelessWidget {
     return Container(
       width: sizes.width,
       padding: EdgeInsets.only(
-        left: 20,
+        left: horizontalValue(20),
       ),
       child: Stack(
         children: [

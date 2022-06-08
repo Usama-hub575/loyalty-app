@@ -31,7 +31,9 @@ class CustomDrawer extends GetView<CustomDrawerController> {
             Container(
               color: colors.accentPrimary.withOpacity(0.1),
               child: ListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                contentPadding: EdgeInsets.symmetric(
+                    horizontal: horizontalValue(20),
+                    vertical: verticalValue(5)),
                 title: RichText(
                   text: TextSpan(
                       text: 'Account Balance ',
@@ -94,9 +96,15 @@ class CustomDrawer extends GetView<CustomDrawerController> {
               title: 'Contact support',
             ),
             Spacer(),
-            SvgPicture.asset(assets.icAactivpay, color: colors.primaryDark.withOpacity(0.1),),
+            SvgPicture.asset(
+              assets.icAactivpay,
+              color: colors.primaryDark.withOpacity(0.1),
+            ),
             verticalSpacer(5),
-            BodyExtraSmallText('v1.0 (100)', color: colors.primaryDark.withOpacity(0.1),),
+            BodyExtraSmallText(
+              'v1.0 (100)',
+              color: colors.primaryDark.withOpacity(0.1),
+            ),
             verticalSpacer(26),
           ],
         ),

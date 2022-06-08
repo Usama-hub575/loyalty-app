@@ -43,7 +43,7 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
               children: [
                 horizontalSpacer(20),
                 SvgPicture.asset(
-                  assets.icStar,
+                  assets.icStoreDetailsStar,
                   width: 14,
                   height: 14,
                 ),

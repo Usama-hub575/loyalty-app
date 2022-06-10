@@ -19,11 +19,31 @@ class TransactionPage extends GetView<TransactionController> {
           ),
           bottom: TabBar(
             indicatorColor: colors.accentPrimary,
+            labelColor: colors.primaryDark,
+            unselectedLabelColor: colors.primaryDark.withOpacity(0.5),
             labelPadding: EdgeInsets.symmetric(vertical: 10),
             tabs: [
-              BodyRegularText('All'),
-              BodyRegularText('Approved'),
-              BodyRegularText('Pending'),
+              Text(
+                'All',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Manrope",
+                    fontWeight: FontWeight.w500),
+              ),
+              Text(
+                'Approved',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Manrope",
+                    fontWeight: FontWeight.w500),
+              ),
+              Text(
+                'Pending',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Manrope",
+                    fontWeight: FontWeight.w500),
+              ),
             ],
           ),
           title: HeadingRegularText(

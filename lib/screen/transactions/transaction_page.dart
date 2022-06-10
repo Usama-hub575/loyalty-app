@@ -19,17 +19,36 @@ class TransactionPage extends GetView<TransactionController> {
           ),
           bottom: TabBar(
             indicatorColor: colors.accentPrimary,
-            labelPadding: EdgeInsets.symmetric(vertical: verticalValue(10)),
+            labelColor: colors.primaryDark,
+            unselectedLabelColor: colors.primaryDark.withOpacity(0.5),
+            labelPadding: EdgeInsets.symmetric(vertical: 10),
             tabs: [
-              BodyRegularText('All'),
-              BodyRegularText('Approved'),
-              BodyRegularText('Pending'),
+              Text(
+                'All',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Manrope",
+                    fontWeight: FontWeight.w500),
+              ),
+              Text(
+                'Approved',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Manrope",
+                    fontWeight: FontWeight.w500),
+              ),
+              Text(
+                'Pending',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Manrope",
+                    fontWeight: FontWeight.w500),
+              ),
             ],
           ),
           title: HeadingRegularText(
             'Transactions',
           ),
-
           centerTitle: true,
         ),
         body: Column(
@@ -38,7 +57,7 @@ class TransactionPage extends GetView<TransactionController> {
               dataList: controller.pillsList,
               backGroundColor: colors.primaryLight,
               pillsCount: 6,
-              size: 1.9,
+              size: 1.7,
               onTap: controller.onPillsTap,
             ),
             Expanded(

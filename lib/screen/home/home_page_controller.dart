@@ -109,8 +109,8 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
   }
 
   void openNotificationsPage() {
-    // AppRoutes.appRoutes(RouteNames.notificationsPage);
-    AppRoutes.appRoutes(RouteNames.seeAllTransaction);
+    AppRoutes.appRoutes(RouteNames.notificationsPage);
+    // AppRoutes.appRoutes(RouteNames.seeAllTransaction);
   }
 
   void openProfilePage() {

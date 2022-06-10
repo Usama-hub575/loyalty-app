@@ -1,9 +1,7 @@
 import 'package:aactivpay/export.dart';
 
-
-class NotificationsController extends GetxController with StateMixin<Notifications>{
-
-
+class NotificationsController extends GetxController
+    with StateMixin<Notifications> {
   List<String> notificationsList = [
     'You did worth of Rs 5000 shopping at Euro Store',
     'Its approved! enjoy your discount at Euro Store',
@@ -14,15 +12,13 @@ class NotificationsController extends GetxController with StateMixin<Notificatio
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     change(null, status: RxStatus.loading());
-     Future.delayed(Duration(seconds: 2)).then((value) => {
-     change(null, status: RxStatus.success())
-     });
+    Future.delayed(Duration(seconds: 2))
+        .then((value) => {change(null, status: RxStatus.success())});
   }
 
-  onBack(){
+  onBack() {
     Get.back();
   }
 }

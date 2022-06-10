@@ -29,6 +29,7 @@ class TransactionPage extends GetView<TransactionController> {
           title: HeadingRegularText(
             'Transactions',
           ),
+
           centerTitle: true,
         ),
         body: Column(
@@ -37,7 +38,7 @@ class TransactionPage extends GetView<TransactionController> {
               dataList: controller.pillsList,
               backGroundColor: colors.primaryLight,
               pillsCount: 6,
-              size: 1.7,
+              size: 1.9,
               onTap: controller.onPillsTap,
             ),
             Expanded(

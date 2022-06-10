@@ -31,25 +31,28 @@ class TransactionPage extends GetView<TransactionController> {
           ),
           centerTitle: true,
         ),
-        body: Column(
-          children: [
-            FilterPills(
-              dataList: controller.pillsList,
-              backGroundColor: colors.primaryLight,
-              pillsCount: 6,
-              size: 1.7,
-              onTap: controller.onPillsTap,
-            ),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  getAllTransactions(),
-                  getApprovedTransactions(),
-                  getPendingTransactions(),
-                ],
+        body: controller.obx(
+          (state) => Column(
+            children: [
+              FilterPills(
+                dataList: controller.pillsList,
+                backGroundColor: colors.primaryLight,
+                pillsCount: 6,
+                size: 1.7,
+                onTap: controller.onPillsTap,
               ),
-            ),
-          ],
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    getAllTransactions(),
+                    getApprovedTransactions(),
+                    getPendingTransactions(),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          onLoading: ShimmerEffect(),
         ),
       ),
     );

@@ -15,8 +15,9 @@ class SettingsComponent {
     return Container(
       width: sizes.width,
       height: sizes.heightRatio * 210,
-      margin: EdgeInsets.symmetric(horizontal: 4),
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 28),
+      margin: EdgeInsets.symmetric(horizontal: horizontalValue(4)),
+      padding: EdgeInsets.symmetric(
+          horizontal: horizontalValue(10), vertical: verticalValue(28)),
       decoration: BoxDecoration(
         color: colors.primaryLight,
         borderRadius: BorderRadius.circular(10),

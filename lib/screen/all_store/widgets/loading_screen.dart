@@ -17,7 +17,7 @@ class AllStoresLoadingScreen extends StatelessWidget {
       children: [
         verticalSpacer(30),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: horizontalValue(20),vertical: verticalValue(10)),
           child: AppBarWidget(
             title: 'Stores',
             onBack: (){},
@@ -31,7 +31,7 @@ class AllStoresLoadingScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 30),
+                  padding:  EdgeInsets.only(left: horizontalValue(20), top: verticalValue(30)),
                   child: Wrap(
                     children: [
                       getPills(80),
@@ -70,7 +70,7 @@ class AllStoresLoadingScreen extends StatelessWidget {
 
   getStoreCard() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+      padding:  EdgeInsets.symmetric(horizontal: horizontalValue(50), vertical: verticalValue(20)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -91,7 +91,7 @@ class AllStoresLoadingScreen extends StatelessWidget {
 
   getPills(width) {
     return Padding(
-      padding: EdgeInsets.only(left: 10, bottom: 8),
+      padding: EdgeInsets.only(left: horizontalValue(10), bottom: verticalValue(8)),
       child: Container(
         width: sizes.widthRatio * width,
         height: sizes.heightRatio * 30,

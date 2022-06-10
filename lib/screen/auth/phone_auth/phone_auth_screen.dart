@@ -13,7 +13,8 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
       child: Scaffold(
         backgroundColor: colors.primaryLight,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+          padding: EdgeInsets.symmetric(
+              horizontal: horizontalValue(20.0), vertical: verticalValue(20)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,11 +68,10 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
                     ),
                   ),*/
                   Padding(
-                    padding: const EdgeInsets.only(top: 4),
+                    padding: EdgeInsets.only(top: verticalValue(4)),
                     child: Obx(
                       () => CustomCheckbox(
-                        onChange: () =>
-                            controller.onTapCheckBox(),
+                        onChange: () => controller.onTapCheckBox(),
                         isChecked: controller.isCheck.value,
                       ),
                     ),
@@ -99,8 +99,10 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
                                   controller.navigateToTermsAndConditionsPage();
                                 },
                                 child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 3, right: 3, bottom: 1),
+                                  padding: EdgeInsets.only(
+                                      left: horizontalValue(3),
+                                      right: horizontalValue(3),
+                                      bottom: verticalValue(1)),
                                   child: SvgPicture.asset(
                                     assets.icTermConditionLink,
                                     height: 10,
@@ -126,8 +128,10 @@ class PhoneAuthScreen extends GetView<PhoneAuthController> {
                                   controller.navigateToTermsAndConditionsPage();
                                 },
                                 child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 3, right: 3, bottom: 1),
+                                  padding:  EdgeInsets.only(
+                                      left: horizontalValue(3),
+                                      right: horizontalValue(3),
+                                      bottom: verticalValue(1)),
                                   child: SvgPicture.asset(
                                     assets.icTermConditionLink,
                                     height: 10,

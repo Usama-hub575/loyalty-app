@@ -30,7 +30,7 @@ class LocationCard extends StatelessWidget {
           ),
           getGradient(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding:  EdgeInsets.symmetric(horizontal: horizontalValue(20), vertical: verticalValue(10)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

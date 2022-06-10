@@ -10,15 +10,15 @@ class AllCategoriesList extends StatelessWidget {
   final double size;
   final Color backGroundColor;
 
-  const AllCategoriesList({
-    Key key,
-    this.dataList,
-    this.pillsCount = 30,
-    this.size = 4,
-    this.backGroundColor,
-    this.onTap,
-    this.onApply
-  }) : super(key: key);
+  const AllCategoriesList(
+      {Key key,
+      this.dataList,
+      this.pillsCount = 30,
+      this.size = 4,
+      this.backGroundColor,
+      this.onTap,
+      this.onApply})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class AllCategoriesList extends StatelessWidget {
                   runSpacing: -4,
                   children: List.generate(
                     pillsCount,
-                        (index) => getChip(dataList[index], index, onTap),
+                    (index) => getChip(dataList[index], index, onTap),
                     growable: true,
                   ),
                 ),
@@ -46,7 +46,10 @@ class AllCategoriesList extends StatelessWidget {
             ),
           ),
           Spacer(),
-          LongButton('Apply', onPressed: onApply,),
+          LongButton(
+            'Apply',
+            onPressed: onApply,
+          ),
           verticalSpacer(10)
         ],
       ),
@@ -59,9 +62,10 @@ class AllCategoriesList extends StatelessWidget {
         left: 5,
       ),
       child: Obx(
-            () => ActionChip(
+        () => ActionChip(
           onPressed: () => onTap(index),
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+          padding: EdgeInsets.symmetric(
+              horizontal: horizontalValue(10), vertical: verticalValue(8)),
           label: Text(
             pills.name,
             style: textStyles.bodySmall.copyWith(

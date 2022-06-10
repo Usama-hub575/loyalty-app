@@ -52,7 +52,7 @@ class TransactionPage extends GetView<TransactionController> {
               ),
             ],
           ),
-          onLoading: ShimmerEffect(),
+          onLoading: ShimmerEffectTransactionPage(),
         ),
       ),
     );

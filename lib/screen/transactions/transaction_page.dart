@@ -19,7 +19,7 @@ class TransactionPage extends GetView<TransactionController> {
           ),
           bottom: TabBar(
             indicatorColor: colors.accentPrimary,
-            labelPadding: EdgeInsets.symmetric(vertical: 10),
+            labelPadding: EdgeInsets.symmetric(vertical: verticalValue(10)),
             tabs: [
               BodyRegularText('All'),
               BodyRegularText('Approved'),

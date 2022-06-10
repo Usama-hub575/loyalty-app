@@ -9,7 +9,7 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: horizontalValue(20)),
       width: double.infinity,
       height: 22,
       child: ListView.separated(
@@ -31,7 +31,7 @@ class Categories extends StatelessWidget {
 
   Widget getDivider() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding:  EdgeInsets.symmetric(horizontal: horizontalValue(10)),
       child: Container(
         color: colors.black.withOpacity(0.2),
         width: 2,

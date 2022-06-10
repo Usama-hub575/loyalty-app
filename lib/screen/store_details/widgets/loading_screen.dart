@@ -42,7 +42,7 @@ class StoreDetailsLoading extends StatelessWidget {
               assets.icCategories,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10.0, left: 10),
+              padding:  EdgeInsets.only(top: verticalValue(10), left: horizontalValue(10)),
               child: Wrap(
                 children: [
                   getPills(80),
@@ -133,7 +133,7 @@ class StoreDetailsLoading extends StatelessWidget {
 
   getPills(width) {
     return Padding(
-      padding: EdgeInsets.only(left: 10, bottom: 8),
+      padding: EdgeInsets.only(left: horizontalValue(10), bottom: verticalValue(8)),
       child: Container(
         width: sizes.widthRatio * width,
         height: sizes.heightRatio * 30,

@@ -16,8 +16,11 @@ class UploadedReceiptList extends StatelessWidget {
     return Obx(() => Container(
           width: sizes.width,
           height: sizes.heightRatio * 70,
-          padding: EdgeInsets.only(left: 20, right: 20, top: 14),
-          color: receiptImages.isNotEmpty? colors.white : colors.transparent,
+          padding: EdgeInsets.only(
+              left: horizontalValue(20),
+              right: horizontalValue(20),
+              top: verticalValue(14)),
+          color: receiptImages.isNotEmpty ? colors.white : colors.transparent,
           child: receiptImages.isNotEmpty
               ? ListView.separated(
                   scrollDirection: Axis.horizontal,
@@ -47,7 +50,10 @@ class UploadedReceiptList extends StatelessWidget {
                         ],
                       ),
                     );
-                  }, separatorBuilder: (BuildContext context, int index) { return horizontalSpacer(18); },
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return horizontalSpacer(18);
+                  },
                 )
               : SizedBox.shrink(),
         ));

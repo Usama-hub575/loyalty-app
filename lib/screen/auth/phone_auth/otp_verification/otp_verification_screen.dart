@@ -6,11 +6,12 @@ class OTPVerificationScreen extends GetView<OTPVerificationController> {
   Widget build(BuildContext context) {
     controller.initialize();
     return GestureDetector(
-      onTap: ()=> FocusManager.instance.primaryFocus?.unfocus(),
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: colors.primaryLight,
         body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: EdgeInsets.symmetric(
+              horizontal: horizontalValue(20), vertical: verticalValue(20)),
           height: sizes.height,
           width: sizes.width,
           child: Column(

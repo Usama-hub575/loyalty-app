@@ -8,74 +8,66 @@ class ReviewLoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return getLoader();
-    // return getShimmerLoader();
+    return getShimmerLoader();
   }
 
   Widget getShimmerLoader() {
-    return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-      child: Shimmer.fromColors(
-        baseColor: colors.primaryDark.withOpacity(0.2),
-        highlightColor: colors.primaryDark.withOpacity(0.5),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            getMapCard(
-              assets.icLocationFilled,
-            ),
-            verticalSpacer(20),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              child: Row(
-                children: [
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                ],
-              ),
-            ),
-            getMapCard(
-              assets.icCategories,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0, left: 10),
-              child: Wrap(
-                children: [
-                  getPills(80),
-                  getPills(90),
-                  getPills(80),
-                  getPills(100),
-                  getPills(110),
-                  getPills(100),
-                  getPills(70),
-                  getPills(90),
-                  getPills(100),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              child: Row(
-                children: [
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                ],
-              ),
-            ),
-            getMapCard(
-              assets.icMedal,
-            ),
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        getMapCard(
+          assets.icLocationFilled,
         ),
-      ),
+        verticalSpacer(20),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          physics: BouncingScrollPhysics(),
+          child: Row(
+            children: [
+              getStoreCard(),
+              getStoreCard(),
+              getStoreCard(),
+              getStoreCard(),
+              getStoreCard(),
+            ],
+          ),
+        ),
+        getMapCard(
+          assets.icCategories,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 10.0, left: 10),
+          child: Wrap(
+            children: [
+              getPills(80),
+              getPills(90),
+              getPills(80),
+              getPills(100),
+              getPills(110),
+              getPills(100),
+              getPills(70),
+              getPills(90),
+              getPills(100),
+            ],
+          ),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          physics: BouncingScrollPhysics(),
+          child: Row(
+            children: [
+              getStoreCard(),
+              getStoreCard(),
+              getStoreCard(),
+              getStoreCard(),
+              getStoreCard(),
+            ],
+          ),
+        ),
+        getMapCard(
+          assets.icMedal,
+        ),
+      ],
     );
   }
 

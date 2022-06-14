@@ -12,6 +12,9 @@ class AllReviewsController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    change(null, status: RxStatus.loading());
+    Future.delayed(Duration(seconds: 2))
+        .then((value) => {change(null, status: RxStatus.success())});
     store = Get.arguments[0];
     print(store);
   }

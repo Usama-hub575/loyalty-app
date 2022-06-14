@@ -12,27 +12,27 @@ class SeeAllController extends GetxController
   void onInit() {
     super.onInit();
     change(null, status: RxStatus.loading());
-    allStoresUseCase.getAllStores().then(
-        (value) => {
-              if (value.isRight())
-                {
-                  if (allStoresUseCase.data.isNotEmpty)
-                    {
-                      change(null, status: RxStatus.success()),
-                    }
-                  else
-                    {
-                      change(null, status: RxStatus.empty()),
-                    }
-                }
-              else
-                {
-                  change(null, status: RxStatus.error()),
-                },
-            }, onError: (error) {
-      change(null, status: RxStatus.error());
-    });
-    pillsList = Get.arguments;
+    // allStoresUseCase.getAllStores().then(
+    //     (value) => {
+    //           if (value.isRight())
+    //             {
+    //               if (allStoresUseCase.data.isNotEmpty)
+    //                 {
+    //                   change(null, status: RxStatus.success()),
+    //                 }
+    //               else
+    //                 {
+    //                   change(null, status: RxStatus.empty()),
+    //                 }
+    //             }
+    //           else
+    //             {
+    //               change(null, status: RxStatus.error()),
+    //             },
+    //         }, onError: (error) {
+    //   change(null, status: RxStatus.error());
+    // });
+    // pillsList = Get.arguments;
   }
 
   onBack() {

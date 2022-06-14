@@ -34,7 +34,7 @@ class OnboardingPage extends GetView<OnboardingController> {
                       )),
                   Spacer(),
                   Obx(() => PageIndicator(controller.currentPage.value)),
-                  verticalSpacer(30),
+                  verticalSpacer(26),
                   Obx(
                     () => LongButton(
                       controller.buttonTitle.value,

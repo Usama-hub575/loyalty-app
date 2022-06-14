@@ -14,7 +14,7 @@ class HomeLoadingScreen extends StatelessWidget {
 
   Widget getShimmerLoader() {
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -23,7 +23,7 @@ class HomeLoadingScreen extends StatelessWidget {
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             child: Row(
               children: [
                 getStoreCard(),
@@ -50,18 +50,18 @@ class HomeLoadingScreen extends StatelessWidget {
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10.0, left: 10),
+                  padding:  EdgeInsets.only(top: verticalValue(10)),
                   child: Wrap(
                     children: [
                       getPills(80),
+                      getPills(100),
+                      getPills(75),
+                      getPills(137),
                       getPills(90),
-                      getPills(80),
-                      getPills(100),
-                      getPills(110),
-                      getPills(100),
-                      getPills(70),
                       getPills(90),
-                      getPills(100),
+                      getPills(65),
+                      getPills(75),
+                      getPills(140),
                     ],
                   ),
                 ),
@@ -70,7 +70,7 @@ class HomeLoadingScreen extends StatelessWidget {
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             child: Row(
               children: [
                 getStoreCard(),

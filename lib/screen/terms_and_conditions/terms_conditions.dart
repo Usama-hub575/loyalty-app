@@ -15,7 +15,7 @@ class TermsAndConditions extends GetView<TermsAndConditionsController> {
           children: [
             verticalSpacer(40),
             Padding(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding:  EdgeInsets.only(bottom: verticalValue(10)),
               child: AppBarWidget(
                 title: 'Terms & Condition',
                 onBack: controller.onBack,

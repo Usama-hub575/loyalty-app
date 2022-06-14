@@ -33,7 +33,7 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
     return ListView.builder(
       shrinkWrap: true,
       physics: BouncingScrollPhysics(),
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: verticalValue(10)),
       itemBuilder: (context, index) {
         final StoreDetailsDataType type = controller.useCase.data[index].type;
         switch (type) {

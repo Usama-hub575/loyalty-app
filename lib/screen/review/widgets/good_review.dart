@@ -34,7 +34,7 @@ class GoodReview extends StatelessWidget {
                 children: [
                   WidgetSpan(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 4.0, top: 4),
+                      padding:  EdgeInsets.only(left: horizontalValue(4), top: verticalValue(4)),
                       child: SvgPicture.asset(assets.icCoin),
                     ),
                     alignment: PlaceholderAlignment.middle,

@@ -15,7 +15,7 @@ class StoreCard extends StatelessWidget {
     return Container(
       width: sizes.width,
       height: sizes.heightRatio * 240,
-      padding: EdgeInsets.symmetric(vertical: 20),
+      padding: EdgeInsets.symmetric(vertical: verticalValue(20)),
       child: ListView.separated(
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
@@ -27,7 +27,7 @@ class StoreCard extends StatelessWidget {
             : getSeeAllButton(seeAllStore),
         separatorBuilder: (BuildContext context, int index) =>
             horizontalSpacer(0),
-        itemCount: data.list.length < 10? data.list.length:11,
+        itemCount: data.list.length < 10 ? data.list.length : 11,
       ),
     );
   }
@@ -37,8 +37,10 @@ class StoreCard extends StatelessWidget {
       onTap: seeAllStore,
       child: Container(
         width: sizes.widthRatio * 180,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-        margin: EdgeInsets.symmetric(horizontal: 38, vertical: 84),
+        padding: EdgeInsets.symmetric(
+            horizontal: horizontalValue(20), vertical: verticalValue(14)),
+        margin: EdgeInsets.symmetric(
+            horizontal: horizontalValue(38), vertical: horizontalValue(84)),
         decoration: BoxDecoration(
           color: colors.accentPrimary,
           borderRadius: BorderRadius.circular(8),

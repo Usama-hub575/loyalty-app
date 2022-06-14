@@ -18,7 +18,7 @@ class FeedBackField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 50,
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: horizontalValue(20)),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),

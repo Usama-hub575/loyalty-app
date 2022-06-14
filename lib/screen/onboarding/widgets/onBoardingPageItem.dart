@@ -8,6 +8,7 @@ class OnboardingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       key: key,
       child: Image.asset(
         image,

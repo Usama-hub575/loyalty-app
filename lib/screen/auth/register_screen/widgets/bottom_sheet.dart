@@ -13,7 +13,7 @@ void bottomSheetWidget(
       builder: (BuildContext context) {
         return Container(
             height: 220,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: EdgeInsets.symmetric(horizontal: horizontalValue(20), vertical: verticalValue(20)),
             color: colors.primaryLight,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

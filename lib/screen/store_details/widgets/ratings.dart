@@ -13,7 +13,7 @@ class Ratings extends StatelessWidget {
       children: [
         verticalSpacer(20),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding:  EdgeInsets.symmetric(horizontal: horizontalValue(20)),
           child: HeadingRegularText('Rating and reviews'),
         ),
         verticalSpacer(16),

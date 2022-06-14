@@ -31,15 +31,18 @@ class AllStoresLoadingScreen extends StatelessWidget {
           ),
           _pillsList(),
           verticalSpacer(21),
-          ListView.separated(
-            shrinkWrap: true,
-            itemBuilder: (_, index) {
-              return getStoreCard();
-            },
-            separatorBuilder: (_, index) {
-              return verticalSpacer(10);
-            },
-            itemCount: 3,
+          Expanded(
+            child: ListView.separated(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (_, index) {
+                return getStoreCard();
+              },
+              separatorBuilder: (_, index) {
+                return verticalSpacer(10);
+              },
+              itemCount: 3,
+            ),
           ),
         ],
       ),
@@ -79,7 +82,6 @@ class AllStoresLoadingScreen extends StatelessWidget {
     );
   }
 
-
   Widget getStoreCard() {
     return Container(
       padding: EdgeInsets.only(
@@ -92,53 +94,65 @@ class AllStoresLoadingScreen extends StatelessWidget {
           8,
         ),
       ),
-      child: Card(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: sizes.heightRatio * 172,
-              decoration: BoxDecoration(
-                color: colors.primaryDark.withOpacity(
-                  0.1,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: sizes.heightRatio * 172,
+            decoration: BoxDecoration(
+              color: colors.primaryDark.withOpacity(
+                0.1,
+              ),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(
+                  8,
                 ),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(
-                    8,
-                  ),
-                  topRight: Radius.circular(
-                    8,
-                  ),
+                topRight: Radius.circular(
+                  8,
                 ),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: colors.white,
+          ),
+          Container(
+            width: sizes.width,
+            decoration: BoxDecoration(
+              color: colors.white,
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(
+                  8,
+                ),
               ),
-              child: Column(
-                children: [
-                  verticalSpacer(
-                    18,
-                  ),
-                  Container(
-                    height: sizes.heightRatio * 10,
-                    width: sizes.widthRatio * 234.83,
-                    decoration: BoxDecoration(
-                      color: colors.primaryDark.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(
-                        2,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                verticalSpacer(
+                  18,
+                ),
+                Row(
+                  children: [
+                    horizontalSpacer(
+                      11.97,
+                    ),
+                    Container(
+                      height: sizes.heightRatio * 10,
+                      width: sizes.widthRatio * 234.83,
+                      decoration: BoxDecoration(
+                        color: colors.primaryDark.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(
+                          2,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+                verticalSpacer(
+                  18,
+                ),
+              ],
             ),
-            verticalSpacer(
-              18,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

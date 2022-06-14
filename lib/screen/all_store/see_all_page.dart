@@ -7,8 +7,10 @@ class SeeAllStoresPage extends GetView<SeeAllController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colors.primaryLight,
-      body: controller.obx((state) => getBody(context),
-          onLoading: AllStoresLoadingScreen()),
+      body: controller.obx(
+        (state) => getBody(context),
+        onLoading: AllStoresLoadingScreen(),
+      ),
     );
   }
 
@@ -22,7 +24,7 @@ class SeeAllStoresPage extends GetView<SeeAllController> {
           verticalSpacer(30),
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: horizontalValue(20.0), vertical: verticalValue(10)),
+                horizontal: horizontalValue(20.0), vertical: 10),
             child: AppBarWidget(
               title: 'Stores',
               onBack: controller.onBack,
@@ -45,7 +47,7 @@ class SeeAllStoresPage extends GetView<SeeAllController> {
               ),
               separatorBuilder: (context, index) => verticalSpacer(20),
               itemCount: controller.allStoresUseCase.data.length,
-              padding: EdgeInsets.only(bottom: verticalValue(20)),
+              padding: EdgeInsets.only(bottom: 20),
             ),
           ),
         ],

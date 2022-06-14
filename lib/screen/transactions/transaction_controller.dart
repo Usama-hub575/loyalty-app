@@ -18,7 +18,6 @@ class TransactionController extends GetxController
     Category(4, 'Carrefour', 0, false.obs),
     Category(5, 'Euro store', 0, false.obs),
     Category(6, 'Emporium', 0, false.obs),
-    Category(7, 'Carrefour', 0, false.obs),
   ];
 
   List<Transaction> allTransactions = [

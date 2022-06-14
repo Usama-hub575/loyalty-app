@@ -1,5 +1,8 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import 'widgets/filter_pills_transaction.dart';
 
 class TransactionPage extends GetView<TransactionController> {
   @override
@@ -54,12 +57,17 @@ class TransactionPage extends GetView<TransactionController> {
         body: controller.obx(
           (state) => Column(
             children: [
-              FilterPills(
-                dataList: controller.pillsList,
-                backGroundColor: colors.primaryLight,
-                pillsCount: 6,
-                size: 1.7,
-                onTap: controller.onPillsTap,
+              Container(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: FilterPillsTransaction(
+                    dataList: controller.pillsList,
+                    backGroundColor: colors.primaryLight,
+                    pillsCount: 6,
+                    size: 1.7,
+                    onTap: controller.onPillsTap,
+                  ),
+                ),
               ),
               Expanded(
                 child: TabBarView(

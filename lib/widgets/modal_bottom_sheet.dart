@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:circular_countdown/circular_countdown.dart';
 
@@ -16,44 +17,55 @@ void modalBottomSheet(context, state) {
       ),
       backgroundColor: colors.transparent,
       builder: (BuildContext context) {
-        return Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            decoration: BoxDecoration(
-              color: colors.white,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(20),
-                topLeft: Radius.circular(20),
+        return ClipRRect(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+            topLeft: Radius.circular(20),
+          ),
+          child: Scaffold(
+            body: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              decoration: BoxDecoration(
+                color: colors.white,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(20),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Center(
+                  //   child: HorizontalDivider(
+                  //     width: 60.0,
+                  //     height: 2.0,
+                  //     color: colors.primaryDark,
+                  //     borderRadius: 2.0,
+                  //   ),
+                  // ),
+                  verticalSpacer(20),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      getTitle(),
+                      Spacer(),
+                      getTimer(),
+                    ],
+                  ),
+                  verticalSpacer(16),
+                  getDescription(),
+                  verticalSpacer(20),
+                  getQrCode(),
+                  getInviteCodeBox(
+                    context: context,
+                  ),
+                  Spacer(),
+                  getCopyButton(null),
+                ],
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Center(
-                //   child: HorizontalDivider(
-                //     width: 60.0,
-                //     height: 2.0,
-                //     color: colors.primaryDark,
-                //     borderRadius: 2.0,
-                //   ),
-                // ),
-                verticalSpacer(20),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    getTitle(),
-                    Spacer(),
-                    getTimer(),
-                  ],
-                ),
-                verticalSpacer(16),
-                getDescription(),
-                verticalSpacer(20),
-                getQrCode(),
-                gatInviteCodeBox(),
-                Spacer(),
-                getCopyButton(null),
-              ],
-            ));
+          ),
+        );
       });
 }
 
@@ -121,32 +133,59 @@ Widget getCopyButton(onPressed) {
   );
 }
 
-Widget gatInviteCodeBox() {
-  return Container(
-    width: sizes.width,
-    padding: EdgeInsets.all(20),
-    margin: EdgeInsets.all(20),
-    decoration: BoxDecoration(
-      color: colors.primaryLight,
-      borderRadius: BorderRadius.circular(8),
+Widget getInviteCodeBox({
+  @required BuildContext context,
+}) {
+  return GestureDetector(
+    onTap: () => copyToClipboard(
+      context: context,
+      value: "5A3F83C",
     ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          child: Text(
-            '5A3F83C',
-            style: textStyles.headingLarge
-                .copyWith(letterSpacing: 8, fontWeight: FontWeight.w800),
+    child: Container(
+      width: sizes.width,
+      padding: EdgeInsets.all(20),
+      margin: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: colors.primaryLight,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            child: Text(
+              '5A3F83C',
+              style: textStyles.headingLarge
+                  .copyWith(letterSpacing: 8, fontWeight: FontWeight.w800),
+            ),
           ),
-        ),
-        verticalSpacer(8),
-        Text(
-          'Tap to copy to clipboard',
-          style: textStyles.bodyExtraSmall,
-        ),
-      ],
+          verticalSpacer(8),
+          Text(
+            'Tap to copy to clipboard',
+            style: textStyles.bodyExtraSmall,
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Future<void> copyToClipboard(
+    {@required BuildContext context, @required String value}) async {
+  await Clipboard.setData(
+    ClipboardData(
+      text: value,
+    ),
+  );
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        'Copied to clipboard',
+        style: textStyles.bodyRegular,
+        textAlign: TextAlign.center,
+      ),
+      backgroundColor: colors.success,
     ),
   );
 }

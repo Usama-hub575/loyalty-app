@@ -142,6 +142,7 @@ class LocationController extends GetxController with StateMixin<LocationPage> {
       either.fold(
         (left) => {
           print(left),
+          showToast(message: left.title),
           isLoading.value = false,
         },
         (right) => {

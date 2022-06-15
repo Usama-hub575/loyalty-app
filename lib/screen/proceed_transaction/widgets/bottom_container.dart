@@ -16,7 +16,7 @@ class BottomContainer extends StatelessWidget {
     return Container(
       width: sizes.width,
       height: sizes.heightRatio * 70,
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: horizontalValue(20), vertical: verticalValue(10)),
       color: colors.white,
       child: Row(
         children: [

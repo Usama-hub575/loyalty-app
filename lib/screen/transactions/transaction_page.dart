@@ -1,5 +1,8 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import 'widgets/filter_pills_transaction.dart';
 
 class TransactionPage extends GetView<TransactionController> {
   @override
@@ -19,11 +22,31 @@ class TransactionPage extends GetView<TransactionController> {
           ),
           bottom: TabBar(
             indicatorColor: colors.accentPrimary,
+            labelColor: colors.primaryDark,
+            unselectedLabelColor: colors.primaryDark.withOpacity(0.5),
             labelPadding: EdgeInsets.symmetric(vertical: 10),
             tabs: [
-              BodyRegularText('All'),
-              BodyRegularText('Approved'),
-              BodyRegularText('Pending'),
+              Text(
+                'All',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Manrope",
+                    fontWeight: FontWeight.w500),
+              ),
+              Text(
+                'Approved',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Manrope",
+                    fontWeight: FontWeight.w500),
+              ),
+              Text(
+                'Pending',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Manrope",
+                    fontWeight: FontWeight.w500),
+              ),
             ],
           ),
           title: HeadingRegularText(
@@ -31,25 +54,33 @@ class TransactionPage extends GetView<TransactionController> {
           ),
           centerTitle: true,
         ),
-        body: Column(
-          children: [
-            FilterPills(
-              dataList: controller.pillsList,
-              backGroundColor: colors.primaryLight,
-              pillsCount: 6,
-              size: 1.7,
-              onTap: controller.onPillsTap,
-            ),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  getAllTransactions(),
-                  getApprovedTransactions(),
-                  getPendingTransactions(),
-                ],
+        body: controller.obx(
+          (state) => Column(
+            children: [
+              Container(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: FilterPillsTransaction(
+                    dataList: controller.pillsList,
+                    backGroundColor: colors.primaryLight,
+                    pillsCount: 6,
+                    size: 1.7,
+                    onTap: controller.onPillsTap,
+                  ),
+                ),
               ),
-            ),
-          ],
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    getAllTransactions(),
+                    getApprovedTransactions(),
+                    getPendingTransactions(),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          onLoading: ShimmerEffectTransactionPage(),
         ),
       ),
     );

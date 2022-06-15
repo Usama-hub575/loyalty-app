@@ -1,156 +1,202 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shimmer/shimmer.dart';
 
 class ReviewLoadingScreen extends StatelessWidget {
   const ReviewLoadingScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return getLoader();
-    // return getShimmerLoader();
+    return getShimmerLoader();
   }
 
   Widget getShimmerLoader() {
-    return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-      child: Shimmer.fromColors(
-        baseColor: colors.primaryDark.withOpacity(0.2),
-        highlightColor: colors.primaryDark.withOpacity(0.5),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        verticalSpacer(20),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            getMapCard(
-              assets.icLocationFilled,
-            ),
-            verticalSpacer(20),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              child: Row(
-                children: [
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                ],
-              ),
-            ),
-            getMapCard(
-              assets.icCategories,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0, left: 10),
-              child: Wrap(
-                children: [
-                  getPills(80),
-                  getPills(90),
-                  getPills(80),
-                  getPills(100),
-                  getPills(110),
-                  getPills(100),
-                  getPills(70),
-                  getPills(90),
-                  getPills(100),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              child: Row(
-                children: [
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                  getStoreCard(),
-                ],
-              ),
-            ),
-            getMapCard(
-              assets.icMedal,
-            ),
+            horizontalSpacer(20),
+            getRating(),
+            Spacer(),
+            getRatingBars(),
+            horizontalSpacer(30),
           ],
         ),
-      ),
-    );
-  }
-
-  getMapCard(String icon) {
-    return Container(
-      width: sizes.width,
-      padding: EdgeInsets.all(20),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              verticalSpacer(40),
-              Container(
-                width: sizes.width * 0.60,
-                height: 10,
-                color: colors.primaryDark,
-              ),
-              verticalSpacer(6),
-              Container(
-                width: sizes.width * 0.30,
-                height: 10,
-                color: colors.primaryDark,
-              ),
-            ],
-          ),
-          Spacer(),
-          SvgPicture.asset(icon),
-        ],
-      ),
-    );
-  }
-
-  getStoreCard() {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: sizes.heightRatio * 120,
-            width: sizes.widthRatio * 180,
-            color: colors.primaryDark,
-          ),
-          verticalSpacer(20),
-          Container(
-            height: sizes.heightRatio * 10,
-            width: sizes.widthRatio * 120,
-            color: colors.primaryDark,
-          )
-        ],
-      ),
-    );
-  }
-
-  getPills(width) {
-    return Padding(
-      padding: EdgeInsets.only(left: 10, bottom: 8),
-      child: Container(
-        width: sizes.widthRatio * width,
-        height: sizes.heightRatio * 30,
-        decoration: BoxDecoration(
-          color: colors.primaryDark,
-          borderRadius: BorderRadius.circular(50),
+        verticalSpacer(
+          18,
         ),
-      ),
+        Divider(
+          color: colors.primaryDark.withOpacity(
+            0.1,
+          ),
+        ),
+        Expanded(
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 4,
+            itemBuilder: (_, index) {
+              return Container(
+                padding: EdgeInsets.fromLTRB(
+                  horizontalValue(20),
+                  verticalValue(
+                    18,
+                  ),
+                  horizontalValue(20),
+                  verticalValue(
+                    34,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: verticalValue(
+                            15,
+                          ),
+                          backgroundColor: colors.primaryDark.withOpacity(
+                            0.1,
+                          ),
+                        ),
+                        horizontalSpacer(
+                          15,
+                        ),
+                        Container(
+                          height: sizes.heightRatio * 10,
+                          width: sizes.widthRatio * 123,
+                          decoration: BoxDecoration(
+                            color: colors.primaryDark.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(
+                              2,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    verticalSpacer(
+                      18,
+                    ),
+                    Container(
+                      height: sizes.heightRatio * 10,
+                      width: sizes.widthRatio * 123,
+                      decoration: BoxDecoration(
+                        color: colors.primaryDark.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(
+                          2,
+                        ),
+                      ),
+                    ),
+                    verticalSpacer(
+                      24,
+                    ),
+                    Container(
+                      height: sizes.heightRatio * 10,
+                      decoration: BoxDecoration(
+                        color: colors.primaryDark.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(
+                          2,
+                        ),
+                      ),
+                    ),
+                    verticalSpacer(
+                      11,
+                    ),
+                    Container(
+                      height: sizes.heightRatio * 10,
+                      width: sizes.widthRatio * 136,
+                      decoration: BoxDecoration(
+                        color: colors.primaryDark.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(
+                          2,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 
-  Widget getLoader() {
-    return Center(
-      child: CircularProgressIndicator(
-        color: colors.accentPrimary,
-        strokeWidth: 3,
-      ),
+  Widget getRating() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: sizes.heightRatio * 10,
+          width: sizes.widthRatio * 70,
+          decoration: BoxDecoration(
+            color: colors.primaryDark.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(
+              2,
+            ),
+          ),
+        ),
+        verticalSpacer(
+          10,
+        ),
+        RatingStar(
+          5,
+          fillColor: colors.primaryDark.withOpacity(0.3,),
+          itemSize: 16,
+          itemPadding: 0.5,
+        ),
+        verticalSpacer(
+          5,
+        ),
+        Container(
+          height: sizes.heightRatio * 10,
+          width: sizes.widthRatio * 70,
+          decoration: BoxDecoration(
+            color: colors.primaryDark.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(
+              2,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget getRatingBars() {
+    return Column(
+      children: [
+        ratingBarItem(90),
+        verticalSpacer(10),
+        ratingBarItem(30),
+        verticalSpacer(10),
+        ratingBarItem(50),
+        verticalSpacer(10),
+        ratingBarItem(40),
+        verticalSpacer(10),
+        ratingBarItem(20),
+      ],
+    );
+  }
+
+  Widget ratingBarItem(int rating) {
+    return Row(
+      children: [
+        horizontalSpacer(6),
+        Container(
+          width: sizes.width * 0.46,
+          child: ProgressBar(
+            max: 100.0,
+            current: rating.toDouble(),
+            color: colors.primaryDark.withOpacity(
+              0.1,
+            ),
+          ),
+        )
+      ],
     );
   }
 }

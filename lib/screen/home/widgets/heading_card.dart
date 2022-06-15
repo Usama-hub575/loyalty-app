@@ -12,12 +12,16 @@ class HeadingCard extends StatelessWidget {
     return Container(
       width: sizes.width,
       color: colors.accentPrimary,
-      padding: EdgeInsets.only(top: 5, right: 5),
+      padding:
+          EdgeInsets.only(top: verticalValue(5), right: horizontalValue(5)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(left: 20, bottom: 20, top: 10),
+            padding: EdgeInsets.only(
+                left: horizontalValue(20),
+                bottom: verticalValue(20),
+                top: verticalValue(10)),
             width: sizes.width * 0.7,
             child: HeadingLargeText(
               title,

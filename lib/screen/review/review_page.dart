@@ -35,6 +35,7 @@ class ReviewScreen extends GetView<ReviewController> {
                   emptyColor: colors.white,
                   itemPadding: 1,
                   onUpdate: (rating) => controller.setRating(rating),
+                  fromReviewPage: true,
                 ),
                 verticalSpacer(20),
                 Obx(

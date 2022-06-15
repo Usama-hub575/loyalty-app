@@ -12,7 +12,8 @@ class SettingsPage extends GetView<SettingsController> {
           controller.component.getTopBackGround(),
           Container(
             height: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: horizontalValue(20.0), vertical: 20),
+            padding: EdgeInsets.symmetric(
+                horizontal: horizontalValue(20.0), vertical: verticalValue(20)),
             child: Column(
               children: [
                 verticalSpacer(30),
@@ -20,20 +21,16 @@ class SettingsPage extends GetView<SettingsController> {
                 verticalSpacer(80),
                 controller.component.getStatsBox(),
                 verticalSpacer(30),
-                controller.component
-                    .getSettingItem('assets', 'Edit Profile'),
+                controller.component.getSettingItem('assets', 'Edit Profile'),
+                verticalSpacer(20),
+                controller.component.getSettingItem(assets, 'How to use'),
                 verticalSpacer(20),
                 controller.component
-                    .getSettingItem(assets, 'How to use'),
+                    .getSettingItem(assets, 'Transaction History'),
                 verticalSpacer(20),
-                controller.component.getSettingItem(
-                    assets, 'Transaction History'),
+                controller.component.getSettingItem(assets, 'Invite friend'),
                 verticalSpacer(20),
-                controller.component
-                    .getSettingItem(assets, 'Invite friend'),
-                verticalSpacer(20),
-                controller.component
-                    .getSettingItem(assets, 'About app'),
+                controller.component.getSettingItem(assets, 'About app'),
                 verticalSpacer(20),
                 controller.component
                     .getSettingItem(assets, 'Terms & Conditions'),

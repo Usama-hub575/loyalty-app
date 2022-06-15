@@ -17,13 +17,14 @@ class HomePage extends GetView<HomePageController> {
       ),
       backgroundColor: colors.primaryLight,
       appBar: HomeAppBar(
-        controller.openNotificationsPage,
+       // controller.openNotificationsPage,
+        controller.openAllTransactionPage,
         () => _scaffoldKey.currentState.openDrawer(),
         controller.openSearchPage,
       ),
       body: controller.obx(
-        // (state) => getBody(context),
-        (state) => HomeLoadingScreen(),
+         (state) => getBody(context),
+         // (state) => HomeLoadingScreen(),
         onLoading: HomeLoadingScreen(),
       ),
       floatingActionButton: FloatingAction(

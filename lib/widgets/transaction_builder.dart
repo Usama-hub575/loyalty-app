@@ -13,7 +13,6 @@ class TransactionBuilder extends StatelessWidget {
       physics: BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         return getTransactionItem(transaction[index]);
-
       },
       itemCount: transaction.length,
      padding: EdgeInsets.symmetric(horizontal: 20),

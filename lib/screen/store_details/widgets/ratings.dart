@@ -13,7 +13,7 @@ class Ratings extends StatelessWidget {
       children: [
         verticalSpacer(20),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          padding:  EdgeInsets.symmetric(horizontal: horizontalValue(20)),
           child: HeadingRegularText('Rating and reviews'),
         ),
         verticalSpacer(16),
@@ -39,7 +39,10 @@ class Ratings extends StatelessWidget {
           style: textStyles.headingRegular
               .copyWith(fontSize: 45, fontWeight: FontWeight.w500),
         ),
-        RatingStar(data.rating),
+        RatingStar(
+          data.rating,
+          emptyColor: colors.primaryDark,
+        ),
         BodySmallText(data.numberOfReviews.toString()),
       ],
     );

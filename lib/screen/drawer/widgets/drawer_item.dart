@@ -13,7 +13,7 @@ class CustomDrawerItem extends StatelessWidget {
       height: sizes.heightRatio * 50,
       color: colors.white,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal:20),
+        padding: EdgeInsets.symmetric(horizontal:horizontalValue(20)),
         child: Row(
           children: [
             SvgPicture.asset(icon),

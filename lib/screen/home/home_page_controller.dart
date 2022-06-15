@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:aactivpay/export.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class HomePageController extends GetxController with StateMixin<HomePage> {
   final HomeUseCase useCase;
@@ -32,22 +31,25 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
     var pillsIndex;
     await useCase.getHomeData().then(
         (value) => {
-              if (value.isRight())
-                {
-                  if (useCase.data.isNotEmpty)
-                    {
-                      pillsIndex = useCase.data.indexWhere(
-                          (element) => element.type == HomeDataType.CATEGORIES),
-                      data = useCase.getData()[pillsIndex].data,
-                      pillsList = data?.categoryList,
-                      userAddress.value = useCase.userAddress,
-                      change(null, status: RxStatus.success())
-                    }
-                  else
-                    change(null, status: RxStatus.empty()),
-                },
+              value.fold(
+                  (l) => showToast(
+                        message: l.title,
+                      ),
+                  (r) => {
+                        if (useCase.data.isNotEmpty)
+                          {
+                            pillsIndex = useCase.data.indexWhere((element) =>
+                                element.type == HomeDataType.CATEGORIES),
+                            data = useCase.getData()[pillsIndex].data,
+                            pillsList = data?.categoryList,
+                            userAddress.value = useCase.userAddress,
+                            change(null, status: RxStatus.success())
+                          }
+                        else
+                          change(null, status: RxStatus.empty()),
+                      })
             }, onError: (error) {
-      showToast(error.toString());
+      showToast(message: error.toString());
       change(null, status: RxStatus.error(error.toString()));
     });
     downloadData();
@@ -63,17 +65,6 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
 
   void updatePage({int index}) {
     currentPage.value = index;
-  }
-
-  void showToast(String errorMessage) {
-    Fluttertoast.showToast(
-        msg: errorMessage,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: colors.error,
-        textColor: colors.white,
-        fontSize: 16.0);
   }
 
   void openBottomSheet(BuildContext context, scaffoldState) {
@@ -109,8 +100,8 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
   }
 
   void openNotificationsPage() {
-    // AppRoutes.appRoutes(RouteNames.notificationsPage);
-    AppRoutes.appRoutes(RouteNames.seeAllTransaction);
+    AppRoutes.appRoutes(RouteNames.notificationsPage);
+    // AppRoutes.appRoutes(RouteNames.seeAllTransaction);
   }
 
   void openProfilePage() {
@@ -128,8 +119,8 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
 
   void getFilteredStores() async {
     change(null, status: RxStatus.loading());
-    final response  = await useCase.getFilteredStore(categoriesIds);
-    response.fold((l) => showToast(l.toString()), (r) => response);
+    final response = await useCase.getFilteredStore(categoriesIds);
+    response.fold((l) => showToast(message: l.toString()), (r) => response);
     change(null, status: RxStatus.success());
   }
 

@@ -6,19 +6,21 @@ class Notifications extends GetView<NotificationsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: controller.obx((state) => getBody(context),
-          onLoading: NotificationsLoadingScreen()),
+      body: controller.obx(
+        (state) => getBody(context),
+        onLoading: NotificationShimmerEffect(
+          onBackButtonTap: controller.onBack,
+        ),
+      ),
     );
-
-    //throw UnimplementedError();
   }
 
-  getBody(BuildContext context) {
+  Widget getBody(BuildContext context) {
     return Column(
       children: [
         verticalSpacer(30),
         Padding(
-          padding:  EdgeInsets.symmetric(horizontal: horizontalValue(20.0)),
+          padding: EdgeInsets.symmetric(horizontal: horizontalValue(20.0)),
           child: AppBarWidget(
             title: 'Notifications',
             onBack: controller.onBack,
@@ -40,11 +42,11 @@ class Notifications extends GetView<NotificationsController> {
     );
   }
 
-  getAllNotifications(String notificationsList) {
+  Widget getAllNotifications(String notificationsList) {
     return Container(
       width: sizes.width,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding:  EdgeInsets.symmetric(horizontal: horizontalValue(10), vertical: verticalValue(10)),
+      margin:  EdgeInsets.symmetric(horizontal: horizontalValue(20)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: colors.white,
@@ -62,5 +64,4 @@ class Notifications extends GetView<NotificationsController> {
       ),
     );
   }
-
 }

@@ -1,6 +1,5 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class RegisterController extends GetxController
     with StateMixin<RegisterScreen> {
@@ -52,18 +51,6 @@ class RegisterController extends GetxController
     Get.back();
   }
 
-  void showToast(String errorMessage){
-    Fluttertoast.showToast(
-        msg: errorMessage,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: colors.error,
-        textColor: colors.white,
-        fontSize: 16.0
-    );
-  }
-
   onTextChange() {
     if (userNameController.value.text.trim().isNotEmpty &&
         userNameController.value.text != name && emailController.value.text != email) {
@@ -102,7 +89,7 @@ class RegisterController extends GetxController
       either.fold(
         (l) => {
           print(l),
-          showToast(l.title.toString()),
+          showToast(message: l.title.toString()),
           isLoading.value = false,
         isTextFieldEnable.value = true
         },

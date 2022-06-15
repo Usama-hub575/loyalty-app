@@ -1,5 +1,4 @@
 import 'package:aactivpay/export.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class StoreDetailsController extends GetxController
@@ -17,19 +16,25 @@ class StoreDetailsController extends GetxController
     storeId = Get.arguments[0];
     storeName = Get.arguments[1];
     change(null, status: RxStatus.loading());
-    await useCase.getStoreDetails(storeId).then((value) => {
-          if (value.isRight())
-            {
-              change(null, status: RxStatus.success()),
-            }
-          else
-            {
-              change(null, status: RxStatus.error()),
-              showToast(value.toString()),
-            }
-        });
+    await useCase.getStoreDetails(storeId).then(
+        (value) => {
+              value.fold(
+                  (l) => showToast(message: l.title),
+                  (r) => {
+                        if (value.isRight())
+                          {
+                            change(null, status: RxStatus.success()),
+                          }
+                        else
+                          {
+                            change(null, status: RxStatus.error()),
+                            showToast(message: value.toString()),
+                          }
+                      }),
+            }, onError: (error) {
+      showToast(message: error.toString());
+    });
   }
-
 
   List<Transaction> recentTransactions = [
     Transaction('21/01/2022', true, 0, 0),
@@ -39,18 +44,6 @@ class StoreDetailsController extends GetxController
 
   void onBack() {
     Get.back();
-  }
-
-  void showToast(String errorMessage){
-    Fluttertoast.showToast(
-        msg: errorMessage,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: colors.error,
-        textColor: colors.white,
-        fontSize: 16.0
-    );
   }
 
   void openReviewPage(int branchId) {

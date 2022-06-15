@@ -50,7 +50,7 @@ class InviteCard extends StatelessWidget {
 
   Widget gatInviteCodeBox({@required BuildContext context}) {
     return GestureDetector(
-      onTap: () => _copyToClipboard(
+      onTap: () => copyToClipboard(
         value: 'getapp.aactivpay.com',
         context: context,
       ),
@@ -87,24 +87,5 @@ class InviteCard extends StatelessWidget {
 
   Widget getInviteButton() {
     return LongButton('Invite');
-  }
-
-  Future<void> _copyToClipboard(
-      {@required BuildContext context, @required String value}) async {
-    await Clipboard.setData(
-      ClipboardData(
-        text: value,
-      ),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'Copied to clipboard',
-          style: textStyles.bodyRegular,
-          textAlign: TextAlign.center,
-        ),
-        backgroundColor: colors.success,
-      ),
-    );
   }
 }

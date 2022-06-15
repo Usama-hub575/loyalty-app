@@ -7,8 +7,9 @@ class RatingStar extends StatelessWidget {
   final double rating, itemPadding, itemSize;
   final Function onUpdate;
   final Color fillColor, emptyColor, halfFillColor;
+  bool fromReviewPage;
 
-  const RatingStar(
+  RatingStar(
     this.rating, {
     Key key,
     this.itemPadding = 0,
@@ -17,6 +18,7 @@ class RatingStar extends StatelessWidget {
     this.emptyColor,
     this.halfFillColor,
     this.onUpdate,
+    this.fromReviewPage = false,
   }) : super(key: key);
 
   @override
@@ -25,23 +27,34 @@ class RatingStar extends StatelessWidget {
       itemSize: itemSize,
       initialRating: rating,
       direction: Axis.horizontal,
-      allowHalfRating: true,
-      glow: false,
+      allowHalfRating: fromReviewPage ? false : true,
       itemCount: 5,
-      ratingWidget: RatingWidget(
-        full: SvgPicture.asset(
-          assets.icStar,
-          color: fillColor ?? colors.accentPrimary,
-        ),
-        half: SvgPicture.asset(
-          assets.icHalfStar,
-          color: halfFillColor ?? colors.accentPrimary,
-        ),
-        empty: SvgPicture.asset(
-          assets.icEmptyStar,
-          color: emptyColor ?? colors.accentPrimary,
-        ),
-      ),
+      glow: false,
+      ratingWidget: fromReviewPage
+          ? RatingWidget(
+              full: Icon(
+                Icons.star_rounded,
+                color: fillColor,
+              ),
+              empty: Icon(
+                Icons.star_border_rounded,
+                color: emptyColor,
+              ),
+            )
+          : RatingWidget(
+              full: SvgPicture.asset(
+                assets.icStar,
+                color: fillColor ?? colors.accentPrimary,
+              ),
+              half: SvgPicture.asset(
+                assets.icHalfStar,
+                color: halfFillColor ?? colors.accentPrimary,
+              ),
+              empty: SvgPicture.asset(
+                assets.icEmptyStar,
+                color: emptyColor ?? colors.accentPrimary,
+              ),
+            ),
       onRatingUpdate: onUpdate,
       itemPadding: EdgeInsets.symmetric(horizontal: itemPadding),
     );

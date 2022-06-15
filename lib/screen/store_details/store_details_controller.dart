@@ -1,5 +1,4 @@
 import 'package:aactivpay/export.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class StoreDetailsController extends GetxController
@@ -25,7 +24,7 @@ class StoreDetailsController extends GetxController
           else
             {
               change(null, status: RxStatus.error()),
-              showToast(value.toString()),
+              showToast(message: value.toString()),
             }
         });
   }
@@ -39,18 +38,6 @@ class StoreDetailsController extends GetxController
 
   void onBack() {
     Get.back();
-  }
-
-  void showToast(String errorMessage){
-    Fluttertoast.showToast(
-        msg: errorMessage,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: colors.error,
-        textColor: colors.white,
-        fontSize: 16.0
-    );
   }
 
   void openReviewPage(int branchId) {

@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:flutter_countdown_timer/index.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/state_manager.dart';
 
@@ -42,17 +41,6 @@ class OTPVerificationController extends GetxController
     Get.back();
   }
 
-  void showToast(String errorMessage){
-    Fluttertoast.showToast(
-        msg: errorMessage,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: colors.error,
-        textColor: colors.white,
-        fontSize: 16.0
-    );
-  }
 
   Future<void> verifyCode(String code, String verificationId) async {
     final result = await _authUseCase.verifyOTP(
@@ -66,12 +54,12 @@ class OTPVerificationController extends GetxController
               if (left is PlatformException)
                 {
                   errorMessage = left.title,
-                  showToast(left.title),
+                  showToast(message: left.title),
                 }
               else
                 {
                   errorMessage = left.toString(),
-                  showToast(left.title),
+                  showToast(message: left.title),
                 }
             },
         (right) => null);
@@ -80,7 +68,7 @@ class OTPVerificationController extends GetxController
   resend() async{
     if (params.number == null) {
       final response  = await _authUseCase.resendOTP(params.number);
-      response.fold((l) => showToast(l.title.toString()), (r) => response);
+      response.fold((l) => showToast(message: l.title.toString()), (r) => response);
       //   showSnackBarWithGlobalKeyAndAppErrors(
       //       _globalKey, AppError(title: ERROR_INVALID_PHONE_NUMBER),
       //       backgroundColor: colors.colorRedCard);

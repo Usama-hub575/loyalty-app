@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "919599861455",
-    "project_id": "loyalty-app-aff32",
-    "storage_bucket": "loyalty-app-aff32.appspot.com"
+    "project_number": "466121203256",
+    "project_id": "aapay-dev",
+    "storage_bucket": "aapay-dev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:919599861455:android:f03d05a820bed5c6dcb1ba",
+        "mobilesdk_app_id": "1:466121203256:android:4790cab28814bd08ac10cd",
         "android_client_info": {
           "package_name": "com.palmgrid.aactivpay"
         }
       },
       "oauth_client": [
         {
-          "client_id": "919599861455-4e84vfbslvehkv1uctpe1jepn62e9llo.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.palmgrid.aactivpay",
-            "certificate_hash": "c00b70f24935bf6d3fb8ee7874394007f29d8204"
-          }
-        },
-        {
-          "client_id": "919599861455-bh11mrmov1hvm6bsv33inuaht0ao2rov.apps.googleusercontent.com",
+          "client_id": "466121203256-m35v26nrobqlnhecvhvk1mr53r98c4ii.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBi9iGDhZu1WJNZzEnX4k36cLEkux5WLds"
+          "current_key": "AIzaSyBPNFVtnNGorX6b8DHXrUY6qFFzaNEJP-A"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "919599861455-bh11mrmov1hvm6bsv33inuaht0ao2rov.apps.googleusercontent.com",
+              "client_id": "466121203256-m35v26nrobqlnhecvhvk1mr53r98c4ii.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

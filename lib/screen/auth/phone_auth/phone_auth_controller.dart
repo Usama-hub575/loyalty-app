@@ -66,7 +66,10 @@ class PhoneAuthController extends GetxController
         navigateToHomePage,
         navigateToRegisterPage,
       );
-      response.fold((l) => showToast(message: l.title), (r) => response);
+      response.fold(
+        (l) => showToast(message: l.title),
+        (r) => response,
+      );
     }
   }
 
@@ -78,9 +81,6 @@ class PhoneAuthController extends GetxController
   bool validateNumber(String text) {
     return (text.length >= 10 && text[0] == '3');
   }
-
-
-
 
   onTapCheckBox() {
     isCheck.value = !isCheck.value;

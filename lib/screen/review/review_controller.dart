@@ -32,7 +32,7 @@ class ReviewController extends GetxController with StateMixin<ReviewScreen> {
     Get.back();
   }
 
-  void openFeedBackPage() {
+  void openFeedBackPage() async {
     Review review = Review(
         storeId: storeId,
         branchId: branchId,
@@ -40,7 +40,8 @@ class ReviewController extends GetxController with StateMixin<ReviewScreen> {
         content: feedBackController.text,
         transactionId: -1,
         reviewed: 'TRANSACTION');
-    useCase.submitStoreReview(review);
+    final either = await useCase.submitStoreReview(review);
+    either.fold((l) => showToast(message: l.title), (r) => null);
     Get.off(FeedBackPage());
   }
 

@@ -31,20 +31,23 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
     var pillsIndex;
     await useCase.getHomeData().then(
         (value) => {
-              if (value.isRight())
-                {
-                  if (useCase.data.isNotEmpty)
-                    {
-                      pillsIndex = useCase.data.indexWhere(
-                          (element) => element.type == HomeDataType.CATEGORIES),
-                      data = useCase.getData()[pillsIndex].data,
-                      pillsList = data?.categoryList,
-                      userAddress.value = useCase.userAddress,
-                      change(null, status: RxStatus.success())
-                    }
-                  else
-                    change(null, status: RxStatus.empty()),
-                },
+              value.fold(
+                  (l) => showToast(
+                        message: l.title,
+                      ),
+                  (r) => {
+                        if (useCase.data.isNotEmpty)
+                          {
+                            pillsIndex = useCase.data.indexWhere((element) =>
+                                element.type == HomeDataType.CATEGORIES),
+                            data = useCase.getData()[pillsIndex].data,
+                            pillsList = data?.categoryList,
+                            userAddress.value = useCase.userAddress,
+                            change(null, status: RxStatus.success())
+                          }
+                        else
+                          change(null, status: RxStatus.empty()),
+                      })
             }, onError: (error) {
       showToast(message: error.toString());
       change(null, status: RxStatus.error(error.toString()));

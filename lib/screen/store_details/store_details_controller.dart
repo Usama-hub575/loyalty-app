@@ -16,19 +16,25 @@ class StoreDetailsController extends GetxController
     storeId = Get.arguments[0];
     storeName = Get.arguments[1];
     change(null, status: RxStatus.loading());
-    await useCase.getStoreDetails(storeId).then((value) => {
-          if (value.isRight())
-            {
-              change(null, status: RxStatus.success()),
-            }
-          else
-            {
-              change(null, status: RxStatus.error()),
-              showToast(message: value.toString()),
-            }
-        });
+    await useCase.getStoreDetails(storeId).then(
+        (value) => {
+              value.fold(
+                  (l) => showToast(message: l.title),
+                  (r) => {
+                        if (value.isRight())
+                          {
+                            change(null, status: RxStatus.success()),
+                          }
+                        else
+                          {
+                            change(null, status: RxStatus.error()),
+                            showToast(message: value.toString()),
+                          }
+                      }),
+            }, onError: (error) {
+      showToast(message: error.toString());
+    });
   }
-
 
   List<Transaction> recentTransactions = [
     Transaction('21/01/2022', true, 0, 0),

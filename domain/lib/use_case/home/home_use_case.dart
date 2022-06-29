@@ -3,7 +3,6 @@ import 'package:domain/export.dart';
 class HomeUseCase {
   final HomeRepo repo;
   final SharedPreferences preferences;
-
   HomeUseCase(this.repo, this.preferences);
 
   late List<HomeEntity> data = [];
@@ -25,6 +24,7 @@ class HomeUseCase {
       );
     }
     final Either<AppError, AppSuccess> either4 = await getTransactionsData();
+    populateUpdateLocation();
     populateInviteCode();
     if (either1.isRight() ||
         either2.isRight() ||
@@ -66,12 +66,12 @@ class HomeUseCase {
     });
   }
 
-  Future<Either<AppError, AppSuccess>> getNearByStore() async {
+  Future<Either<AppError, AppSuccess>> getNearByStore({int index = 0}) async {
     final either = await repo.getNearByStore();
     return either.fold((error) {
       return Left(AppError());
     }, (stores) {
-      populateNearByData(stores);
+      populateNearByData(stores, index: index);
       return Right(AppSuccess());
     });
   }
@@ -187,28 +187,58 @@ class HomeUseCase {
     }
   }
 
-  populateNearByData(StoresList dataList) async {
-    data.add(
-      HomeEntity(
-        type: HomeDataType.NEARBYHEADER,
-        data: Object(),
-      ),
-    );
-    if (dataList.list.isNotEmpty) {
+  populateNearByData(StoresList dataList, {int index = 0}) async {
+    if(index != 0){
+      data.removeAt(index);
+      if (dataList.list.isNotEmpty) {
+        data.insert(
+          index,
+          HomeEntity(
+            type: HomeDataType.NEARBY_DATA_CARD,
+            data: dataList,
+          ),
+        );
+      } else {
+        data.insert(
+          index,
+          HomeEntity(
+            type: HomeDataType.NEARBY_EMPTY_CARD,
+            data: userAddress,
+          ),
+        );
+      }
+    }else{
       data.add(
         HomeEntity(
-          type: HomeDataType.NEARBY_DATA_CARD,
-          data: dataList,
+          type: HomeDataType.NEARBYHEADER,
+          data: Object(),
         ),
       );
-    } else {
-      data.add(
-        HomeEntity(
-          type: HomeDataType.NEARBY_EMPTY_CARD,
-          data: userAddress,
-        ),
-      );
+      if (dataList.list.isNotEmpty) {
+        data.add(
+          HomeEntity(
+            type: HomeDataType.NEARBY_DATA_CARD,
+            data: dataList,
+          ),
+        );
+      } else {
+        data.add(
+          HomeEntity(
+            type: HomeDataType.NEARBY_EMPTY_CARD,
+            data: userAddress,
+          ),
+        );
+      }
     }
+
+  }
+  populateUpdateLocation(){
+    data.add(
+        HomeEntity(
+            type: HomeDataType.UPDATE_LOCATION,
+            data: userAddress
+        )
+    );
   }
 
   populateTransactionData(TransactionList transactions) {

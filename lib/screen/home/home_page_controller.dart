@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:aactivpay/export.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomePageController extends GetxController with StateMixin<HomePage> {
   final HomeUseCase useCase;
   final RegisterUseCase registerUseCase;
+  int index = 0;
 
   HomePageController(this.useCase, this.registerUseCase);
 
@@ -26,6 +28,7 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
   @override
   Future<void> onInit() async {
     super.onInit();
+    index = 0;
     change(null, status: RxStatus.loading());
     StoreCategories data;
     var pillsIndex;
@@ -95,6 +98,11 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
     LocationModel location =
         await AppRoutes.appRoutes(RouteNames.locationScreen);
     if (location.geoAddress.isNotEmpty) {
+      change(null, status: RxStatus.loading());
+      await useCase.getNearByStore(
+        index: index,
+      );
+      change(null, status: RxStatus.success());
       address = location;
     }
   }

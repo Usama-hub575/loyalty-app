@@ -33,7 +33,7 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
     return ListView.builder(
       shrinkWrap: true,
       physics: BouncingScrollPhysics(),
-      padding: EdgeInsets.symmetric(vertical: verticalValue(10)),
+      padding: EdgeInsets.symmetric(vertical: 10),
       itemBuilder: (context, index) {
         final StoreDetailsDataType type = controller.useCase.data[index].type;
         switch (type) {
@@ -43,12 +43,12 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
               children: [
                 horizontalSpacer(20),
                 SvgPicture.asset(
-                  assets.icStoreDetailsStar,
+                  assets.icStarStoreDetails,
                   width: 14,
                   height: 14,
                 ),
                 horizontalSpacer(6),
-                BodySmallText('${controller.getData(index).rating}/5'),
+                BodyExtraSmallText('${controller.getData(index).rating}/5'),
                 horizontalSpacer(10),
                 SvgPicture.asset(
                   assets.icCoin,
@@ -56,7 +56,7 @@ class StoreDetailsPage extends GetView<StoreDetailsController> {
                   height: 14,
                 ),
                 horizontalSpacer(6),
-                BodySmallText(controller.getData(index).redeemLimit.toString()),
+                BodyExtraSmallText(controller.getData(index).redeemLimit.toString()),
               ],
             );
           case StoreDetailsDataType.CATEGORIES:

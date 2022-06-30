@@ -48,6 +48,7 @@ class AppAssets {
   final String icTriangle = 'assets/svg/ic_triangle.svg';
   final String icBox = 'assets/svg/ic_box.svg';
   final String icShimmerCircle = 'assets/svg/ic_shimmer_circle.svg';
+  final String icStarStoreDetails = 'assets/svg/ic_star_store_details.svg';
   final String icTickAuth = 'assets/svg/ic_tick_auth.svg';
   final String icStoreDetailsStar = 'assets/svg/ic_store_details_star.svg';
 

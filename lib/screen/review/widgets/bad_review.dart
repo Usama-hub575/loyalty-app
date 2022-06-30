@@ -38,7 +38,8 @@ class BadReview extends StatelessWidget {
     return Obx(
       () => ActionChip(
         onPressed: () => onTap(index),
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        padding: EdgeInsets.symmetric(
+            horizontal: horizontalValue(10), vertical: verticalValue(6)),
         backgroundColor:
             value.isActive.value ? colors.white : colors.accentPrimary,
         shape: StadiumBorder(side: BorderSide(color: colors.primaryLight)),

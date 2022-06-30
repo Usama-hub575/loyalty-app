@@ -34,14 +34,14 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       actions: [
         Padding(
-          padding: EdgeInsets.only(right: 15),
+          padding: EdgeInsets.only(right: horizontalValue(15)),
           child: AppIconButton(
             assets.icSearch,
             onTap: onSearchTap,
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(right: 10),
+          padding: EdgeInsets.only(right: horizontalValue(10)),
           child: AppIconButton(
             assets.icNotification,
             onTap: onNotificationTap,

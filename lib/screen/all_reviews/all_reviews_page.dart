@@ -10,22 +10,25 @@ class AllReviewsPage extends GetView<AllReviewsController> {
         children: [
           verticalSpacer(40),
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: horizontalValue(20.0)),
+            padding: EdgeInsets.symmetric(horizontal: horizontalValue(20.0)),
             child: AppBarWidget(
               title: controller.store.name,
               onBack: controller.onBack,
             ),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  Ratings(controller.store),
-                  Reviews(reviews: controller.getReviews()),
-                ],
+          controller.obx(
+            (state) => Expanded(
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    Ratings(controller.store),
+                    Reviews(reviews: controller.getReviews()),
+                  ],
+                ),
               ),
             ),
+            onLoading: ReviewLoadingScreen(),
           ),
         ],
       ),

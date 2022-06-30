@@ -14,22 +14,23 @@ class SeeAllController extends GetxController
     change(null, status: RxStatus.loading());
     allStoresUseCase.getAllStores().then(
         (value) => {
-              if (value.isRight())
-                {
-                  if (allStoresUseCase.data.isNotEmpty)
-                    {
-                      change(null, status: RxStatus.success()),
-                    }
-                  else
-                    {
-                      change(null, status: RxStatus.empty()),
-                    }
-                }
-              else
-                {
-                  change(null, status: RxStatus.error()),
+              value.fold(
+                (l) {
+                  showToast(message: l.title);
+                  change(null, status: RxStatus.error());
+                  return false;
                 },
+                (r) {
+                  if (allStoresUseCase.data.isNotEmpty) {
+                    change(null, status: RxStatus.success());
+                  } else {
+                    change(null, status: RxStatus.empty());
+                  }
+                  return true;
+                },
+              )
             }, onError: (error) {
+      showToast(message: error.title);
       change(null, status: RxStatus.error());
     });
     pillsList = Get.arguments;
@@ -38,8 +39,6 @@ class SeeAllController extends GetxController
   onBack() {
     Get.back();
   }
-
-
 
   void onPillsTap(
     index,
@@ -59,5 +58,4 @@ class SeeAllController extends GetxController
     AppRoutes.appRoutes(RouteNames.storeDetailsScreen,
         arg: [storeId, storeName]);
   }
-
 }

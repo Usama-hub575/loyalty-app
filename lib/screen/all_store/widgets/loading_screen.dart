@@ -8,82 +8,150 @@ class AllStoresLoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*return getLoader();*/
-    return getShimmerLoader();
-  }
-
-  Widget getShimmerLoader() {
-    return Column(
-      children: [
-        verticalSpacer(30),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-          child: AppBarWidget(
-            title: 'Stores',
-            onBack: (){},
-          ),
+    return Container(
+      padding: EdgeInsets.only(
+        left: horizontalValue(
+          20,
         ),
-        Expanded(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            physics: BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 30),
-                  child: Wrap(
-                    children: [
-                      getPills(80),
-                      getPills(90),
-                      getPills(80),
-                      getPills(100),
-                      getPills(110),
-                      getPills(100),
-                      getPills(70),
-                      getPills(90),
-                      getPills(100),
-                    ],
-                  ),
-                ),
-                verticalSpacer(20),
-                SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  physics: BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      getStoreCard(),
-                      getStoreCard(),
-                      getStoreCard(),
-                      getStoreCard(),
-                      getStoreCard(),
-                    ],
-                  ),
-                ),
-              ],
+      ),
+      child: Column(
+        children: [
+          verticalSpacer(30),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+              horizontalValue(0),
+              horizontalValue(10),
+              horizontalValue(20.0),
+              horizontalValue(10),
+            ),
+            child: AppBarWidget(
+              title: 'Stores',
+              onBack: () {},
             ),
           ),
+          _pillsList(),
+          verticalSpacer(21),
+          Expanded(
+            child: ListView.separated(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (_, index) {
+                return getStoreCard();
+              },
+              separatorBuilder: (_, index) {
+                return verticalSpacer(10);
+              },
+              itemCount: 3,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _pillsList() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            BodyExtraSmallText(
+              'Apply Now',
+              color: colors.accentPrimary,
+            ),
+            horizontalSpacer(
+              5,
+            ),
+          ],
+        ),
+        Wrap(
+          children: [
+            getPills(80),
+            getPills(90),
+            getPills(80),
+            getPills(100),
+            getPills(110),
+            getPills(100),
+            getPills(70),
+            getPills(90),
+            getPills(100),
+          ],
         ),
       ],
     );
   }
 
-  getStoreCard() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+  Widget getStoreCard() {
+    return Container(
+      padding: EdgeInsets.only(
+        right: horizontalValue(
+          20,
+        ),
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          8,
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: sizes.heightRatio * 120,
-            color: colors.primaryDark.withOpacity(0.1),
+            height: sizes.heightRatio * 172,
+            decoration: BoxDecoration(
+              color: colors.primaryDark.withOpacity(
+                0.1,
+              ),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(
+                  8,
+                ),
+                topRight: Radius.circular(
+                  8,
+                ),
+              ),
+            ),
           ),
-          verticalSpacer(20),
           Container(
-            height: sizes.heightRatio * 10,
-            width: sizes.widthRatio * 120,
-            color: colors.primaryDark.withOpacity(0.1),
-          )
+            width: sizes.width,
+            decoration: BoxDecoration(
+              color: colors.white,
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(
+                  8,
+                ),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                verticalSpacer(
+                  18,
+                ),
+                Row(
+                  children: [
+                    horizontalSpacer(
+                      11.97,
+                    ),
+                    Container(
+                      height: sizes.heightRatio * 10,
+                      width: sizes.widthRatio * 234.83,
+                      decoration: BoxDecoration(
+                        color: colors.primaryDark.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(
+                          2,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                verticalSpacer(
+                  18,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

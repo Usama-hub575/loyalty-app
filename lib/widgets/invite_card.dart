@@ -1,5 +1,6 @@
 import 'package:aactivpay/export.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 class InviteCard extends StatelessWidget {
@@ -16,7 +17,9 @@ class InviteCard extends StatelessWidget {
         children: [
           getInviteHeadingText('Invite your friends to earn Free Cash '),
           horizontalSpacer(30),
-          gatInviteCodeBox(),
+          gatInviteCodeBox(
+            context: context,
+          ),
           getInviteButton(),
         ],
       ),
@@ -33,7 +36,6 @@ class InviteCard extends StatelessWidget {
               color: colors.black,
             ),
           ),
-
           WidgetSpan(
             child: SvgPicture.asset(
               assets.icMoneyBag,
@@ -46,33 +48,39 @@ class InviteCard extends StatelessWidget {
     );
   }
 
-  Widget gatInviteCodeBox() {
-    return Container(
-      width: sizes.width,
-      padding: EdgeInsets.all(20),
-      margin: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: colors.white,
-        borderRadius: BorderRadius.circular(8),
+  Widget gatInviteCodeBox({@required BuildContext context}) {
+    return GestureDetector(
+      onTap: () => copyToClipboard(
+        value: 'getapp.aactivpay.com',
+        context: context,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: sizes.widthRatio * 200,
-            child: Text(
-              'getapp.aactivpay.com',
-              style: textStyles.headingRegular,
-              overflow: TextOverflow.ellipsis,
+      child: Container(
+        width: sizes.width,
+        padding: EdgeInsets.all(20),
+        margin: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: sizes.widthRatio * 200,
+              child: Text(
+                'getapp.aactivpay.com',
+                style: textStyles.headingRegular,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-          verticalSpacer(8),
-          Text(
-            'Tap to copy to clipboard',
-            style: textStyles.bodyExtraSmall,
-          ),
-        ],
+            verticalSpacer(8),
+            Text(
+              'Tap to copy to clipboard',
+              style: textStyles.bodyExtraSmall,
+            ),
+          ],
+        ),
       ),
     );
   }

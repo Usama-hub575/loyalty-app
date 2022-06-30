@@ -10,7 +10,7 @@ class AppConstants {
   final String home = 'Home';
   final String aboutUs = 'About us';
   final String contactUs = 'Contact us';
-  final String termsAndCondition = 'Terms & Condition';
+  final String termsAndCondition = 'Term of service';
   final String privacyPolicy = 'Privacy Policy';
   final String empty = '';
   final String continueText = 'Continue';

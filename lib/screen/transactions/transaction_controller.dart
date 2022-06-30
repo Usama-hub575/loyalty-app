@@ -5,6 +5,10 @@ class TransactionController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    change(null, status: RxStatus.loading());
+    Future.delayed(Duration(seconds: 2)).then((value) => {
+      change(null, status: RxStatus.success())
+    });
   }
 
   List<Category> pillsList = [
@@ -14,7 +18,6 @@ class TransactionController extends GetxController
     Category(4, 'Carrefour', 0, false.obs),
     Category(5, 'Euro store', 0, false.obs),
     Category(6, 'Emporium', 0, false.obs),
-    Category(7, 'Carrefour', 0, false.obs),
   ];
 
   List<Transaction> allTransactions = [

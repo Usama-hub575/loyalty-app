@@ -14,7 +14,7 @@ class HomeLoadingScreen extends StatelessWidget {
 
   Widget getShimmerLoader() {
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -23,7 +23,7 @@ class HomeLoadingScreen extends StatelessWidget {
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             child: Row(
               children: [
                 getStoreCard(),
@@ -41,24 +41,27 @@ class HomeLoadingScreen extends StatelessWidget {
               children: [
                 getMapCard3(),
                 Padding(
-                  padding:  EdgeInsets.only(right: horizontalValue(10)),
+                  padding: EdgeInsets.only(right: horizontalValue(10)),
                   child: Align(
                       alignment: Alignment.centerRight,
-                      child: BodyExtraSmallText('Apply Now',color: colors.accentPrimary,)),
+                      child: BodyExtraSmallText(
+                        'Apply Now',
+                        color: colors.accentPrimary,
+                      )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10.0, left: 10),
+                  padding:  EdgeInsets.only(top: verticalValue(10)),
                   child: Wrap(
                     children: [
                       getPills(80),
+                      getPills(100),
+                      getPills(75),
+                      getPills(137),
                       getPills(90),
-                      getPills(80),
-                      getPills(100),
-                      getPills(110),
-                      getPills(100),
-                      getPills(70),
                       getPills(90),
-                      getPills(100),
+                      getPills(65),
+                      getPills(75),
+                      getPills(140),
                     ],
                   ),
                 ),
@@ -67,7 +70,7 @@ class HomeLoadingScreen extends StatelessWidget {
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             child: Row(
               children: [
                 getStoreCard(),
@@ -86,7 +89,9 @@ class HomeLoadingScreen extends StatelessWidget {
   getMapCard(String icon) {
     return Container(
       width: sizes.width,
-      padding: EdgeInsets.only(left: 20, ),
+      padding: EdgeInsets.only(
+        left: horizontalValue(20),
+      ),
       child: Stack(
         children: [
           Image.asset(
@@ -94,7 +99,7 @@ class HomeLoadingScreen extends StatelessWidget {
           ),
           Container(
             width: sizes.width / 2.2,
-            height: sizes.heightRatio * 70,
+            height: sizes.heightRatio * 75,
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(
                 color: colors.primaryLight,
@@ -113,19 +118,23 @@ class HomeLoadingScreen extends StatelessWidget {
                   Container(
                     width: sizes.width * 0.60,
                     height: 10,
-                    color: colors.primaryDark.withOpacity(0.2),
+                    decoration: BoxDecoration(
+                        color: colors.primaryDark.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(2.0)),
                   ),
                   verticalSpacer(6),
                   Container(
                     width: sizes.width * 0.30,
                     height: 10,
-                    color: colors.primaryDark.withOpacity(0.2),
+                    decoration: BoxDecoration(
+                        color: colors.primaryDark.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(2.0)),
                   ),
                 ],
               ),
               Spacer(),
               Padding(
-                padding:  EdgeInsets.only(right: horizontalValue(10)),
+                padding: EdgeInsets.only(right: horizontalValue(10)),
                 child: SvgPicture.asset(icon),
               ),
             ],
@@ -154,7 +163,10 @@ class HomeLoadingScreen extends StatelessWidget {
               Container(
                 width: sizes.width * 0.30,
                 height: 10,
-                color: colors.primaryDark.withOpacity(0.1),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(2.0),
+                  color: colors.primaryDark.withOpacity(0.1),
+                ),
               ),
             ],
           ),
@@ -178,13 +190,19 @@ class HomeLoadingScreen extends StatelessWidget {
               Container(
                 width: sizes.width * 0.60,
                 height: 10,
-                color: colors.primaryDark.withOpacity(0.1),
+                decoration: BoxDecoration(
+                  color: colors.primaryDark.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(2.0),
+                ),
               ),
               verticalSpacer(6),
               Container(
                 width: sizes.width * 0.30,
                 height: 10,
-                color: colors.primaryDark.withOpacity(0.1),
+                decoration: BoxDecoration(
+                  color: colors.primaryDark.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(2.0),
+                ),
               ),
             ],
           ),
@@ -225,13 +243,14 @@ class HomeLoadingScreen extends StatelessWidget {
 
   getStoreCard() {
     return Padding(
-      padding:  EdgeInsets.only(left: horizontalValue(20),top: verticalValue(20)),
+      padding:
+          EdgeInsets.only(left: horizontalValue(20), top: verticalValue(20)),
       child: Container(
         height: sizes.heightRatio * 212,
         decoration: BoxDecoration(
             color: colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(8), bottom: Radius.circular(8))
-        ),
+            borderRadius: BorderRadius.vertical(
+                top: Radius.circular(8), bottom: Radius.circular(8))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -249,7 +268,10 @@ class HomeLoadingScreen extends StatelessWidget {
               child: Container(
                 height: sizes.heightRatio * 10,
                 width: sizes.widthRatio * 120,
-                color: colors.primaryDark.withOpacity(0.1),
+                decoration: BoxDecoration(
+                  color: colors.primaryDark.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(2.0),
+                ),
               ),
             )
           ],

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class NearByEmptyCard extends StatelessWidget {
-  final onTap;
+
   final LocationModel address;
 
-  const NearByEmptyCard(this.address, {Key key, this.onTap}) : super(key: key);
+  const NearByEmptyCard(this.address, {Key key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,20 +21,6 @@ class NearByEmptyCard extends StatelessWidget {
             color: colors.primaryDark.withOpacity(0.3),
           ),
           verticalSpacer(20),
-          GestureDetector(
-            onTap: onTap,
-            child: Row(
-              children: [
-                BodySmallText(
-                  'Update your location',
-                  color: colors.accentPrimary,
-                ),
-                Spacer(),
-                SvgPicture.asset(assets.icRightArrow),
-              ],
-            ),
-          ),
-          verticalSpacer(10),
         ],
       ),
     );

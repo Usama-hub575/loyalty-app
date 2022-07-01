@@ -99,11 +99,12 @@ class HomePageController extends GetxController with StateMixin<HomePage> {
         await AppRoutes.appRoutes(RouteNames.locationScreen);
     if (location.geoAddress.isNotEmpty) {
       change(null, status: RxStatus.loading());
+      address = location;
       await useCase.getNearByStore(
         index: index,
       );
       change(null, status: RxStatus.success());
-      address = location;
+
     }
   }
 

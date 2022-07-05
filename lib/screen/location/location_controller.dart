@@ -12,15 +12,16 @@ class LocationController extends GetxController with StateMixin<LocationPage> {
   Rx<TextEditingController> locationController = TextEditingController().obs;
   Completer<GoogleMapController> completer = Completer();
 
-  double lat ;
-  double lng;
   Rx<bool> isLoading = false.obs;
   Location _location = Location();
   LocationData _locationData;
   BitmapDescriptor currentLocationIcon;
   List<geo.Placemark> _geoAddress;
   LocationModel result = LocationModel();
-  Rx<CameraPosition> cameraPosition ;
+  Rx<CameraPosition> cameraPosition = CameraPosition(
+    target: LatLng(32.488140, 74.392461),
+    zoom: 15.0,
+  ).obs;
 
   RxSet<Circle> circle = Set<Circle>.from([
     Circle(
@@ -31,23 +32,17 @@ class LocationController extends GetxController with StateMixin<LocationPage> {
     //     icon: BitmapDescriptor.defaultMarkerWithHue(10)),
   ]).obs;
 
-  Rx<CameraUpdate> cameraUpdate ;
+  Rx<CameraUpdate> cameraUpdate =
+      CameraUpdate.newLatLng(LatLng(31.488140, 74.392461)).obs;
 
   @override
   void onInit() {
     super.onInit();
-   lat = this.useCase.preferences.getDouble("lat");
-   lng = this.useCase.preferences.getDouble("lng");
     BitmapDescriptor.fromAssetImage(
             ImageConfiguration(), assets.currentLocation)
         .then((value) => {
               currentLocationIcon = value,
             });
-    cameraPosition =CameraPosition(
-      target: LatLng(lat, lng),
-      zoom: 15.0,
-    ).obs;
-    cameraUpdate =CameraUpdate.newLatLng(LatLng(lat, lng)).obs;
   }
 
   void getUserLocation() async {
@@ -58,14 +53,14 @@ class LocationController extends GetxController with StateMixin<LocationPage> {
       if (_serviceEnabled) {
         _locationData = await _location.getLocation();
         cameraPosition.value = CameraPosition(
-          target: LatLng(lat, lng),
+          target: LatLng(_locationData.latitude, _locationData.longitude),
         );
         cameraUpdate.value =
             CameraUpdate.newCameraPosition(cameraPosition.value);
         circle = Set<Circle>.from([
           Circle(
             circleId: CircleId('currentLocation'),
-            center: LatLng(lat, lng),
+            center: LatLng(_locationData.latitude, _locationData.longitude),
             strokeColor: colors.accentPrimary.withOpacity(0.2),
             fillColor: colors.accentPrimary.withOpacity(0.1),
             strokeWidth: 20,

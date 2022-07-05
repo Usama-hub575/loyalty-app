@@ -45,6 +45,8 @@ class HomeUseCase {
         for(int i=0;i<address.length;i++){
           if(address[i].isCurrent){
             userAddress = address[i];
+            preferences.setDouble("lat", address[i].latitude);
+            preferences.setDouble("lng", address[i].longitude);
             break;
           }
         }

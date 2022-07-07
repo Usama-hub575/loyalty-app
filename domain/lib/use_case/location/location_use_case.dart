@@ -20,4 +20,14 @@ class LocationUseCase {
       return Left(AppError(title: e.toString()));
     }
   }
+
+  double? getLatitude(){
+    return preferences.getDouble('lat');
+  }
+
+  double? getLongitude(){
+    return preferences.getDouble('lng');
+  }
+
+
 }

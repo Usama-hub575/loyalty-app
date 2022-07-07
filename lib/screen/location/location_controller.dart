@@ -36,8 +36,8 @@ class LocationController extends GetxController with StateMixin<LocationPage> {
   @override
   void onInit() {
     super.onInit();
-   lat = this.useCase.preferences.getDouble("lat");
-   lng = this.useCase.preferences.getDouble("lng");
+   lat = useCase.getLatitude();
+   lng = useCase.getLongitude();
     BitmapDescriptor.fromAssetImage(
             ImageConfiguration(), assets.currentLocation)
         .then((value) => {

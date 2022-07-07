@@ -19,7 +19,7 @@ class StoreAppBar extends StatelessWidget {
               left: horizontalValue(20),
               right: horizontalValue(10),
             ),
-            width: sizes.width * 0.87,
+            width: sizes.width * 0.9,
 
             child: Marquee(
               text: name,
@@ -56,7 +56,7 @@ class StoreAppBar extends StatelessWidget {
                 left: horizontalValue(20),
                 right: horizontalValue(10),
               ),
-              width: sizes.width * 0.8,
+              width: sizes.width * 0.9,
 
               child: HeadingLargeText(
                 name,

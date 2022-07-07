@@ -11,7 +11,7 @@ class StoreAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (name.length > 14) {
+    if (name.length > 18) {
       return Row(
         children: [
           Container(
@@ -19,7 +19,7 @@ class StoreAppBar extends StatelessWidget {
               left: horizontalValue(20),
               right: horizontalValue(10),
             ),
-            width: sizes.width * 0.9,
+            width: sizes.width * 0.87,
 
             child: Marquee(
               text: name,

@@ -17,6 +17,7 @@ class BodyRegularText extends StatelessWidget {
       style: textStyles.bodyRegular.copyWith(
         color: color,
       ),
+      maxLines: 3,
     );
   }
 }

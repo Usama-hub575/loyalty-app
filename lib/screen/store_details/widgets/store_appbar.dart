@@ -11,7 +11,7 @@ class StoreAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (name.length > 18) {
+    if (name.length > 12) {
       return Row(
         children: [
           Container(
@@ -19,7 +19,7 @@ class StoreAppBar extends StatelessWidget {
               left: horizontalValue(20),
               right: horizontalValue(10),
             ),
-            width: sizes.width * 0.9,
+            width: sizes.width * 0.75,
 
             child: Marquee(
               text: name,
@@ -27,13 +27,13 @@ class StoreAppBar extends StatelessWidget {
                 fontFamily: constants.fontMontserrat,
                 fontSize: sizes.fontRatio * 27,
               ),
+              fadingEdgeEndFraction: 0.2,
               scrollAxis: Axis.horizontal,
-              blankSpace: 25.0,
+              blankSpace: 36.0,
               velocity: 100.0,
-              pauseAfterRound: Duration(seconds: 1),
               accelerationDuration: Duration(seconds: 1),
               accelerationCurve: Curves.linear,
-              decelerationDuration: Duration(milliseconds: 500),
+              decelerationDuration: Duration(seconds: 1),
               decelerationCurve: Curves.easeOut,
             ),
           ),
@@ -56,7 +56,7 @@ class StoreAppBar extends StatelessWidget {
                 left: horizontalValue(20),
                 right: horizontalValue(10),
               ),
-              width: sizes.width * 0.9,
+              width: sizes.width * 0.75,
 
               child: HeadingLargeText(
                 name,

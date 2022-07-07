@@ -25,7 +25,7 @@ class LocationModel {
     this.locationId = 0,
     this.latitude = 0.0,
     this.longitude = 0.0,
-    this.geoAddress = '',
+    this.geoAddress = ' ',
     this.profileType = 'CUSTOMER',
   });
 

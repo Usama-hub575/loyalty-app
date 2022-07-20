@@ -28,6 +28,7 @@ class StoreDetailsUseCase {
     }
   }
 
+
   void populateStoreDetails(Store store) {
     data.add(
       StoreDetailsEntity(

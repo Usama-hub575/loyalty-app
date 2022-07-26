@@ -66,18 +66,24 @@ class HomePage extends GetView<HomePageController> {
             case HomeDataType.NEARBYHEADER:
               return NearByHeader();
             case HomeDataType.NEARBY_EMPTY_CARD:
+              controller.index = index;
               return Obx(
                 () => NearByEmptyCard(
                   controller.userAddress.value,
-                  onTap: controller.openLocationPage,
                 ),
               );
             case HomeDataType.NEARBY_DATA_CARD:
+              controller.index = index;
               return StoreCard(
                 controller.getHomeData(index),
                 openStoreDetails: controller.openStoreDetailsPage,
                 seeAllStore: controller.openAllStorePage,
               );
+            case HomeDataType.UPDATE_LOCATION:
+              return UpdateLocation(
+                onUpdateLocationTap: controller.openLocationPage,
+              );
+
             case HomeDataType.INVITE:
               return InviteCard();
             case HomeDataType.TRANSACTIONS:

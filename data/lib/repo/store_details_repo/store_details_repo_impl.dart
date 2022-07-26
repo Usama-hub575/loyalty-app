@@ -34,7 +34,7 @@ class StoreDetailsRepoImpl implements StoreDetailsRepo {
           page,
           size,
         ),
-      );
+      ).timeout(Duration(seconds: 1));
       if (response.statusCode == 200) {
         var data = json.decode(response.body.toString());
         return Right(ReviewList.fromJson(data));

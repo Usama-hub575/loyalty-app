@@ -6,3 +6,4 @@ export 'floating_action_button.dart';
 export 'loading_screen.dart';
 export 'near_by_header.dart';
 export 'near_by_empty_card.dart';
+export 'update_location.dart';

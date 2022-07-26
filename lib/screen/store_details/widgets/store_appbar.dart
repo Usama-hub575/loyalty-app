@@ -11,67 +11,40 @@ class StoreAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (name.length > 12) {
-      return Row(
-        children: [
-          Container(
-            padding: EdgeInsets.only(
-              left: horizontalValue(20),
-              right: horizontalValue(10),
-            ),
-            width: sizes.width * 0.75,
-
-            child: Marquee(
-              text: name,
-              style: TextStyle(fontWeight: FontWeight.w800,
-                fontFamily: constants.fontMontserrat,
-                fontSize: sizes.fontRatio * 27,
-              ),
-              fadingEdgeEndFraction: 0.2,
-              scrollAxis: Axis.horizontal,
-              blankSpace: 36.0,
-              velocity: 100.0,
-              accelerationDuration: Duration(seconds: 1),
-              accelerationCurve: Curves.linear,
-              decelerationDuration: Duration(seconds: 1),
-              decelerationCurve: Curves.easeOut,
-            ),
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            padding:EdgeInsets.symmetric(horizontal: 15),
+            child: name.length > 16
+                ? Marquee(
+                    text: name.toUpperCase(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontFamily: constants.fontMontserrat,
+                      fontSize: sizes.fontRatio * 28,
+                    ),
+                    scrollAxis: Axis.horizontal,
+                    blankSpace: 42.0,
+                    velocity: 100.0,
+                    accelerationDuration: Duration(seconds: 1),
+                    accelerationCurve: Curves.linear,
+                    decelerationDuration: Duration(seconds: 1),
+                    decelerationCurve: Curves.easeOut,
+                  )
+                : HeadingLargeText(
+                    name,
+                  ),
           ),
-          Spacer(),
-          Padding(
-            padding: EdgeInsets.only(right: horizontalValue(20)),
-            child: AppIconButton(
-              assets.icCross,
-              onTap: onCross,
-            ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: horizontalValue(20)),
+          child: AppIconButton(
+            assets.icCross,
+            onTap: onCross,
           ),
-        ],
-      );
-    }
-    else {
-        return Row(
-          children: [
-            Container(
-              padding: EdgeInsets.only(
-                left: horizontalValue(20),
-                right: horizontalValue(10),
-              ),
-              width: sizes.width * 0.75,
-
-              child: HeadingLargeText(
-                name,
-              ),
-            ),
-            Spacer(),
-            Padding(
-              padding: EdgeInsets.only(right: horizontalValue(20)),
-              child: AppIconButton(
-                assets.icCross,
-                onTap: onCross,
-              ),
-            ),
-          ],
-        );
-      };
+        ),
+      ],
+    );
   }
 }

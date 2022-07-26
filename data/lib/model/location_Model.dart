@@ -18,7 +18,6 @@ class LocationModel {
   final int locationId;
   final double latitude;
   final double longitude;
-  final bool isCurrent;
   final String geoAddress;
   final String profileType;
 
@@ -26,8 +25,7 @@ class LocationModel {
     this.locationId = 0,
     this.latitude = 0.0,
     this.longitude = 0.0,
-    this.isCurrent = false,
-    this.geoAddress = '',
+    this.geoAddress = ' ',
     this.profileType = 'CUSTOMER',
   });
 
@@ -36,7 +34,6 @@ class LocationModel {
       locationId: json['locationId'],
       latitude: json['lat'],
       longitude: json['lng'],
-      isCurrent: json['isCurrent'],
       geoAddress: json['geoDecodedAddress'],
       profileType: json['ownerType'],
     );
@@ -45,7 +42,6 @@ class LocationModel {
   Map<String, dynamic> toJson() => {
         'lat': latitude,
         'lng': longitude,
-        'isCurrent': isCurrent,
         'geoDecodedAddress': geoAddress,
         'ownerType': "CUSTOMER",
       };

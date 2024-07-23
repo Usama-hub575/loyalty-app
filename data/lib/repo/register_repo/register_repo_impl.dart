@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:data/export.dart';
-
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class RegisterRepoImpl implements RegisterRepo {

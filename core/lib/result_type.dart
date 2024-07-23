@@ -1,4 +1,3 @@
-
 class AppError {
   final String title;
   final String description;

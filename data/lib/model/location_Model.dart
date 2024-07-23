@@ -20,8 +20,10 @@ class LocationModel {
   final double longitude;
   final String geoAddress;
   final String profileType;
+  final bool isCurrent;
 
   LocationModel({
+    this.isCurrent=false,
     this.locationId = 0,
     this.latitude = 0.0,
     this.longitude = 0.0,
@@ -36,13 +38,17 @@ class LocationModel {
       longitude: json['lng'],
       geoAddress: json['geoDecodedAddress'],
       profileType: json['ownerType'],
+      isCurrent: json['isCurrent'],
     );
   }
 
+  //bool get isCurrent => true;
+
   Map<String, dynamic> toJson() => {
-        'lat': latitude,
-        'lng': longitude,
-        'geoDecodedAddress': geoAddress,
-        'ownerType': "CUSTOMER",
-      };
+    'lat': latitude,
+    'lng': longitude,
+    'geoDecodedAddress': geoAddress,
+    'ownerType': "CUSTOMER",
+    'isCurrent':isCurrent,
+  };
 }
